@@ -1,0 +1,4 @@
+interface:
+  display_name: "Management Empirical Writer"
+  short_description: "Plan and draft bilingual management empirical papers"
+  default_prompt: "Use $management-empirical-writer to align materials and draft a bilingual empirical paper chapter by chapter."

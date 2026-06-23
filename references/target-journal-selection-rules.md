@@ -1,0 +1,21 @@
+# Target Journal Selection Rules
+
+- If target journal samples are provided, analyze their structure, section order, word length, writing style, citation density, table style, and Research Design conventions.
+- If target journal samples are missing, recommend candidate target journals and benchmark papers based on:
+  - research field
+  - method
+  - data type
+  - sample type
+  - dependent variable
+  - theoretical lens
+  - target language
+  - publication level
+- Do not treat recommended journals as final. Ask the user to confirm.
+- Do not proceed to Stage 2 until the user confirms:
+  - target journal or target journal group
+  - at least 2 to 5 benchmark papers, if available
+  - preferred language version priority
+  - approximate word length or target journal word limit
+- If web search or literature MCP is available, use it to find candidate benchmark papers.
+- If web search or literature MCP is not available, ask the user to provide benchmark papers manually.
+- The output should be `logs/target-journal-style-profile.md`.
