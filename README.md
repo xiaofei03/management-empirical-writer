@@ -119,6 +119,11 @@ python3 --version
 
 ## Literature Pool and Citation Quality
 
+- Candidate literature screening can start from metadata.
+- Writing-critical references require PDFs or full-text notes before drafting.
+- The skill prioritizes downloading or importing PDFs for benchmark papers, variable measurement literature, core theory references, and method or identification references.
+- The skill does not download every candidate reference by default.
+- Before drafting, the skill should generate `logs/fulltext-literature-readiness.md` and `logs/literature-synthesis-map.md`.
 - The skill builds a literature pool before drafting.
 - The default final reference target is 60 to 80 references.
 - Recent, high-quality references are prioritized, while classic references are allowed when justified.

@@ -38,6 +38,12 @@ Use this checklist for chapter review and full-paper review.
 - Whether each cited reference has a clear role in the argument.
 - Whether any citation appears to be padding.
 - Whether all citekeys are valid and traceable to Zotero, MCP, or user-provided references.
+- Whether writing-critical references have PDF files or full-text notes.
+- Whether writing-critical references are imported into Zotero or MCP with citekeys.
+- Whether metadata-only references are not used for precise variable measurement or theoretical claims.
+- Whether `logs/fulltext-literature-readiness.md` exists before Stage 2.
+- Whether `logs/literature-synthesis-map.md` exists before Stage 2.
+- Whether missing full-text items are resolved or explicitly waived by the user.
 
 ## Bilingual Consistency
 

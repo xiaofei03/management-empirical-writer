@@ -62,6 +62,7 @@ Ask for or verify the presence of:
 
 - Preferred target journal name or journal set
 - 2 to 5 target-journal or benchmark papers in PDF or Word format if available
+- Target journal benchmark paper PDFs or full-text notes
 - Any explicit formatting rules from the user, advisor, or journal
 - Target-journal submission guidance or word-limit information if available
 - Any language preferences, such as more policy-oriented Chinese framing or more theory-oriented English framing
@@ -81,12 +82,16 @@ Ask for or verify the presence of:
 - Core empirical references
 - Literature review notes
 - PDFs, BibTeX, Zotero export, or citekey list
+- Core theory reference PDFs or full-text notes
 - User-specified must-cite works
 - Theory keywords or schools of thought
 - User-provided core references
 - Target-journal benchmark papers
 - Variable measurement references
+- Method or identification reference PDFs or full-text notes when nonstandard methods are used
 - Zotero or MCP citekeys
+- Zotero or MCP citekeys for writing-critical references
+- PDF or full-text readiness status
 - Candidate literature pool, if already available
 - Missing literature areas requiring MCP or web search
 
@@ -104,6 +109,9 @@ Check whether:
 - Benchmark papers for the target journal are available
 - Variable measurement references are available
 - Citekeys are ready or can be completed through Zotero or MCP
+- Writing-critical references have PDF files or reliable full-text notes
+- Writing-critical references have been imported into Zotero or MCP
+- Writing-critical references have been summarized or classified
 - Missing literature gaps have been identified before drafting
 
 ### Step 5: Check variable measurement literature package
@@ -113,6 +121,7 @@ Ask for or verify the presence of:
 - Variable measurement literature folder
 - Measurement support for each key variable
 - Control variable selection support
+- Variable measurement literature PDFs or full-text notes
 - Zotero citekeys or BibTeX entries for measurement references
 - If no citekeys are available, at least PDFs or a literature list for measurement references
 

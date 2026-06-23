@@ -19,6 +19,8 @@ paper-project/
 │   ├── reference_cn.docx
 │   └── reference_en.docx
 ├── literature/
+│   ├── candidate_metadata/
+│   ├── method_identification/
 │   ├── theory/
 │   ├── variable_measurement/
 │   └── benchmark_papers/
@@ -37,6 +39,8 @@ paper-project/
 │   ├── word-export-log.md
 │   ├── literature-pool.md
 │   ├── citation-plan.md
+│   ├── fulltext-literature-readiness.md
+│   ├── literature-synthesis-map.md
 │   ├── target-journal-style-profile.md
 │   ├── stata-mcp-inspection.md
 │   ├── empirical-evidence-map.md
@@ -50,12 +54,12 @@ paper-project/
 - `stata/`: Stata scripts, logs, export helpers, and related notes
 - `results/`: exported model outputs, summaries, and evidence snapshots
 - `journal_samples/`: style reference papers supplied by the user, plus optional `reference_cn.docx` and `reference_en.docx` templates for Pandoc Word export
-- `literature/`: theory references, variable measurement literature, benchmark papers, or imported bibliographic packages
+- `literature/`: candidate metadata, benchmark papers, theory references, variable measurement literature, method or identification references, or imported bibliographic packages
 - `zotero/`: citekey lists, exported bibliography files, or MCP sync artifacts
 - `drafts/`: bilingual main manuscripts
 - `tables/`: table source files or final display tables
 - `figures/`: figures used in the manuscript
-- `logs/`: writing-session notes, validation logs, tooling checks, literature pools, citation plans, target-journal style profiles, Stata MCP inspection notes, evidence maps, or conversion logs such as `tooling-check.md`, `word-export-log.md`, `literature-pool.md`, `citation-plan.md`, `target-journal-style-profile.md`, `stata-mcp-inspection.md`, `empirical-evidence-map.md`, and `variable-measurement-evidence-map.md`
+- `logs/`: writing-session notes, validation logs, tooling checks, literature pools, citation plans, full-text readiness logs, literature synthesis maps, target-journal style profiles, Stata MCP inspection notes, evidence maps, or conversion logs such as `tooling-check.md`, `word-export-log.md`, `literature-pool.md`, `citation-plan.md`, `fulltext-literature-readiness.md`, `literature-synthesis-map.md`, `target-journal-style-profile.md`, `stata-mcp-inspection.md`, `empirical-evidence-map.md`, and `variable-measurement-evidence-map.md`
 - `versions/`: manual snapshots when Git is unavailable
 
 ## Initialization Actions

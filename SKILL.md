@@ -125,6 +125,7 @@ Minimum expectations:
 - Target journal and benchmark papers may include the user-selected target journal, target-journal article samples, benchmark paper PDF or Word files, and journal submission-format guidance.
 - Core theory references may include theoretical foundations, research-question references, hypothesis references, and mechanism references.
 - Variable measurement literature may include measurement papers for each variable, definition-source files, control-variable selection references, citekeys for measurement literature, variable measurement tables, or user-organized variable literature folders.
+- Candidate literature may begin with metadata, but writing-critical references must be checked for full-text readiness before Stage 2.
 
 If any of the four groups is incomplete:
 
@@ -155,6 +156,15 @@ Variable-measurement gate rules:
   - `依据本项目的测量方式`
   - `本文根据项目数据进行测量`
   - `变量根据本研究需要构建`
+
+Literature full-text readiness rules:
+
+- Candidate literature screening may begin with metadata.
+- Writing-critical references require PDF files, reliable full-text notes, or user-confirmed summaries before Stage 2.
+- Check full-text readiness for target journal benchmark papers, variable measurement literature, core theory references, and method or identification references.
+- Do not download every candidate reference by default; prioritize writing-critical references first.
+- Before Stage 2, generate `logs/fulltext-literature-readiness.md` and `logs/literature-synthesis-map.md`.
+- Do not enter Stage 2 until writing-critical references are imported into Zotero or MCP with valid citekeys and summarized or classified.
 
 If Stata MCP is available:
 
@@ -213,6 +223,7 @@ Planning rules:
 - Chinese drafting should emphasize problem orientation, theoretical mechanism, policy implications, and managerial implications when relevant.
 - English drafting should emphasize research gap, theoretical contribution, identification, robustness, and managerial implications when relevant.
 - Before chapter drafting, build `logs/literature-pool.md` and `logs/citation-plan.md`.
+- Before chapter drafting, build `logs/fulltext-literature-readiness.md` and `logs/literature-synthesis-map.md`.
 - Do not rely mainly on ad hoc literature search during chapter writing.
 - Use MCP or web search during writing only for specific gap filling.
 - Default final reference target is 60 to 80 references, with most citations concentrated in the first four chapters.

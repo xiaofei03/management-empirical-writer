@@ -103,6 +103,18 @@ The user must explicitly confirm this report before Stage 2 starts.
 | Variable | Measurement source | Citekey | Literature support status | Need user confirmation? |
 |---|---|---|---|---|
 
+## Full-Text Literature Readiness Gate
+
+| Item | Status | Source | Need user confirmation? |
+| ---------------------------------------------------- | ------ | ------ | ----------------------- |
+| Benchmark paper PDFs or full-text notes ready |  |  |  |
+| Variable measurement PDFs or full-text notes ready |  |  |  |
+| Core theory PDFs or full-text notes ready |  |  |  |
+| Method or identification PDFs or full-text notes ready |  |  |  |
+| Writing-critical references imported into Zotero or MCP |  |  |  |
+| Citekeys confirmed |  |  |  |
+| Literature synthesis map completed |  |  |  |
+
 ## Literature Pool and Citation Plan Gate
 
 | Item | Status | Source | Need user confirmation? |
