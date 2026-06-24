@@ -17,9 +17,12 @@ Citation integrity is mandatory. References must be traceable, correctly identif
 - Literature pool construction should happen before drafting.
 - Gap-filling search during drafting should be narrow and purpose-driven.
 - Newly retrieved references must be added to Zotero or MCP and assigned citekeys before citation.
+- Zotero or MCP literature retrieval should help build a 60 to 80 reference pool by default.
+- Retrieval should prioritize high-quality English references, especially UTD24, FT50, ABS high-ranking journals, target-journal recent papers, and field-leading English journals.
 - Writing-critical references must be imported into Zotero or MCP and have valid citekeys before drafting.
 - PDF files or full-text notes should be attached or linked for benchmark papers, variable measurement literature, core theory references, and method or identification references.
 - Metadata-only references may remain in the candidate pool, but must not be used for detailed measurement or theoretical claims without user confirmation.
+- Do not add weakly related references just to reach 60 to 80 references. Relevance and quality remain mandatory.
 
 ## Pre-Drafting Citation Routine
 

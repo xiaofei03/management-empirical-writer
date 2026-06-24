@@ -118,6 +118,54 @@ Default final reference target:
 
 The user may override these ranges, but if no preference is given, use these defaults.
 
+## Reference Quantity and Quality Hard Gate
+
+### Default Final Reference Count
+
+The default final manuscript must contain 60 to 80 references.
+
+This is a hard default requirement unless the user explicitly overrides it.
+
+If the current reference pool cannot support 60 to 80 high-quality references, do not enter chapter drafting. Instead, generate a missing-literature gap list and continue literature search or MCP retrieval.
+
+### High-Quality English Literature Requirement
+
+By default, the reference pool should be dominated by high-quality English-language literature.
+
+Prioritize:
+
+- UTD24 journals
+- FT50 journals
+- ABS 4 or ABS 4* journals when available
+- recent papers from the target journal
+- recent papers from field-leading English journals
+- highly relevant method, measurement, or theory papers from recognized journals
+
+Chinese-language references may be used when they are necessary for:
+
+- Chinese institutional context
+- Chinese listed-company data setting
+- local policy background
+- Chinese target-journal positioning
+- variable construction specific to the Chinese market
+- benchmark papers for Chinese journals
+
+However, Chinese references should not replace high-quality English references when the paper is intended for SSCI or international management journals.
+
+### Recency Requirement
+
+Except for classic theory, classic method, foundational measurement, or institutional background references, prioritize references from the last 5 to 10 years.
+
+Older references must be marked as one of:
+
+- `classic_theory`
+- `classic_method`
+- `foundational_measurement`
+- `institutional_background`
+- `unavoidable_context`
+
+Do not rely heavily on outdated non-classic references.
+
 ## Citation Distribution Across Chapters
 
 The majority of references should appear in the first four chapters or sections:
@@ -157,8 +205,21 @@ For both languages:
 
 Each reference in `logs/literature-pool.md` should be classified with these fields when available:
 
-| citekey | authors | year | title | journal | journal_tier | language | topic_role | chapter_use | is_recent | is_classic | is_benchmark | is_variable_measurement_source | must_use_or_optional | notes |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| citekey | authors | year | title | journal | journal_tier | language | topic_role | chapter_use | is_recent | is_classic | is_utd24 | is_ft50 | is_abs_high | is_target_journal | is_field_leading | must_use_or_optional | pdf_status | zotero_status | notes |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+
+Allowed `journal_tier` values may include:
+
+- `UTD24`
+- `FT50`
+- `ABS4*`
+- `ABS4`
+- `target_journal`
+- `field_leading`
+- `high_quality_chinese`
+- `method_or_measurement_source`
+- `classic_foundation`
+- `other`
 
 Recommended `topic_role` values:
 
@@ -190,6 +251,20 @@ It should include:
 |---|---:|---|---|---|
 
 The citation plan must explicitly show that references are mainly concentrated in the first four chapters.
+
+Ensure `logs/citation-plan.md` includes chapter-level reference targets.
+
+Default distribution:
+
+- Introduction: 15 to 25 references
+- Literature Review and Theoretical Background: 25 to 40 references
+- Theory and Hypotheses: 20 to 35 references
+- Research Design: 10 to 20 references
+- Later empirical sections: limited additional references only when necessary
+
+Most references should be concentrated in the first four chapters or sections.
+
+Do not overpopulate empirical results, robustness, mechanism, heterogeneity, and conclusion sections with unnecessary references.
 
 Before Stage 2, the literature synthesis map should show which references support:
 
@@ -248,14 +323,40 @@ Do not enter chapter drafting until:
 - `logs/citation-plan.md` exists or the user explicitly waives this requirement.
 - `logs/fulltext-literature-readiness.md` exists.
 - `logs/literature-synthesis-map.md` exists.
+- The planned final reference count is 60 to 80, unless the user explicitly overrides.
+- The pool contains enough high-quality English references to support the paper.
+- UTD24, FT50, ABS high-ranking, target-journal, or field-leading references are prioritized.
+- Any older references are justified as classic or foundational.
 - Target journal and benchmark papers have been confirmed.
+- Target journal benchmark papers are included.
 - Variable measurement literature has been mapped.
+- Variable measurement references are included.
+- Core theory references are included.
 - Target journal benchmark papers have PDF or full-text notes.
 - Variable measurement literature has PDF or full-text notes.
 - Core theory references have PDF, full-text notes, or user-confirmed summaries.
 - Method or identification references are available when nonstandard methods are used.
+- Method or identification references are included when applicable.
 - Writing-critical references have valid Zotero or MCP citekeys.
 - Missing literature gaps have been listed.
 - Missing full-text items have been resolved or explicitly waived by the user.
 
-If the user waives the literature-pool or full-text readiness requirement, clearly mark the draft as lower-confidence in citation quality and explain which chapters may be affected.
+If these conditions are not met, stop before drafting and ask the user to approve additional literature retrieval or provide missing references.
+
+## No Drafting Before Literature Readiness
+
+If the literature pool does not satisfy the 60 to 80 reference target and high-quality English literature requirement, do not start chapter drafting.
+
+The Skill may only:
+
+- report the literature gap
+- recommend additional search queries
+- call Zotero, MCP, or web search if available
+- ask the user to provide missing references
+- update `logs/literature-pool.md` and `logs/citation-plan.md`
+
+## User Override
+
+The user may explicitly override the 60 to 80 reference target or high-quality English dominance rule.
+
+If overridden, record the override in `logs/citation-plan.md` and mark the draft as using a user-approved exception.

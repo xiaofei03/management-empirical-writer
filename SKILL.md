@@ -35,6 +35,7 @@ Read these references before acting:
 - `references/variable-measurement-citation-rules.md` for measurement-source rules, citation expectations, and Research Design wording constraints.
 - `references/variable-measurement-evidence-template.md` for structuring the variable measurement evidence map before Research Design drafting.
 - `references/literature-pool-rules.md` for building a high-quality literature pool, controlling reference quantity, prioritizing recent UTD24/FT50 or high-quality journal articles, and planning chapter-level citation use.
+- `references/empirical-results-coverage-rules.md` for mandatory inventory, use, placement, and audit of all empirical result tables, figures, and outputs before drafting empirical analysis chapters.
 - `references/common-control-variables.md` for common listed-company control variables, definitions, Stata-style variable names, bilingual naming, and heterogeneity grouping references.
 - `references/word-export-rules.md` for Markdown-to-Word export rules, Pandoc usage, reference-doc handling, and export logging.
 - `references/tooling-checklist.md` for checking Git, Pandoc, Python, and other local tooling before running project workflows.
@@ -165,6 +166,11 @@ Literature full-text readiness rules:
 - Do not download every candidate reference by default; prioritize writing-critical references first.
 - Before Stage 2, generate `logs/fulltext-literature-readiness.md` and `logs/literature-synthesis-map.md`.
 - Do not enter Stage 2 until writing-critical references are imported into Zotero or MCP with valid citekeys and summarized or classified.
+- Before Stage 2, confirm that the literature pool supports 60 to 80 final references by default.
+- The literature pool must prioritize high-quality English references, especially UTD24, FT50, ABS high-ranking, target-journal recent papers, and field-leading English journal articles.
+- If the literature pool is insufficient, outdated, too narrow, or lacks enough high-quality English references, do not begin chapter drafting.
+- MCP or web search may be used to expand the literature pool before drafting.
+- The user may override the 60 to 80 target or English-literature quality preference, but the override must be recorded.
 
 If Stata MCP is available:
 
@@ -176,6 +182,13 @@ If Stata MCP is unavailable:
 
 - Proceed with uploaded tables, logs, do-files, and user explanations.
 - Clearly mark any unverified items in the evidence map and alignment report.
+
+Empirical results coverage rules:
+
+- Before drafting empirical results chapters, create `logs/empirical-results-inventory.md`.
+- Every user-provided empirical table, figure, regression output, and result artifact must be inventoried.
+- Every unused artifact must be listed in `logs/unused-empirical-results.md` with explicit reason and user confirmation status.
+- Do not begin empirical analysis writing until empirical results coverage is clear.
 
 ## Alignment Report Requirement
 
@@ -227,7 +240,9 @@ Planning rules:
 - Do not rely mainly on ad hoc literature search during chapter writing.
 - Use MCP or web search during writing only for specific gap filling.
 - Default final reference target is 60 to 80 references, with most citations concentrated in the first four chapters.
-- Prioritize recent 5 to 10 year high-quality references, especially UTD24, FT50, or target-journal papers for English SSCI or management drafts, except for classic theory, classic methods, and foundational measurement references.
+- Treat the 60 to 80 target as a hard default unless the user explicitly overrides it and the override is recorded.
+- Prioritize recent 5 to 10 year high-quality references, especially UTD24, FT50, ABS high-ranking, target-journal, or field-leading English journal papers for English SSCI or management drafts, except for classic theory, classic methods, and foundational measurement references.
+- Do not begin chapter drafting if the literature pool does not yet support the default quantity and quality threshold.
 
 Use:
 
@@ -264,6 +279,11 @@ For each completed chapter or section, do all of the following:
 - Output a citation audit
 - If Git is available, create a commit
 - If Git is not available, create a manual snapshot in `versions/`
+- Do not continue to the next chapter until the current chapter change has been versioned through a commit or snapshot
+
+For empirical results, robustness, endogeneity, mechanism, heterogeneity, further analysis, and appendix sections, follow `references/empirical-results-coverage-rules.md`.
+
+After drafting empirical analysis chapters, generate `logs/empirical-results-coverage-audit.md`.
 
 If Word export is unavailable, preserve the Markdown update and clearly tell the user that Word export is pending. Never pretend the export succeeded.
 
@@ -400,6 +420,12 @@ This skill must not:
 - Generate the full paper in one shot
 - Ignore target-journal style samples
 - Install Git or modify the system environment without user confirmation
+- Begin chapter drafting when the literature pool does not meet the default 60 to 80 reference target, unless the user explicitly waives this requirement
+- Rely on a small, outdated, low-quality, or overly narrow reference pool for manuscript drafting
+- Fill the reference list with citation padding or weakly related references
+- Silently omit user-provided empirical results, tables, figures, or regression outputs
+- Omit endogeneity, robustness, mechanism, or heterogeneity results without explicit reason and user confirmation
+- Move important results to appendix without user confirmation
 
 ## File Update Principles
 

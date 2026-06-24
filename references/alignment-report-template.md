@@ -115,6 +115,20 @@ The user must explicitly confirm this report before Stage 2 starts.
 | Citekeys confirmed |  |  |  |
 | Literature synthesis map completed |  |  |  |
 
+## Reference Quantity and Quality Gate
+
+| Item | Required default | Current status | Source | Need user confirmation? |
+| --------------------------------------------------- | ------------------ | -------------- | --------------- | ----------------------- |
+| Final reference target | 60 to 80 |  | citation plan |  |
+| High-quality English references prioritized | Yes |  | literature pool |  |
+| UTD24 / FT50 / ABS high-ranking references included | Yes, when relevant |  | literature pool |  |
+| Recent 5 to 10 year references prioritized | Yes |  | literature pool |  |
+| Older references justified as classic or foundational | Yes |  | literature pool |  |
+| Target journal benchmark papers included | Yes |  | literature pool |  |
+| Variable measurement references included | Yes |  | literature pool |  |
+| Missing literature gaps listed | Yes |  | citation plan |  |
+| User override recorded | Only if applicable |  | citation plan |  |
+
 ## Literature Pool and Citation Plan Gate
 
 | Item | Status | Source | Need user confirmation? |

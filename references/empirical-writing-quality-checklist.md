@@ -13,6 +13,21 @@ Use this checklist for chapter review and full-paper review.
 - Whether sample years, sample size, model specifications, fixed effects, and clustering levels are consistent across the evidence map, alignment report, and drafts.
 - Whether every empirical claim in the draft can be traced to a regression table, Stata log, do-file, or user-confirmed result.
 
+## Empirical Results Coverage Audit
+
+- Whether `logs/empirical-results-inventory.md` exists before empirical chapters are drafted.
+- Whether every user-provided empirical artifact has a `use_status`.
+- Whether every unused artifact is listed in `logs/unused-empirical-results.md`.
+- Whether omitted artifacts have explicit reasons and user confirmation status.
+- Whether endogeneity analysis is included when provided.
+- Whether robustness checks are included when provided.
+- Whether mechanism tests are included when provided.
+- Whether heterogeneity tables and figures are included when provided.
+- Whether non-significant results are reported honestly when part of the planned design.
+- Whether important results were not moved to appendix without user confirmation.
+- Whether `logs/empirical-results-coverage-audit.md` exists after drafting empirical sections.
+- Whether the final manuscript uses or accounts for all provided empirical result artifacts.
+
 ## Theory Integrity
 
 - Is the theoretical main line stable across chapters?
@@ -44,6 +59,17 @@ Use this checklist for chapter review and full-paper review.
 - Whether `logs/fulltext-literature-readiness.md` exists before Stage 2.
 - Whether `logs/literature-synthesis-map.md` exists before Stage 2.
 - Whether missing full-text items are resolved or explicitly waived by the user.
+
+## Reference Quantity and Quality Audit
+
+- Whether final references are planned at 60 to 80 by default.
+- Whether the user explicitly overrode the 60 to 80 target if not followed.
+- Whether high-quality English references dominate the pool.
+- Whether UTD24, FT50, ABS high-ranking, target-journal, or field-leading references are prioritized.
+- Whether recent 5 to 10 year references are prioritized.
+- Whether older references are justified as classic or foundational.
+- Whether the reference list avoids citation padding.
+- Whether `logs/literature-pool.md` and `logs/citation-plan.md` are complete before drafting.
 
 ## Bilingual Consistency
 
@@ -94,6 +120,14 @@ Use this checklist for chapter review and full-paper review.
 - Whether failed Word exports were clearly marked.
 - Whether `logs/word-export-log.md` records the latest export attempt.
 - Are versioning records current?
+
+## Versioning Audit
+
+- Whether every meaningful manuscript or log change has a Git commit.
+- Whether changes without Git have timestamped snapshots in `versions/`.
+- Whether commit messages clearly describe the workflow stage.
+- Whether unrelated or private files were excluded from commits.
+- Whether the latest draft state is recoverable from Git history or snapshots.
 
 ## Final Review Decision
 

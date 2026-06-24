@@ -73,6 +73,14 @@ Sort results into:
 - Heterogeneity analysis
 - Additional or extension analyses
 
+Stata evidence interpretation must not stop at model identification.
+
+It must also identify all exported result artifacts and classify them by empirical role.
+
+If result files include figures, tables, logs, images, Word tables, Excel tables, LaTeX tables, RTF files, or PDFs, they must be included in the empirical results inventory.
+
+Ambiguous artifacts must be marked as `unknown` and require user confirmation.
+
 ## Interpretation Rules
 
 - Treat table titles and notes as clues, not as guaranteed truth

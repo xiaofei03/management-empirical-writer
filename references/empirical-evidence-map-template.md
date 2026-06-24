@@ -67,6 +67,13 @@ Use this template to produce `logs/empirical-evidence-map.md` before drafting.
 | Table 5 |  | Mechanism tests |  |  |  |  |  |
 | Table 6 |  | Heterogeneity analysis |  |  |  |  |  |
 
+## Empirical Result Artifact Inventory
+
+| artifact_id | file_name | artifact_type | empirical_role | related_model_id | recommended_location | use_status | need_user_confirmation |
+| ----------- | --------- | ------------- | -------------- | ---------------- | -------------------- | ---------- | ---------------------- |
+
+This inventory should link to `logs/empirical-results-inventory.md` and must be completed before drafting empirical results chapters.
+
 ## 8. Identification and Endogeneity
 
 | Issue | Current treatment | Evidence source | Remaining concern | Need user confirmation? |

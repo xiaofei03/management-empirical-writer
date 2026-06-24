@@ -111,6 +111,13 @@ python3 --version
   5. only then begin chapter drafting
 - If Stata MCP is unavailable or fails, the skill should fall back to user-provided tables, logs, do-files, and explanations, and clearly mark unverified items.
 
+## Empirical Results Coverage
+
+- The skill inventories all empirical result artifacts before drafting empirical analysis chapters.
+- User-provided empirical tables, figures, and regression outputs are used by default in the main text or appendix.
+- Any unused empirical result must be listed with a reason in `logs/unused-empirical-results.md`.
+- The skill should not silently omit endogeneity, robustness, mechanism, heterogeneity, or further analysis results.
+
 ## Control Variable Reference
 
 - `references/common-control-variables.md` is a built-in general reference rather than a mandatory variable specification.
@@ -125,15 +132,16 @@ python3 --version
 - The skill does not download every candidate reference by default.
 - Before drafting, the skill should generate `logs/fulltext-literature-readiness.md` and `logs/literature-synthesis-map.md`.
 - The skill builds a literature pool before drafting.
-- The default final reference target is 60 to 80 references.
+- The skill enforces a default 60 to 80 final reference target.
+- The skill prioritizes high-quality English references, especially UTD24, FT50, ABS high-ranking, target-journal, and field-leading journal papers.
+- The skill should not start drafting until the literature pool and citation plan are sufficient.
 - Recent, high-quality references are prioritized, while classic references are allowed when justified.
 - MCP or web search during writing is for gap filling, not the main citation strategy.
 
 ## Versioning
 
-- Git is recommended for milestone version control.
-- Git is not mandatory.
-- If Git is unavailable, the workflow can fall back to manual snapshots in a `versions/` folder.
+- Every meaningful manuscript or project-log change should be committed with Git by default.
+- If Git is unavailable, the skill uses timestamped snapshots under `versions/`.
 
 ## Included Files
 

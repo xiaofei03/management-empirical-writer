@@ -41,6 +41,9 @@ paper-project/
 │   ├── citation-plan.md
 │   ├── fulltext-literature-readiness.md
 │   ├── literature-synthesis-map.md
+│   ├── empirical-results-inventory.md
+│   ├── unused-empirical-results.md
+│   ├── empirical-results-coverage-audit.md
 │   ├── target-journal-style-profile.md
 │   ├── stata-mcp-inspection.md
 │   ├── empirical-evidence-map.md
@@ -52,15 +55,15 @@ paper-project/
 
 - `data/`: raw or processed data provided by the user
 - `stata/`: Stata scripts, logs, export helpers, and related notes
-- `results/`: exported model outputs, summaries, and evidence snapshots
+- `results/`: tables, figures, regression outputs, exported Stata results, Word tables, Excel tables, LaTeX tables, RTF files, PNG or JPG figures, PDFs, user-written result summaries, and other evidence snapshots. All must be inventoried before empirical writing.
 - `journal_samples/`: style reference papers supplied by the user, plus optional `reference_cn.docx` and `reference_en.docx` templates for Pandoc Word export
 - `literature/`: candidate metadata, benchmark papers, theory references, variable measurement literature, method or identification references, or imported bibliographic packages
 - `zotero/`: citekey lists, exported bibliography files, or MCP sync artifacts
 - `drafts/`: bilingual main manuscripts
 - `tables/`: table source files or final display tables
 - `figures/`: figures used in the manuscript
-- `logs/`: writing-session notes, validation logs, tooling checks, literature pools, citation plans, full-text readiness logs, literature synthesis maps, target-journal style profiles, Stata MCP inspection notes, evidence maps, or conversion logs such as `tooling-check.md`, `word-export-log.md`, `literature-pool.md`, `citation-plan.md`, `fulltext-literature-readiness.md`, `literature-synthesis-map.md`, `target-journal-style-profile.md`, `stata-mcp-inspection.md`, `empirical-evidence-map.md`, and `variable-measurement-evidence-map.md`
-- `versions/`: manual snapshots when Git is unavailable
+- `logs/`: writing-session notes, validation logs, tooling checks, literature pools, citation plans, full-text readiness logs, literature synthesis maps, empirical-results inventories, unused-results logs, empirical-results coverage audits, target-journal style profiles, Stata MCP inspection notes, evidence maps, or conversion logs such as `tooling-check.md`, `word-export-log.md`, `literature-pool.md`, `citation-plan.md`, `fulltext-literature-readiness.md`, `literature-synthesis-map.md`, `empirical-results-inventory.md`, `unused-empirical-results.md`, `empirical-results-coverage-audit.md`, `target-journal-style-profile.md`, `stata-mcp-inspection.md`, `empirical-evidence-map.md`, and `variable-measurement-evidence-map.md`
+- `versions/`: manual snapshots only when Git is unavailable or explicitly skipped
 
 ## Initialization Actions
 
@@ -69,7 +72,7 @@ When asked to initialize a paper project:
 1. Create the structure if it does not exist.
 2. Create empty or starter Markdown drafts if the user wants them.
 3. Check whether Git is available.
-4. If Git is available, suggest repository initialization and milestone commits.
+4. If Git is available, suggest repository initialization and use Git commits as the default versioning method.
 5. If Git is unavailable, offer the three approved options from the skill rules.
 
 ## Boundary Rules
