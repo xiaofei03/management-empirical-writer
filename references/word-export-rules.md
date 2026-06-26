@@ -65,6 +65,118 @@ Formal-delivery mode:
   - `drafts/cn/paper_cn.docx`
   - `drafts/en/paper_en.docx`
 
+## Formal Delivery Command Template
+
+Use this template when the project requires the full gated delivery chain for paired Chinese and English submission drafts.
+
+If you want a reusable project-level shell wrapper where only `PROJECT_ROOT` needs to change, start from:
+
+- `assets/formal-delivery-template.sh`
+
+### Step 1. Citation-aware temporary export
+
+Chinese temporary export:
+
+```text
+mode=export_only
+markdown_path=/ABSOLUTE/PROJECT/PATH/drafts/cn/paper_cn.md
+output_filename=/ABSOLUTE/PROJECT/PATH/drafts/cn/paper_cn_export_tmp.docx
+```
+
+English temporary export:
+
+```text
+mode=export_only
+markdown_path=/ABSOLUTE/PROJECT/PATH/drafts/en/paper_en.md
+output_filename=/ABSOLUTE/PROJECT/PATH/drafts/en/paper_en_export_tmp.docx
+```
+
+When using `cite-rag-mcp`, these map to:
+
+- Chinese: export `paper_cn.md` to `paper_cn_export_tmp.docx`
+- English: export `paper_en.md` to `paper_en_export_tmp.docx`
+
+### Step 2. Submission finalization post-processing
+
+Recommended bundled Python path:
+
+```bash
+/Users/xiaofei/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3
+```
+
+Recommended finalization script:
+
+```bash
+~/.codex/skills/chinese-word-pro/scripts/finalize_submission_docx.py
+```
+
+Chinese finalization:
+
+```bash
+"/Users/xiaofei/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3" \
+  "$HOME/.codex/skills/chinese-word-pro/scripts/finalize_submission_docx.py" \
+  --input-docx "/ABSOLUTE/PROJECT/PATH/drafts/cn/paper_cn_export_tmp.docx" \
+  --output-docx "/ABSOLUTE/PROJECT/PATH/drafts/cn/paper_cn.docx" \
+  --lang cn \
+  --mode journal_submission
+```
+
+English finalization:
+
+```bash
+"/Users/xiaofei/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3" \
+  "$HOME/.codex/skills/chinese-word-pro/scripts/finalize_submission_docx.py" \
+  --input-docx "/ABSOLUTE/PROJECT/PATH/drafts/en/paper_en_export_tmp.docx" \
+  --output-docx "/ABSOLUTE/PROJECT/PATH/drafts/en/paper_en.docx" \
+  --lang en \
+  --mode journal_submission
+```
+
+### Step 3. Delivery audit expectations
+
+Before the main deliverables are considered passed, confirm:
+
+- citation fields remain present in both DOCX files
+- no `�` or `????` markers appear in `word/document.xml`
+- formulas remain native Word math objects where expected
+- figure captions remain separate numbered paragraphs
+- figures remain inline rather than floating
+- abstract, chapter openings, and references obey the page-break rules
+
+### Step 4. Temporary-file cleanup
+
+After a successful delivery pass:
+
+```bash
+rm -f \
+  "/ABSOLUTE/PROJECT/PATH/drafts/cn/paper_cn_export_tmp.docx" \
+  "/ABSOLUTE/PROJECT/PATH/drafts/en/paper_en_export_tmp.docx"
+```
+
+### Practical rule
+
+For future projects, this should be treated as the standard formal-delivery SOP:
+
+1. update Markdown
+2. citation-aware export to temporary DOCX
+3. run submission finalization
+4. run audits
+5. clean temporary files
+6. keep only the four main manuscript files in `drafts/cn` and `drafts/en`
+
+### Shell-template note
+
+The bundled shell template can fully automate:
+
+- path resolution
+- finalization post-processing
+- temporary-file cleanup
+
+In the current setup, the citation-aware export step still depends on the MCP route rather than a stable standalone CLI. Therefore the shell template pauses unless:
+
+- the temporary export files already exist, or
+- the user later adds a local CLI wrapper for cite-rag export and replaces the placeholder block
+
 ## Citation-Field Audit
 
 When the project uses Word citation fields, inspect the DOCX XML before formal delivery.

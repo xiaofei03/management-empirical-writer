@@ -23,6 +23,7 @@ It helps the user:
 - draft chapter by chapter rather than in one unsafe pass
 - keep Chinese and English versions factually aligned
 - package final Word deliverables without losing citation integrity
+- finalize paired Chinese and English submission Word files through a gated delivery chain
 
 This skill is not a paper-specific storage location. Do not place datasets, private PDFs, raw Stata outputs, or confidential project materials inside the skill repository.
 
@@ -91,6 +92,8 @@ This repository now enforces a stronger formal-delivery rule set so later projec
 - Word post-processing must not destroy citation fields.
 - If citation audit or garbling audit fails, the main `docx` files must not be overwritten.
 - Temporary Word build artifacts must be cleaned up after delivery.
+- Chinese and English final DOCX files must be finalized through the same rule set unless the user explicitly requests a controlled divergence.
+- Figure, table, formula, pagination, and caption repairs must not be performed by directly patching an older final DOCX and calling it the new delivery.
 
 ### Working Draft vs Formal Delivery
 
@@ -105,17 +108,19 @@ This repository now enforces a stronger formal-delivery rule set so later projec
 - user-facing final manuscript delivery
 - must use the citation-aware pipeline when citekeys or Word fields are expected
 - must pass audits before replacing the main `docx`
+- must finalize both Chinese and English outputs under one synchronized delivery pass
 
 ## Formal Delivery Flow
 
 ```mermaid
 flowchart TD
     A["Update Markdown master drafts"] --> B["Run citation-aware Word export to temporary DOCX"]
-    B --> C["Apply Word post-processing if needed"]
+    B --> C["Apply submission finalization post-processing"]
     C --> D["Audit citation fields in DOCX XML"]
     D --> E["Audit garbling and replacement characters"]
-    E --> F["Log export outcome"]
-    F --> G["Overwrite main DOCX deliverables only if all checks passed"]
+    E --> F["Run render QA when available"]
+    F --> G["Log export outcome"]
+    G --> H["Overwrite main DOCX deliverables only if all checks passed"]
 ```
 
 ### Delivery Pass Conditions
@@ -127,7 +132,19 @@ Formal delivery passes only when all of the following are true:
 - citation fields still exist after post-processing
 - no `�` replacement characters appear in `word/document.xml`
 - no suspicious `????` garbling markers appear
+- Chinese and English outputs both pass the same finalization checks
 - export result is logged in `logs/word-export-log.md`
+
+### Delivery Failure Examples
+
+Formal delivery is blocked if any of the following occurs:
+
+- citation fields are flattened into plain text
+- old variable names reappear in final Word files
+- figure captions lose numbering or merge into the interpretation paragraph
+- equations degrade into raw pseudo-formula strings
+- chapter-open page breaks are missing
+- figures or tables drift into structurally unsafe layout
 
 ## Citation Integrity
 
@@ -176,17 +193,38 @@ If any tool is missing, the skill must not silently pretend the related workflow
 
 This skill controls the manuscript workflow.
 
-When Chinese Word layout repair is needed, it should delegate final Word-structure normalization to `chinese-word-pro`.
+When Word layout repair is needed, it should delegate final Word-structure normalization to `chinese-word-pro`.
 
 That means:
 
 - `management-empirical-writer` decides whether formal delivery is allowed
-- `chinese-word-pro` repairs and verifies Chinese Word structure without breaking citation fields
+- `chinese-word-pro` repairs and verifies submission Word structure without breaking citation fields
+
+## Bilingual Final Delivery Route
+
+For submission-ready bilingual manuscripts:
+
+1. Maintain `paper_cn.md` and `paper_en.md` as the only content sources.
+2. Export temporary Chinese and English DOCX files via the citation-aware route.
+3. Finalize both DOCX files with the Word-finalization authority.
+4. Audit both outputs for citation safety and structural integrity.
+5. Remove temporary exports.
+6. Replace the main deliverables only after both outputs pass.
+
+For the reusable command template used to run this chain in a real project, see:
+
+- `references/word-export-rules.md`
+
+For a project-level shell wrapper that only requires changing one root-path variable, start from:
+
+- `assets/formal-delivery-template.sh`
 
 ## Common Failure Modes This Skill Is Meant to Prevent
 
 - exporting final Word files with plain `pandoc` and losing citation fields
 - overwriting the main `docx` before checking garbling
+- repairing one language version but forgetting to synchronize the other
+- treating an older healthy DOCX as the new editing baseline
 - drafting without enough literature or variable-measurement support
 - silently omitting robustness, mechanism, heterogeneity, or endogeneity outputs
 - letting Chinese and English versions drift apart in facts or findings

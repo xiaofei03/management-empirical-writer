@@ -65,12 +65,36 @@ Core rules:
   - Word post-processing
   - citation-field audit
   - garbling audit
+  - render QA
   - delivery logging
   - only then overwrite the main Word deliverables
 - If any gate fails, do not overwrite the main Word deliverables.
 - Temporary build artifacts must not be left mixed into the manuscript root or `drafts/` after delivery.
+- Chinese and English final deliverables must pass the same finalization rule set unless the user explicitly requests divergence.
 
-When Chinese Word layout repair is needed, invoke the `chinese-word-pro` rules as the downstream formatting authority.
+When Word layout repair is needed, invoke the `chinese-word-pro` rules as the downstream formatting authority for both Chinese and English submission DOCX finalization.
+
+Formal-delivery prohibition:
+
+- Do not hand-edit the previously exported "healthy" Word file and treat it as the new final manuscript.
+- Do not fix figures, tables, formulas, pagination, captions, or paragraph layout directly in an old delivery file and overwrite the main deliverable.
+- Any such repair must re-enter the gated chain:
+  - update Markdown if content changed
+  - re-export to temporary DOCX
+  - re-run finalization
+  - re-run audits
+  - only then replace the final DOCX
+
+Delivery failure conditions:
+
+- citation fields lost
+- deprecated or old variable names reintroduced
+- figure captions lose numbering or merge into interpretation paragraphs
+- formal equations degrade into raw pseudo-formula text
+- chapter pagination rules fail
+- figure or table paragraphs drift into structurally unsafe layout
+
+If any delivery failure condition is detected, final overwrite is blocked.
 
 ## Workflow Overview
 
@@ -87,6 +111,8 @@ Stages:
 
 Never generate the entire paper in a single pass. Work chapter by chapter or section by section.
 For formal Word delivery, do not skip the Stage 5 gates.
+
+For bilingual projects, Stage 5 is not merely export. It is bilingual submission finalization.
 
 ## Stage 0: Project Initialization
 
@@ -258,6 +284,32 @@ Planning rules:
 - Chinese drafting should emphasize problem orientation, theoretical mechanism, policy implications, and managerial implications when relevant.
 - English drafting should emphasize research gap, theoretical contribution, identification, robustness, and managerial implications when relevant.
 - Before chapter drafting, build `logs/literature-pool.md` and `logs/citation-plan.md`.
+
+## Stage 5: Bilingual Submission Finalization
+
+Stage 5 should be treated as a distinct delivery stage rather than a simple export step.
+
+Required chain:
+
+1. Confirm Markdown is the only source of truth
+2. Export temporary Chinese and English DOCX through the citation-aware route
+3. Run downstream Word finalization
+4. Audit citation fields in both outputs
+5. Audit OOXML garbling markers
+6. Run render QA when rendering is available
+7. Log the delivery result
+8. Clean temporary build artifacts
+9. Overwrite the user-facing DOCX files only if all checks pass
+
+Mandatory delivery audit items:
+
+- live citation fields remain in both Chinese and English DOCX
+- native equation objects remain present where formal models exist
+- raw degraded pseudo-formulas such as `Y_it`, `CR_it`, or broken `z(...)` forms are absent from delivery outputs
+- figures are inline and captions are separate numbered paragraphs
+- tables preserve intended three-line formatting
+- abstract, chapter openings, and references use required page-break rules
+- temporary DOCX artifacts do not remain mixed into `drafts/`
 - Before chapter drafting, build `logs/fulltext-literature-readiness.md` and `logs/literature-synthesis-map.md`.
 - Do not rely mainly on ad hoc literature search during chapter writing.
 - Use MCP or web search during writing only for specific gap filling.
