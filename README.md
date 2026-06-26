@@ -1,32 +1,43 @@
 # management-empirical-writer
 
-`management-empirical-writer` is a reusable ChatGPT Skill project for planning, drafting, revising, and reviewing empirical papers in management and related business-research domains.
+`management-empirical-writer` is a reusable Codex skill for empirical paper work in management, strategy, innovation, governance, digital transformation, ESG, and adjacent business-research domains.
 
-## Positioning
+It is designed for projects that need:
 
-- This skill is a general tool and should be stored separately from any specific paper project.
-- Specific paper materials should not be placed inside the skill folder.
-- Do not store datasets, Stata outputs, journal sample PDFs, private literature files, or real regression tables in this skill.
+- bilingual Chinese and English manuscript maintenance
+- empirical-evidence-grounded drafting
+- citation-safe writing with Zotero or MCP citekeys
+- Markdown-first source management
+- Word submission packaging with explicit safety gates
 
-## Core Capabilities
+## What This Skill Does
 
-- Cognitive alignment before drafting
-- Bilingual Chinese and English empirical paper drafting
-- Markdown as the master draft and Word as the exported submission draft
-- Stata empirical-material interpretation
-- Zotero or MCP citekey-based citation workflow
-- Literature-pool construction and chapter-level citation planning before drafting
-- Git-aware version management
-- Pandoc-based Markdown-to-Word export
-- Built-in common control variable reference
+This skill is the manuscript workflow controller.
 
-## How It Is Intended to Be Used
+It helps the user:
 
-- Run the skill inside a concrete paper project folder.
-- Use the skill to initialize project structure, perform cognitive alignment, plan bilingual drafting, and write chapter by chapter.
-- Recommended workflow: cognitive alignment first, then chapter-by-chapter writing.
+- initialize a paper project structure
+- inspect readiness before drafting
+- align theory, data, variables, and journal target
+- build a literature pool before writing
+- draft chapter by chapter rather than in one unsafe pass
+- keep Chinese and English versions factually aligned
+- package final Word deliverables without losing citation integrity
 
-## Recommended Paper Project Layout
+This skill is not a paper-specific storage location. Do not place datasets, private PDFs, raw Stata outputs, or confidential project materials inside the skill repository.
+
+## Best Use Cases
+
+Use this skill when the project involves one or more of the following:
+
+- listed-firm or panel-data empirical research
+- Stata-based tables, logs, and regression evidence
+- management or business-journal writing
+- bilingual Chinese and English output
+- Zotero or cite-rag-mcp citation workflows
+- Word submission files that must remain editable and citation-safe
+
+## Standard Project Layout
 
 ```text
 paper-project/
@@ -48,39 +59,110 @@ paper-project/
 ├── tables/
 ├── figures/
 ├── logs/
-│   ├── tooling-check.md
-│   └── word-export-log.md
 └── versions/
 ```
 
-## Draft and Export Rules
+## Workflow Overview
 
-- Markdown is the main working draft.
-- Word is the exported submission draft.
-- The skill is designed to support both Chinese and English empirical-paper drafting.
-- The two language versions share the same evidence base but should not be literal translations of each other.
-- `journal_samples/reference_cn.docx` and `journal_samples/reference_en.docx` are optional Word style templates.
-- If reference docx files exist, the skill should prefer Pandoc export with `--reference-doc`.
-- If reference docx files do not exist, the skill should export with the default Word style.
-- If Pandoc is unavailable, the skill must not pretend that Word export succeeded.
+The skill uses a gated workflow:
 
-Recommended export commands with reference docx:
+1. Stage 0: project initialization
+2. Stage 1: cognitive alignment
+3. Stage 2: writing plan
+4. Stage 3: chapter drafting
+5. Stage 4: consistency review
+6. Stage 5: pre-submission packaging
 
-```bash
-pandoc drafts/cn/paper_cn.md -o drafts/cn/paper_cn.docx --reference-doc=journal_samples/reference_cn.docx
-pandoc drafts/en/paper_en.md -o drafts/en/paper_en.docx --reference-doc=journal_samples/reference_en.docx
+The core rule is simple:
+
+- draft from evidence
+- confirm before expanding
+- export only after checks
+
+## Formal Delivery Safety Valve
+
+This repository now enforces a stronger formal-delivery rule set so later projects do not repeat the same Word-export mistakes.
+
+### Non-negotiables
+
+- Markdown is the only source of truth for manuscript content.
+- User-facing final Word files must never be produced by a plain `pandoc` overwrite alone.
+- Citation-managed manuscripts must use a citation-aware export path for formal delivery.
+- Word post-processing must not destroy citation fields.
+- If citation audit or garbling audit fails, the main `docx` files must not be overwritten.
+- Temporary Word build artifacts must be cleaned up after delivery.
+
+### Working Draft vs Formal Delivery
+
+`working-draft` mode:
+
+- temporary local preview
+- may use `pandoc`
+- must write to temporary files such as `paper_cn.tmp.docx`
+
+`formal-delivery` mode:
+
+- user-facing final manuscript delivery
+- must use the citation-aware pipeline when citekeys or Word fields are expected
+- must pass audits before replacing the main `docx`
+
+## Formal Delivery Flow
+
+```mermaid
+flowchart TD
+    A["Update Markdown master drafts"] --> B["Run citation-aware Word export to temporary DOCX"]
+    B --> C["Apply Word post-processing if needed"]
+    C --> D["Audit citation fields in DOCX XML"]
+    D --> E["Audit garbling and replacement characters"]
+    E --> F["Log export outcome"]
+    F --> G["Overwrite main DOCX deliverables only if all checks passed"]
 ```
 
-Recommended export commands without reference docx:
+### Delivery Pass Conditions
 
-```bash
-pandoc drafts/cn/paper_cn.md -o drafts/cn/paper_cn.docx
-pandoc drafts/en/paper_en.md -o drafts/en/paper_en.docx
-```
+Formal delivery passes only when all of the following are true:
 
-## Tooling Checks
+- source Markdown is current
+- citation-aware export succeeded
+- citation fields still exist after post-processing
+- no `�` replacement characters appear in `word/document.xml`
+- no suspicious `????` garbling markers appear
+- export result is logged in `logs/word-export-log.md`
 
-At project initialization, the skill should check:
+## Citation Integrity
+
+This skill assumes citation integrity is mandatory.
+
+- never fabricate citekeys
+- never fabricate bibliography records
+- never cite metadata-only records for precise theoretical or measurement claims without confirmation
+- do not treat a plain-text reference list as equivalent to preserved Word citation fields
+
+For Word outputs that are expected to preserve Zotero-style fields, the minimum XML audit markers are:
+
+- `ADDIN ZOTERO_ITEM`
+- `CSL_CITATION`
+
+## Literature and Evidence Rules
+
+Before drafting, the project should have:
+
+- writing-critical literature imported or confirmed
+- valid citekeys for chapter-critical references
+- a literature pool strong enough to support the manuscript
+- an empirical evidence map
+- an empirical results inventory
+
+The skill prioritizes:
+
+- recent high-quality English papers
+- target-journal and benchmark-paper fit
+- real variable-measurement support
+- explicit use or accounting of all empirical outputs
+
+## Tooling Expectations
+
+At initialization, the workflow should check:
 
 ```bash
 git --version
@@ -88,64 +170,30 @@ pandoc --version
 python3 --version
 ```
 
-- Git is used for version management.
-- Pandoc is used for Markdown-to-Word export.
-- Python is optional and may later be used for parsing Stata logs, tables, or generating helper files.
-- The skill must not install any tool without explicit user confirmation.
-- Tooling check results should be recorded in `logs/tooling-check.md`.
+If any tool is missing, the skill must not silently pretend the related workflow passed.
 
-## Stata MCP and Evidence Map
+## Relationship to Other Skills
 
-- If Stata MCP is available, the skill can use it during cognitive alignment to inspect Stata empirical materials in read-only mode.
-- Stata MCP may help inspect `.dta`, `.do`, `.log`, `.smcl`, regression outputs, variable labels, sample years, panel structure, fixed effects, clustering levels, and model commands.
-- The Stata MCP workflow should generate:
-  - `logs/stata-mcp-inspection.md`
-  - `logs/empirical-evidence-map.md`
-- The empirical evidence map is a structured bridge between inspected empirical materials and the alignment report.
-- The evidence map is not a substitute for user confirmation.
-- Recommended workflow order:
-  1. inspect empirical materials when possible
-  2. generate empirical evidence map
-  3. generate alignment report
-  4. ask the user to confirm
-  5. only then begin chapter drafting
-- If Stata MCP is unavailable or fails, the skill should fall back to user-provided tables, logs, do-files, and explanations, and clearly mark unverified items.
+This skill controls the manuscript workflow.
 
-## Empirical Results Coverage
+When Chinese Word layout repair is needed, it should delegate final Word-structure normalization to `chinese-word-pro`.
 
-- The skill inventories all empirical result artifacts before drafting empirical analysis chapters.
-- User-provided empirical tables, figures, and regression outputs are used by default in the main text or appendix.
-- Any unused empirical result must be listed with a reason in `logs/unused-empirical-results.md`.
-- The skill should not silently omit endogeneity, robustness, mechanism, heterogeneity, or further analysis results.
+That means:
 
-## Control Variable Reference
+- `management-empirical-writer` decides whether formal delivery is allowed
+- `chinese-word-pro` repairs and verifies Chinese Word structure without breaking citation fields
 
-- `references/common-control-variables.md` is a built-in general reference rather than a mandatory variable specification.
-- In any specific paper project, the user-provided Stata code, data dictionary, and regression tables remain the primary source of truth.
-- If the built-in control-variable reference conflicts with project-specific evidence, the skill must surface the discrepancy and ask the user to confirm the intended definition.
+## Common Failure Modes This Skill Is Meant to Prevent
 
-## Literature Pool and Citation Quality
+- exporting final Word files with plain `pandoc` and losing citation fields
+- overwriting the main `docx` before checking garbling
+- drafting without enough literature or variable-measurement support
+- silently omitting robustness, mechanism, heterogeneity, or endogeneity outputs
+- letting Chinese and English versions drift apart in facts or findings
 
-- Candidate literature screening can start from metadata.
-- Writing-critical references require PDFs or full-text notes before drafting.
-- The skill prioritizes downloading or importing PDFs for benchmark papers, variable measurement literature, core theory references, and method or identification references.
-- The skill does not download every candidate reference by default.
-- Before drafting, the skill should generate `logs/fulltext-literature-readiness.md` and `logs/literature-synthesis-map.md`.
-- The skill builds a literature pool before drafting.
-- The skill enforces a default 60 to 80 final reference target.
-- The skill prioritizes high-quality English references, especially UTD24, FT50, ABS high-ranking, target-journal, and field-leading journal papers.
-- The skill should not start drafting until the literature pool and citation plan are sufficient.
-- Recent, high-quality references are prioritized, while classic references are allowed when justified.
-- MCP or web search during writing is for gap filling, not the main citation strategy.
+## Repository Contents
 
-## Versioning
-
-- Every meaningful manuscript or project-log change should be committed with Git by default.
-- If Git is unavailable, the skill uses timestamped snapshots under `versions/`.
-
-## Included Files
-
-- `SKILL.md`: core workflow and guardrails
-- `agents/openai.yaml`: UI metadata
-- `references/`: process guides, checklists, and writing rules
-- `assets/`: reusable drafting templates
+- `SKILL.md`: main workflow rules and gate logic
+- `references/`: checklists, alignment templates, export rules, and citation rules
+- `assets/`: reusable writing templates
+- `agents/openai.yaml`: metadata for the skill surface
