@@ -9,6 +9,7 @@ Citation integrity is mandatory. References must be traceable, correctly identif
 ## Mandatory Rules
 
 - Use Zotero citekeys for in-text citation placeholders when the project is configured that way.
+- If the final Word deliverable is expected to preserve Zotero or citation fields, do not use a plain export path that flattens those fields into ordinary text.
 - Never fabricate a citekey.
 - Never fabricate a bibliographic record to fill a gap.
 - Newly found papers must be imported into Zotero or the approved bibliography workflow before entering the manuscript.
@@ -23,6 +24,21 @@ Citation integrity is mandatory. References must be traceable, correctly identif
 - PDF files or full-text notes should be attached or linked for benchmark papers, variable measurement literature, core theory references, and method or identification references.
 - Metadata-only references may remain in the candidate pool, but must not be used for detailed measurement or theoretical claims without user confirmation.
 - Do not add weakly related references just to reach 60 to 80 references. Relevance and quality remain mandatory.
+
+## Formal Word Delivery Rule
+
+When the manuscript is delivered as a Word file and the project uses citekeys or citation fields:
+
+- export through the approved citation-aware workflow first
+- if Word post-processing is required, re-audit the resulting DOCX after post-processing
+- do not approve final delivery if citation fields disappeared during export or post-processing
+
+Minimum audit markers for Zotero-based Word outputs:
+
+- `ADDIN ZOTERO_ITEM`
+- `CSL_CITATION`
+
+Equivalent markers may be used only if the project has a different approved citation workflow.
 
 ## Pre-Drafting Citation Routine
 

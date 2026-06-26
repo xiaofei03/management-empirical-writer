@@ -51,6 +51,27 @@ Use these assets when the user asks for reusable templates inside a paper projec
 - `assets/chapter-plan-template.md`
 - `assets/citation-audit-template.md`
 
+## Final Delivery Safety Valve
+
+For any project that maintains both Markdown and Word drafts, this skill must enforce a final-delivery safety valve.
+
+Core rules:
+
+- Markdown remains the only source of truth for manuscript content.
+- User-facing final Word files must never be produced by a plain `pandoc` overwrite alone.
+- Formal delivery requires a gated chain:
+  - Markdown update
+  - citation-aware Word export
+  - Word post-processing
+  - citation-field audit
+  - garbling audit
+  - delivery logging
+  - only then overwrite the main Word deliverables
+- If any gate fails, do not overwrite the main Word deliverables.
+- Temporary build artifacts must not be left mixed into the manuscript root or `drafts/` after delivery.
+
+When Chinese Word layout repair is needed, invoke the `chinese-word-pro` rules as the downstream formatting authority.
+
 ## Workflow Overview
 
 This skill uses a gated workflow. Do not skip gates without explicit user confirmation when the gate requires it.
@@ -65,6 +86,7 @@ Stages:
 6. Stage 5: Pre-submission packaging
 
 Never generate the entire paper in a single pass. Work chapter by chapter or section by section.
+For formal Word delivery, do not skip the Stage 5 gates.
 
 ## Stage 0: Project Initialization
 

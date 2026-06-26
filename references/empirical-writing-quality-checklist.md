@@ -116,6 +116,15 @@ Use this checklist for chapter review and full-paper review.
 - Are Word drafts regenerated if tooling is available?
 - Whether Word files were regenerated from the latest Markdown.
 - Whether reference docx files were used when available.
+- Whether the delivery distinguished between temporary working draft export and formal Word delivery.
+- Whether formal Word delivery avoided plain `pandoc` overwrite of the main Word files.
+- Whether citation-aware export was used when the project requires citekeys or Word citation fields.
+- Whether Word post-processing was completed before formal delivery.
+- Whether citation-field audit passed after export.
+- Whether citation-field audit passed again after post-processing.
+- Whether garbling audit passed after final save.
+- Whether the final main Word files were overwritten only after all gates passed.
+- Whether temporary DOCX artifacts were cleaned up after delivery.
 - If Word export failed, is that failure clearly reported?
 - Whether failed Word exports were clearly marked.
 - Whether `logs/word-export-log.md` records the latest export attempt.
