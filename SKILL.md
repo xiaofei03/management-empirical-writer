@@ -72,6 +72,8 @@ Core rules:
 - If any gate fails, do not overwrite the main Word deliverables.
 - Temporary build artifacts must not be left mixed into the manuscript root or `drafts/` after delivery.
 - Chinese and English final deliverables must pass the same finalization rule set unless the user explicitly requests divergence.
+- For bilingual citation-managed manuscripts, the Chinese and English Markdown drafts must have the same de-duplicated citekey set before formal delivery unless the user explicitly approves and logs a language-specific exception.
+- For bilingual projects where the user identifies one language as the base manuscript, the other language is a translation by default. The translated draft must preserve the base manuscript's section hierarchy, paragraph-level claim order, tables, figures, formulas, hypotheses, model descriptions, empirical interpretations, citation set, and conclusion claims. Journal-style polishing may improve wording but must not alter substance or structure unless the user explicitly approves adaptation mode.
 
 When Word layout repair is needed, invoke the `chinese-word-pro` rules as the downstream formatting authority for both Chinese and English submission DOCX finalization.
 
@@ -107,6 +109,8 @@ Delivery mode distinction:
 Delivery failure conditions:
 
 - citation fields lost
+- Chinese and English citekey sets diverge without a recorded user-approved exception
+- translated and base manuscripts diverge in structure, figures, tables, formulas, hypotheses, empirical interpretations, or claim order without a recorded user-approved adaptation exception
 - Zotero or the approved citation backend cannot be reached before citation-aware export
 - cite-rag-mcp or another approved export route fails before generating live citation fields
 - deprecated or old variable names reintroduced

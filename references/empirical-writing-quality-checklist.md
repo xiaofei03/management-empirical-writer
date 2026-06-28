@@ -74,10 +74,16 @@ Use this checklist for chapter review and full-paper review.
 ## Bilingual Consistency
 
 - Do Chinese and English drafts ask the same research question?
+- Is one language explicitly treated as the master draft and the other as an equivalent translation?
+- If the user did not approve adaptation mode, do section hierarchy and section order match one-to-one after translation?
+- If the user did not approve adaptation mode, do paragraph function and evidence order match across languages?
 - Do they describe the same sample and years?
 - Do they use the same variable meanings?
 - Do they interpret the same findings consistently?
+- Do formulas, hypotheses, figures, tables, and captions match in order and substance?
 - Do table numbers and citation sets match?
+- Do Chinese and English Markdown drafts have exactly the same de-duplicated citekey set, unless a user-approved language-specific citation exception is recorded?
+- Are long or non-English citekeys normalized consistently across both language versions?
 
 ## Control Variable Consistency
 
@@ -119,6 +125,8 @@ Use this checklist for chapter review and full-paper review.
 - Whether the delivery distinguished between temporary working draft export and formal Word delivery.
 - Whether formal Word delivery avoided plain `pandoc` overwrite of the main Word files.
 - Whether citation-aware export was used when the project requires citekeys or Word citation fields.
+- Whether bilingual citekey-set audit passed before citation-aware export.
+- Whether bilingual structural audit passed before citation-aware export.
 - Whether Word post-processing was completed before formal delivery.
 - Whether citation-field audit passed after export.
 - Whether citation-field audit passed again after post-processing.
