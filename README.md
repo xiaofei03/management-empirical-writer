@@ -102,6 +102,7 @@ This repository now enforces a stronger formal-delivery rule set so later projec
 - temporary local preview
 - may use `pandoc`
 - must write to temporary files such as `paper_cn.tmp.docx`
+- may run Word finalization with `--citation-policy warn` only when explicitly labeled as a recovery or working draft
 
 `formal-delivery` mode:
 
@@ -109,6 +110,16 @@ This repository now enforces a stronger formal-delivery rule set so later projec
 - must use the citation-aware pipeline when citekeys or Word fields are expected
 - must pass audits before replacing the main `docx`
 - must finalize both Chinese and English outputs under one synchronized delivery pass
+- must run Word finalization with `--citation-policy strict`
+- must be blocked if the citation-aware export backend cannot create live citation fields
+
+`recovery-layout` mode:
+
+- used after file loss, broken Zotero state, or temporary citation-export failure
+- may repair typography, figures, tables, formulas, captions, and pagination
+- must preserve Markdown as the source of truth
+- must clearly report that the resulting Word file is not a formal submission file if citation fields are absent
+- must record the missing citation-field issue in the delivery log
 
 ## Formal Delivery Flow
 
@@ -152,6 +163,7 @@ Formal delivery is blocked if any of the following occurs:
 
 - citation fields are flattened into plain text
 - Zotero or Better BibTeX cannot be reached before citation-aware export
+- cite-rag-mcp or the approved citation-aware Word export route fails with a missing dependency or missing file
 - new references were added but no live-citation smoke test can generate fields for them
 - old variable names reappear in final Word files
 - figure captions lose numbering or merge into the interpretation paragraph

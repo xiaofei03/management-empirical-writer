@@ -96,10 +96,19 @@ Formal-delivery prohibition:
   - re-run audits
   - only then replace the final DOCX
 
+Delivery mode distinction:
+
+- Formal delivery must use citation-aware export and `chinese-word-pro` finalization with `--citation-policy strict`.
+- If citation-aware export is temporarily broken but the user needs a readable restored or working Word file, a recovery layout pass may use `--citation-policy warn`.
+- A `warn` output may repair typography, formulas, figures, tables, and pagination, but it must be labeled as a recovery draft or working draft.
+- A `warn` output must not be described as a submission-ready final Word file when live citation fields are absent.
+- The delivery log must explicitly record citation-aware export failure and the remaining blocker.
+
 Delivery failure conditions:
 
 - citation fields lost
 - Zotero or the approved citation backend cannot be reached before citation-aware export
+- cite-rag-mcp or another approved export route fails before generating live citation fields
 - deprecated or old variable names reintroduced
 - figure captions lose numbering or merge into interpretation paragraphs
 - formal equations degrade into raw pseudo-formula text
@@ -312,6 +321,8 @@ Required chain:
 7. Log the delivery result
 8. Clean temporary build artifacts
 9. Overwrite the user-facing DOCX files only if all checks pass
+
+If Step 2 fails because the citation-aware export backend is unavailable, do not silently fall back to plain Pandoc for formal delivery. The allowed fallback is only a clearly labeled recovery or working-draft layout pass, followed by a log entry stating that formal submission remains blocked until citation fields can be generated.
 
 Mandatory delivery audit items:
 

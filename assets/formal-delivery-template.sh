@@ -68,14 +68,16 @@ echo "[4/6] Finalize Chinese DOCX"
   --input-docx "$CN_TMP" \
   --output-docx "$CN_DOCX" \
   --lang cn \
-  --mode journal_submission
+  --mode journal_submission \
+  --citation-policy strict
 
 echo "[5/6] Finalize English DOCX"
 "$PYTHON_BIN" "$FINALIZER" \
   --input-docx "$EN_TMP" \
   --output-docx "$EN_DOCX" \
   --lang en \
-  --mode journal_submission
+  --mode journal_submission \
+  --citation-policy strict
 
 echo "[6/6] Cleanup temporary exports"
 rm -f "$CN_TMP" "$EN_TMP"
