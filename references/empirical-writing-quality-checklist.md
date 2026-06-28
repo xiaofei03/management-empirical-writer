@@ -131,6 +131,9 @@ Use this checklist for chapter review and full-paper review.
 - Whether citation-field audit passed after export.
 - Whether citation-field audit passed again after post-processing.
 - Whether garbling audit passed after final save.
+- Whether inline explanatory variables and formulas are rendered as readable Word math or true subscript/superscript runs rather than raw strings such as `Y_it`, `CR_it`, `K_{it}`, `PR_{kt}`, or broken `z(...)`.
+- Whether academic table cells have zero inherited first-line, left, and right paragraph indentation.
+- Whether academic tables are centered, fit the available page width, and are not clipped by fixed row heights.
 - Whether the final main Word files were overwritten only after all gates passed.
 - Whether temporary DOCX artifacts were cleaned up after delivery.
 - If Word export failed, is that failure clearly reported?

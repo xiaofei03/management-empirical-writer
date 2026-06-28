@@ -153,8 +153,11 @@ Before the main deliverables are considered passed, confirm:
 - citation fields remain present in both DOCX files
 - no `�` or `????` markers appear in `word/document.xml`
 - formulas remain native Word math objects where expected
+- inline explanatory formulas and variables are not exposed as raw source-like strings such as `Y_it`, `CR_it`, `K_{it}`, `PR_{kt}`, or broken `z(...)`
 - figure captions remain separate numbered paragraphs
 - figures remain inline rather than floating
+- table-cell paragraphs do not inherit body first-line, left, or right indentation
+- academic tables are centered and fit the available page width unless the journal profile explicitly requires another layout
 - abstract, chapter openings, and references obey the page-break rules
 
 ### Step 4. Temporary-file cleanup

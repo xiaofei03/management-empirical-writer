@@ -116,6 +116,9 @@ Delivery failure conditions:
 - deprecated or old variable names reintroduced
 - figure captions lose numbering or merge into interpretation paragraphs
 - formal equations degrade into raw pseudo-formula text
+- inline explanatory formulas or variables are delivered as raw source-like notation such as `Y_it`, `CR_it`, `K_{it}`, `PR_{kt}`, or `z(...)` instead of readable Word math or true subscript/superscript runs
+- academic tables inherit body paragraph indentation, fixed row-height clipping, or unsafe cell indents
+- academic tables fail to fit the available page width or drift from the intended centered table geometry without a journal-style exception
 - chapter pagination rules fail
 - figure or table paragraphs drift into structurally unsafe layout
 
@@ -333,8 +336,11 @@ Mandatory delivery audit items:
 - live citation fields remain in both Chinese and English DOCX
 - native equation objects remain present where formal models exist
 - raw degraded pseudo-formulas such as `Y_it`, `CR_it`, or broken `z(...)` forms are absent from delivery outputs
+- inline explanatory variables with subscripts or superscripts are not left as raw underscore/braced strings such as `K_{it}`, `PR_{kt}`, or similar notation
 - figures are inline and captions are separate numbered paragraphs
 - tables preserve intended three-line formatting
+- table-cell paragraphs have zero inherited first-line, left, and right indentation
+- academic tables are centered and fit the available page width unless a recorded journal profile requires otherwise
 - abstract, chapter openings, and references use required page-break rules
 - temporary DOCX artifacts do not remain mixed into `drafts/`
 - Before chapter drafting, build `logs/fulltext-literature-readiness.md` and `logs/literature-synthesis-map.md`.
