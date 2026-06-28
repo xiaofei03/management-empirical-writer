@@ -75,6 +75,20 @@ If you want a reusable project-level shell wrapper where only `PROJECT_ROOT` nee
 
 ### Step 1. Citation-aware temporary export
 
+Before export, run Zotero preflight when the project uses Zotero or Better BibTeX live citation fields:
+
+```bash
+"/Users/xiaofei/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3" \
+  "$HOME/.codex/skills/chinese-word-pro/scripts/zotero_preflight_recover.py" \
+  --collection-key "<ZOTERO_COLLECTION_KEY>" \
+  --timeout 90 \
+  --strict
+```
+
+If the target collection is in a group library, add `--group-id "<GROUP_ID>"`.
+
+If Zotero opens but the collection is not selected or Better BibTeX still cannot export live citation fields, use `computer-use` to select the target collection in Zotero and rerun this preflight. If it still fails, stop the formal delivery. Do not use plain Pandoc as a substitute.
+
 Chinese temporary export:
 
 ```text

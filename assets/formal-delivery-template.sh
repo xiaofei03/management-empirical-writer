@@ -9,9 +9,12 @@ set -euo pipefail
 # drafts/en/paper_en.docx
 
 PROJECT_ROOT="/ABSOLUTE/PROJECT/PATH"
+ZOTERO_COLLECTION_KEY=""
+ZOTERO_GROUP_ID=""
 
 PYTHON_BIN="/Users/xiaofei/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3"
 FINALIZER="$HOME/.codex/skills/chinese-word-pro/scripts/finalize_submission_docx.py"
+ZOTERO_PREFLIGHT="$HOME/.codex/skills/chinese-word-pro/scripts/zotero_preflight_recover.py"
 
 CN_MD="$PROJECT_ROOT/drafts/cn/paper_cn.md"
 EN_MD="$PROJECT_ROOT/drafts/en/paper_en.md"
@@ -20,13 +23,24 @@ EN_TMP="$PROJECT_ROOT/drafts/en/paper_en_export_tmp.docx"
 CN_DOCX="$PROJECT_ROOT/drafts/cn/paper_cn.docx"
 EN_DOCX="$PROJECT_ROOT/drafts/en/paper_en.docx"
 
-echo "[1/5] Check required paths"
+echo "[1/6] Check required paths"
 test -f "$CN_MD"
 test -f "$EN_MD"
 test -f "$FINALIZER"
+test -f "$ZOTERO_PREFLIGHT"
 test -x "$PYTHON_BIN"
 
-echo "[2/5] Citation-aware export"
+echo "[2/6] Zotero preflight for citation-aware export"
+ZOTERO_ARGS=(--timeout 90)
+if [[ -n "$ZOTERO_COLLECTION_KEY" ]]; then
+  ZOTERO_ARGS+=(--collection-key "$ZOTERO_COLLECTION_KEY" --strict)
+fi
+if [[ -n "$ZOTERO_GROUP_ID" ]]; then
+  ZOTERO_ARGS+=(--group-id "$ZOTERO_GROUP_ID")
+fi
+"$PYTHON_BIN" "$ZOTERO_PREFLIGHT" "${ZOTERO_ARGS[@]}"
+
+echo "[3/6] Citation-aware export"
 cat <<EOF
 Run the citation-aware export before continuing.
 
@@ -49,21 +63,21 @@ if [[ ! -f "$CN_TMP" || ! -f "$EN_TMP" ]]; then
   exit 1
 fi
 
-echo "[3/5] Finalize Chinese DOCX"
+echo "[4/6] Finalize Chinese DOCX"
 "$PYTHON_BIN" "$FINALIZER" \
   --input-docx "$CN_TMP" \
   --output-docx "$CN_DOCX" \
   --lang cn \
   --mode journal_submission
 
-echo "[4/5] Finalize English DOCX"
+echo "[5/6] Finalize English DOCX"
 "$PYTHON_BIN" "$FINALIZER" \
   --input-docx "$EN_TMP" \
   --output-docx "$EN_DOCX" \
   --lang en \
   --mode journal_submission
 
-echo "[5/5] Cleanup temporary exports"
+echo "[6/6] Cleanup temporary exports"
 rm -f "$CN_TMP" "$EN_TMP"
 
 echo "Formal delivery complete."

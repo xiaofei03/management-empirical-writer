@@ -29,6 +29,7 @@ Citation integrity is mandatory. References must be traceable, correctly identif
 
 When the manuscript is delivered as a Word file and the project uses citekeys or citation fields:
 
+- run Zotero or citation-backend preflight before citation-aware export
 - export through the approved citation-aware workflow first
 - if Word post-processing is required, re-audit the resulting DOCX after post-processing
 - do not approve final delivery if citation fields disappeared during export or post-processing
@@ -39,6 +40,37 @@ Minimum audit markers for Zotero-based Word outputs:
 - `CSL_CITATION`
 
 Equivalent markers may be used only if the project has a different approved citation workflow.
+
+## Zotero Preflight and Recovery Rule
+
+Use this rule before formal Word delivery whenever the project depends on Zotero live citation fields.
+
+Required checks:
+
+1. Confirm Zotero is installed or locatable.
+2. Launch Zotero automatically if it is not running.
+3. Wait until Zotero's local connector or approved MCP backend is reachable.
+4. If a target collection key is known, open it through a `zotero://select/.../collections/...` URI.
+5. If the collection is still not available, use the `computer-use` plugin for one GUI recovery attempt to focus Zotero and select the target collection.
+6. If the connector, collection, Better BibTeX, or MCP citation workflow still fails, stop and report an export-blocking error.
+
+Recommended helper:
+
+```bash
+python3 "$HOME/.codex/skills/chinese-word-pro/scripts/zotero_preflight_recover.py" \
+  --collection-key "<COLLECTION_KEY>" \
+  --timeout 60
+```
+
+For group libraries, add `--group-id "<GROUP_ID>"`. If a project has an explicit Zotero select URI, use `--select-uri "zotero://select/..."`.
+
+If Zotero state was recently unstable or if new references were added, also require a tiny live-citation smoke export and inspect it with `--smoke-docx` before overwriting final manuscripts.
+
+Failure rule:
+
+- If Zotero cannot be opened or the citation backend cannot be reached, do not attempt a plain Pandoc substitute for formal delivery.
+- If new references exist and live citation-field generation fails, do not use an old Word-file fallback as the final manuscript.
+- If only existing citation fields are being preserved and no new references are introduced, a citation-safe structural fallback may be used only after explicitly auditing that live fields remain present.
 
 ## Pre-Drafting Citation Routine
 

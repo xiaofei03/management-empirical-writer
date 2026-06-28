@@ -123,6 +123,17 @@ flowchart TD
     G --> H["Overwrite main DOCX deliverables only if all checks passed"]
 ```
 
+For Zotero-based projects, insert a preflight gate before citation-aware export:
+
+```bash
+python3 "$HOME/.codex/skills/chinese-word-pro/scripts/zotero_preflight_recover.py" \
+  --collection-key "<ZOTERO_COLLECTION_KEY>" \
+  --timeout 90 \
+  --strict
+```
+
+If this gate opens Zotero but cannot make the collection or Better BibTeX route usable, use Computer Use once to select the collection in the Zotero UI, then rerun the preflight. If it still fails, formal delivery must stop.
+
 ### Delivery Pass Conditions
 
 Formal delivery passes only when all of the following are true:
@@ -140,6 +151,8 @@ Formal delivery passes only when all of the following are true:
 Formal delivery is blocked if any of the following occurs:
 
 - citation fields are flattened into plain text
+- Zotero or Better BibTeX cannot be reached before citation-aware export
+- new references were added but no live-citation smoke test can generate fields for them
 - old variable names reappear in final Word files
 - figure captions lose numbering or merge into the interpretation paragraph
 - equations degrade into raw pseudo-formula strings

@@ -61,6 +61,7 @@ Core rules:
 - User-facing final Word files must never be produced by a plain `pandoc` overwrite alone.
 - Formal delivery requires a gated chain:
   - Markdown update
+  - Zotero or citation-manager preflight and recovery when live citation fields are required
   - citation-aware Word export
   - Word post-processing
   - citation-field audit
@@ -73,6 +74,16 @@ Core rules:
 - Chinese and English final deliverables must pass the same finalization rule set unless the user explicitly requests divergence.
 
 When Word layout repair is needed, invoke the `chinese-word-pro` rules as the downstream formatting authority for both Chinese and English submission DOCX finalization.
+
+When the project depends on Zotero live citation fields, run a Zotero preflight before citation-aware export. The preflight must:
+
+- locate and launch Zotero if it is closed
+- try to open the target collection through the Zotero collection URI when a collection key is known
+- confirm that Zotero's local connector or approved citation backend is reachable
+- run or require a minimal live-citation smoke test before full delivery when Zotero state was previously unstable
+- stop the formal delivery chain if Zotero or Better BibTeX remains inaccessible
+
+If GUI collection recovery is needed after the script opens Zotero, use the `computer-use` plugin to select the target Zotero collection. If GUI recovery still fails, report the failure and do not overwrite final Word deliverables.
 
 Formal-delivery prohibition:
 
@@ -88,6 +99,7 @@ Formal-delivery prohibition:
 Delivery failure conditions:
 
 - citation fields lost
+- Zotero or the approved citation backend cannot be reached before citation-aware export
 - deprecated or old variable names reintroduced
 - figure captions lose numbering or merge into interpretation paragraphs
 - formal equations degrade into raw pseudo-formula text
