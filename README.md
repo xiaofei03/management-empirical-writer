@@ -87,6 +87,7 @@ This repository now enforces a stronger formal-delivery rule set so later projec
 ### Non-negotiables
 
 - Markdown is the only source of truth for manuscript content.
+- When the user identifies the Chinese Markdown file as the mother manuscript, it becomes the only editable content master by default.
 - User-facing final Word files must never be produced by a plain `pandoc` overwrite alone.
 - Citation-managed manuscripts must use a citation-aware export path for formal delivery.
 - Word post-processing must not destroy citation fields.
@@ -94,6 +95,8 @@ This repository now enforces a stronger formal-delivery rule set so later projec
 - Temporary Word build artifacts must be cleaned up after delivery.
 - Chinese and English final DOCX files must be finalized through the same rule set unless the user explicitly requests a controlled divergence.
 - Figure, table, formula, pagination, and caption repairs must not be performed by directly patching an older final DOCX and calling it the new delivery.
+- In the standard bilingual four-file workflow, `paper_cn.md` is the content mother manuscript, `paper_cn.docx` is its formatted derivative, `paper_en.md` is the translation derivative, and `paper_en.docx` is the formatted derivative of the English Markdown file.
+- If those four files are not synchronized to the same substantive manuscript version, formal delivery is blocked.
 
 ### Working Draft vs Formal Delivery
 
@@ -112,6 +115,8 @@ This repository now enforces a stronger formal-delivery rule set so later projec
 - must finalize both Chinese and English outputs under one synchronized delivery pass
 - must run Word finalization with `--citation-policy strict`
 - must be blocked if the citation-aware export backend cannot create live citation fields
+- must treat Chinese Markdown as the mother manuscript by default when the user has designated it as the base manuscript
+- must not allow any of the other three manuscript files to become an independent content source
 
 `recovery-layout` mode:
 
@@ -155,6 +160,7 @@ Formal delivery passes only when all of the following are true:
 - no `�` replacement characters appear in `word/document.xml`
 - no suspicious `????` garbling markers appear
 - Chinese and English outputs both pass the same finalization checks
+- the four-file package is synchronized: Chinese Markdown current, Chinese Word derived from it, English Markdown translation-equivalent to it, English Word derived from the English Markdown file
 - export result is logged in `logs/word-export-log.md`
 
 ### Delivery Failure Examples
@@ -202,6 +208,8 @@ The skill prioritizes:
 - real variable-measurement support
 - explicit use or accounting of all empirical outputs
 
+For variable measurement, this skill treats `understanding the formula` and `having publishable literature backing` as two separate requirements. A measurement statement is not ready for manuscript drafting unless both conditions are satisfied, except in the rare case of a strictly confirmed self-developed measure that is transparently logged as such.
+
 ## Tooling Expectations
 
 At initialization, the workflow should check:
@@ -232,6 +240,7 @@ For submission-ready bilingual manuscripts:
 1. Maintain `paper_cn.md` and `paper_en.md` as the only content sources.
 2. Export temporary Chinese and English DOCX files via the citation-aware route.
 3. Finalize both DOCX files with the Word-finalization authority.
+   This includes the `chinese-word-pro` Formula Finalization Pipeline: formula inventory, inline symbol renderer, OMML equation compiler, and formula delivery audit.
 4. Audit both outputs for citation safety and structural integrity.
 5. Remove temporary exports.
 6. Replace the main deliverables only after both outputs pass.
@@ -249,6 +258,7 @@ For a project-level shell wrapper that only requires changing one root-path vari
 - exporting final Word files with plain `pandoc` and losing citation fields
 - overwriting the main `docx` before checking garbling
 - repairing one language version but forgetting to synchronize the other
+- editing one of the four manuscript files independently and letting it drift away from the Chinese Markdown mother manuscript
 - treating an older healthy DOCX as the new editing baseline
 - drafting without enough literature or variable-measurement support
 - silently omitting robustness, mechanism, heterogeneity, or endogeneity outputs

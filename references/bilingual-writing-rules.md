@@ -11,8 +11,28 @@ Default authority:
 - The Chinese draft is the master manuscript when the user identifies the Chinese version as the base.
 - The English draft is an equivalent translation, not an independently rewritten paper.
 - Only language differs; substantive content must remain aligned.
+- When the user identifies the Chinese Markdown draft as the mother manuscript, it becomes the only editable content master by default.
+- The Chinese Word file is a formatted derivative of the Chinese Markdown draft, not an independent editing surface.
+- The English Markdown draft is a translation derivative of the Chinese Markdown draft, not a parallel source of truth.
+- The English Word file is a formatted derivative of the English Markdown draft, not an independent editing surface.
 
 Language-specific journal style may shape wording, syntax, and academic idiom, but it must not change the content architecture unless the user explicitly approves a separate English adaptation mode.
+
+## Four-File Synchronization Rule
+
+For the standard bilingual manuscript package:
+
+- `paper_cn.md` is the sole content mother manuscript by default.
+- `paper_cn.docx` must only reflect layout and rendering of `paper_cn.md`.
+- `paper_en.md` must be rebuilt or revised from `paper_cn.md` so that it remains a language-only translation equivalent.
+- `paper_en.docx` must only reflect layout and rendering of `paper_en.md`.
+
+Implications:
+
+- Do not treat any Word file as an independent content-editing source for formal delivery.
+- Do not revise only one of the four files and leave the others stale.
+- Any substantive change must start from the Chinese Markdown mother manuscript, then propagate to the English Markdown translation, then to both Word outputs.
+- If mirrored copies exist in both root and `drafts/` locations, they must be overwritten in the same synchronized pass rather than edited separately.
 
 ## Non-Negotiable Consistency Rules
 
@@ -34,6 +54,12 @@ The Chinese and English drafts must agree on:
 - Figure and table set, numbering, order, and captions
 - Table numbering
 - Citation set
+
+In strict translation mode, the four-file package must also agree on:
+
+- Chinese Markdown and Chinese Word represent the same manuscript version, differing only in formatting
+- English Markdown and English Word represent the same manuscript version, differing only in formatting
+- English Markdown and English Word preserve the Chinese Markdown master draft's section hierarchy, paragraph function, evidence order, citation set, figures, tables, formulas, and hypotheses, differing only in language
 
 For citation-managed bilingual manuscripts, `Citation set` means the two Markdown source files must have exactly the same de-duplicated citekey set by default. Citation placement should correspond to the same claim or paragraph function in both versions. Different citation frequency, sentence placement, and rhetorical pacing are not allowed in strict translation mode unless the user explicitly approves an adaptation exception. Any citekey that appears only in one language version is a bilingual consistency failure unless the user explicitly approves a language-specific reference exception and the exception is recorded in the delivery log.
 
@@ -107,6 +133,18 @@ Failure handling:
 - Normalize citekey spelling before export, especially for long Chinese-language citekeys.
 - If the user explicitly wants language-specific references, record the approved exception in `logs/citation-plan.md` or the delivery log.
 - Without a recorded exception, citation-set mismatch blocks formal Word delivery.
+
+## Four-File Delivery Audit
+
+Before formal delivery, verify all of the following:
+
+- the Chinese Markdown draft is the newest approved content source
+- the English Markdown draft is a translation-equivalent derivative of the Chinese Markdown draft
+- the Chinese Word output was generated from the current Chinese Markdown draft rather than from an older Word file
+- the English Word output was generated from the current English Markdown draft rather than from an older Word file
+- if mirrored copies exist in multiple project locations, they were overwritten in one synchronized pass
+
+If any of these checks fails, treat the bilingual package as unsynchronized and block formal delivery.
 
 ## Bilingual Structural Audit
 

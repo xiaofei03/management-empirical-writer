@@ -25,6 +25,35 @@
 - In the Research Design chapter, avoid vague phrases such as `based on this project's measurement method`. Use citation-supported academic language instead.
 - If the variable is constructed from Stata code but lacks literature support, write it as user-confirmed operationalization only after asking for confirmation, and do not present it as literature-established.
 
+## Default Measurement-Backing Rule
+
+- By default, every publishable variable measurement statement must have literature backing for the specific operationalization, proxy, coding rule, grouping logic, or measurement formula being used.
+- Understanding how a variable is computed is necessary but not sufficient. The manuscript must also identify whose measurement approach, proxy choice, or operationalization it follows unless the variable is strictly confirmed to be self-developed.
+- This rule applies to:
+  - dependent variables
+  - independent variables
+  - mediators
+  - moderators
+  - control variables
+  - heterogeneity grouping variables
+  - robustness alternative measures
+- If the assistant can reconstruct the variable from code, notes, or tables but still lacks literature support, it must not write the sentence as literature-backed. It must instead mark the item as missing support or ask the user to supplement the reference.
+
+## Self-Developed Measurement Exception
+
+- A variable may be described without external measurement citation only when it is strictly confirmed to be a genuinely self-developed or project-specific measure.
+- This exception is narrow and should be used rarely.
+- Before using the exception, confirm all of the following:
+  - no directly relevant measurement support is available in the user's files, Zotero, MCP workflow, or justified external search
+  - the variable is not simply a renamed, shortened, or slightly modified version of an established measure
+  - the user confirms that the operationalization is intentionally author-constructed or project-specific
+  - the manuscript will describe the construction transparently instead of implying prior-literature endorsement
+- When the exception is used:
+  - do not fabricate literature support
+  - do not write the sentence as if the measure were standard in prior research
+  - record the exception in the variable measurement evidence map or delivery log
+- If any of these conditions is uncertain, do not use the exception.
+
 ## Prohibited Research Design Wording
 
 The following expressions are prohibited in publishable Research Design drafts unless the user explicitly asks for internal notes rather than manuscript text:
@@ -59,3 +88,5 @@ English:
 - `The measurement of ... follows the approach developed by ... [citekey].`
 
 If no valid citekey or literature source is available, the assistant must not polish the sentence as if the measurement were literature-supported. It must ask the user for measurement literature or mark the item as requiring confirmation.
+
+If the user confirms that a variable is genuinely self-developed, the assistant may write it without an external measurement citation only after clearly distinguishing it from literature-backed variables and recording the exception.

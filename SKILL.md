@@ -74,6 +74,8 @@ Core rules:
 - Chinese and English final deliverables must pass the same finalization rule set unless the user explicitly requests divergence.
 - For bilingual citation-managed manuscripts, the Chinese and English Markdown drafts must have the same de-duplicated citekey set before formal delivery unless the user explicitly approves and logs a language-specific exception.
 - For bilingual projects where the user identifies one language as the base manuscript, the other language is a translation by default. The translated draft must preserve the base manuscript's section hierarchy, paragraph-level claim order, tables, figures, formulas, hypotheses, model descriptions, empirical interpretations, citation set, and conclusion claims. Journal-style polishing may improve wording but must not alter substance or structure unless the user explicitly approves adaptation mode.
+- When the user identifies the Chinese Markdown draft as the mother manuscript, all substantive editing must start there. The Chinese Word file is formatting-only, the English Markdown file is translation-only, and the English Word file is formatting-only.
+- In that default setup, the four-file manuscript package must satisfy: Chinese Markdown as sole content source, Chinese Word as layout derivative, English Markdown as language-equivalent translation derivative, and English Word as layout derivative of the English Markdown file.
 
 When Word layout repair is needed, invoke the `chinese-word-pro` rules as the downstream formatting authority for both Chinese and English submission DOCX finalization.
 
@@ -111,6 +113,8 @@ Delivery failure conditions:
 - citation fields lost
 - Chinese and English citekey sets diverge without a recorded user-approved exception
 - translated and base manuscripts diverge in structure, figures, tables, formulas, hypotheses, empirical interpretations, or claim order without a recorded user-approved adaptation exception
+- the Chinese Markdown mother manuscript and the other manuscript files are not synchronized to the same substantive version
+- a Word file contains substantive edits that were not first written into the Chinese Markdown mother manuscript
 - Zotero or the approved citation backend cannot be reached before citation-aware export
 - cite-rag-mcp or another approved export route fails before generating live citation fields
 - deprecated or old variable names reintroduced
@@ -227,6 +231,14 @@ Variable-measurement gate rules:
   - user-provided Stata code or data dictionary, confirmed by the user
   - built-in common control variable reference, confirmed by the user
   - Zotero or MCP returned citekey
+- By default, every publishable variable measurement statement must have real literature backing for the specific operationalization, proxy, coding rule, grouping logic, or measurement formula being used.
+- Understanding how a variable is computed is necessary but not sufficient. The assistant must also identify and cite the supporting measurement literature unless the measure is strictly confirmed to be genuinely self-developed.
+- The self-developed-measure exception is allowed only when:
+  - no suitable measurement support can be found in the user's materials, Zotero, MCP workflows, or justified external search
+  - the variable is not merely a renamed or lightly modified version of an established measure
+  - the user confirms that the variable is intentionally author-constructed
+  - the exception is recorded in the variable measurement evidence map or delivery log
+- If the self-developed exception is not strictly confirmed, the assistant must not write the measure as literature-backed and must instead stop for supplementation or confirmation.
 - The Research Design chapter must not describe variable measurement using unsupported phrases such as:
   - `based on this project's measurement method`
   - `according to the measurement method in this project`
@@ -308,7 +320,8 @@ Planning rules:
 - The Chinese version should fit Chinese management or economics journal conventions.
 - The English version should fit SSCI or management-journal conventions.
 - Both versions must share the same facts, models, data, and empirical findings.
-- The two versions must not be sentence-by-sentence translations of each other.
+- The two versions must not become substantively different papers.
+- If the Chinese Markdown draft is the mother manuscript, English planning and drafting must follow that Chinese Markdown source paragraph by paragraph or block by block, preserving structure and evidence order while allowing language-appropriate academic phrasing.
 - Chinese drafting should emphasize problem orientation, theoretical mechanism, policy implications, and managerial implications when relevant.
 - English drafting should emphasize research gap, theoretical contribution, identification, robustness, and managerial implications when relevant.
 - Before chapter drafting, build `logs/literature-pool.md` and `logs/citation-plan.md`.
@@ -320,14 +333,18 @@ Stage 5 should be treated as a distinct delivery stage rather than a simple expo
 Required chain:
 
 1. Confirm Markdown is the only source of truth
-2. Export temporary Chinese and English DOCX through the citation-aware route
-3. Run downstream Word finalization
-4. Audit citation fields in both outputs
-5. Audit OOXML garbling markers
-6. Run render QA when rendering is available
-7. Log the delivery result
-8. Clean temporary build artifacts
-9. Overwrite the user-facing DOCX files only if all checks pass
+2. When applicable, confirm that the Chinese Markdown draft is the mother manuscript and that the other three manuscript files are derivatives rather than independent content sources
+3. Export temporary Chinese and English DOCX through the citation-aware route
+4. Run downstream Word finalization
+   - this step must invoke the `chinese-word-pro` Formula Finalization Pipeline
+   - it must rely on the downstream formula inventory, inline symbol renderer, OMML equation compiler, and formula delivery audit rather than treating formulas as an optional cosmetic pass
+5. Audit citation fields in both outputs
+6. Audit OOXML garbling markers
+7. Run bilingual citation-set, structural, and four-file synchronization audits
+8. Run render QA when rendering is available
+9. Log the delivery result
+10. Clean temporary build artifacts
+11. Overwrite the user-facing DOCX files only if all checks pass
 
 If Step 2 fails because the citation-aware export backend is unavailable, do not silently fall back to plain Pandoc for formal delivery. The allowed fallback is only a clearly labeled recovery or working-draft layout pass, followed by a log entry stating that formal submission remains blocked until citation fields can be generated.
 
@@ -337,6 +354,10 @@ Mandatory delivery audit items:
 - native equation objects remain present where formal models exist
 - raw degraded pseudo-formulas such as `Y_it`, `CR_it`, or broken `z(...)` forms are absent from delivery outputs
 - inline explanatory variables with subscripts or superscripts are not left as raw underscore/braced strings such as `K_{it}`, `PR_{kt}`, or similar notation
+- the downstream `chinese-word-pro` formula delivery audit has passed
+- the Chinese Markdown draft is the approved mother manuscript when the project uses that mode
+- the English Markdown draft remains a translation-equivalent derivative of the Chinese Markdown draft
+- Chinese and English Word outputs were regenerated from the current Markdown drafts rather than edited independently
 - figures are inline and captions are separate numbered paragraphs
 - tables preserve intended three-line formatting
 - table-cell paragraphs have zero inherited first-line, left, and right indentation
@@ -378,10 +399,10 @@ Recommended order:
 
 For each completed chapter or section, do all of the following:
 
-- Update the Chinese Markdown draft
-- Update the English Markdown draft
-- Export or refresh the Chinese Word draft
-- Export or refresh the English Word draft
+- Update the Chinese Markdown draft first
+- Update the English Markdown draft from the Chinese Markdown draft
+- Export or refresh the Chinese Word draft from the current Chinese Markdown draft
+- Export or refresh the English Word draft from the current English Markdown draft
 - Output a chapter revision note
 - Output a citation audit
 - If Git is available, create a commit
@@ -466,9 +487,8 @@ The default behavior is to maintain both Chinese and English drafts.
 
 Bilingual drafting rules:
 
-- Chinese is not a literal translation of English.
-- English is not a literal translation of Chinese.
-- Each version should fit its own target-journal rhetoric and section emphasis.
+- When the user designates the Chinese Markdown draft as the mother manuscript, the English draft is a translation-equivalent derivative of that Chinese draft rather than an independently optimized paper.
+- Each version may fit its own target-journal rhetoric and wording, but not at the cost of structural or substantive divergence unless the user explicitly approves adaptation mode.
 - The two versions must remain consistent in:
   - research question
   - theoretical logic
@@ -537,8 +557,10 @@ This skill must not:
 ## File Update Principles
 
 - Markdown is the master draft.
+- In the standard bilingual workflow, the Chinese Markdown file is the content mother manuscript by default once the user identifies it as the base manuscript.
 - Word is the exported submission draft.
 - Always update Markdown before generating Word.
+- Never treat either Word file as an independent source of substantive manuscript edits.
 - Word export must follow `references/word-export-rules.md`.
 - If export tooling is unavailable, keep Markdown current and report the export gap honestly.
 - If Word export fails, keep Markdown as the authoritative draft and report the failure clearly.
