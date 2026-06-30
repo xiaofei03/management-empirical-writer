@@ -162,6 +162,9 @@ Formal delivery passes only when all of the following are true:
 - Chinese and English outputs both pass the same finalization checks
 - numbered formulas use native Word formula objects, with the formula body centered and the number right-aligned on the same formula paragraph
 - table-based numbered formula containers are absent unless an explicit fallback exception is approved and logged
+- figures are inline, captions are independent and numbered, and image aspect ratios are preserved
+- ordinary body paragraphs are left-aligned unless a journal profile explicitly requires another layout
+- academic table-cell paragraphs are centered and explicitly zero-indented at OOXML level, including `firstLineChars=0`
 - the four-file package is synchronized: Chinese Markdown current, Chinese Word derived from it, English Markdown translation-equivalent to it, English Word derived from the English Markdown file
 - export result is logged in `logs/word-export-log.md`
 
@@ -178,6 +181,9 @@ Formal delivery is blocked if any of the following occurs:
 - equations degrade into raw pseudo-formula strings
 - formula numbers appear below, centered under, or separated from the formula body
 - numbered formulas silently fall back to table-based layout without an approved exception
+- figures are floating, clipped, stretched out of aspect ratio, or resized merely to fill page whitespace
+- academic table cells inherit body first-line indentation or WPS-visible two-character indentation
+- table-cell paragraphs are not explicitly zero-indented and centered in the final DOCX XML
 - chapter-open page breaks are missing
 - figures or tables drift into structurally unsafe layout
 
@@ -248,6 +254,13 @@ The expected final visual contract is now fixed: native Word formula block, form
 
 This requirement is meant to be general across projects, so future manuscripts do not regress when they introduce new variables, longer regression equations, or additional measurement formulas.
 
+For submission-ready Word files, delegation also includes the downstream Figure Gate and Paragraph/Table Geometry Gate:
+
+- Figure Gate: keep figures inline, preserve image aspect ratios, center figure paragraphs, and keep figure captions independent and numbered.
+- Paragraph/Table Geometry Gate: keep ordinary body paragraphs left-aligned, center captions, center academic table-cell text, vertically center cells, remove fixed row-height clipping, and explicitly write zero table-cell indentation at OOXML level.
+
+The table-cell rule is deliberately strict because Chinese Word/WPS can reapply inherited body first-line indentation inside cells unless `left`, `right`, `firstLine`, and `firstLineChars` are all neutralized in the DOCX XML.
+
 ## Bilingual Final Delivery Route
 
 For submission-ready bilingual manuscripts:
@@ -256,6 +269,7 @@ For submission-ready bilingual manuscripts:
 2. Export temporary Chinese and English DOCX files via the citation-aware route.
 3. Finalize both DOCX files with the Word-finalization authority.
    This includes the `chinese-word-pro` Formula Finalization Pipeline: formula inventory, inline symbol renderer, OMML equation compiler, and formula delivery audit.
+   It also includes the `chinese-word-pro` Figure Gate and Paragraph/Table Geometry Gate for inline figures, captions, paragraph alignment, and table-cell indentation.
 4. Audit both outputs for citation safety and structural integrity.
 5. Remove temporary exports.
 6. Replace the main deliverables only after both outputs pass.

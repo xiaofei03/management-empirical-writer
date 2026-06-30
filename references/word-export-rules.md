@@ -146,6 +146,12 @@ English finalization:
   --mode journal_submission
 ```
 
+The finalization step must invoke the downstream `chinese-word-pro` academic Word finalization triad:
+
+- `Formula Gate`: native Word equations, centered equation bodies, same-paragraph right-aligned numbering, and repaired inline symbolic notation.
+- `Figure Gate`: inline figures, preserved aspect ratios, centered figure paragraphs, and independent numbered captions.
+- `Paragraph and Table Geometry Gate`: left-aligned ordinary paragraphs, centered captions, centered and vertically centered academic table cells, and explicit table-cell zero indentation in OOXML, including `firstLineChars=0`.
+
 ### Step 3. Delivery audit expectations
 
 Before the main deliverables are considered passed, confirm:
@@ -158,7 +164,10 @@ Before the main deliverables are considered passed, confirm:
 - inline explanatory formulas and variables are not exposed as raw source-like strings such as `Y_it`, `CR_it`, `K_{it}`, `PR_{kt}`, or broken `z(...)`
 - figure captions remain separate numbered paragraphs
 - figures remain inline rather than floating
+- figures preserve their original aspect ratio and are not stretched merely to fill blank page space
 - table-cell paragraphs do not inherit body first-line, left, or right indentation
+- table-cell paragraph XML explicitly sets zero indentation, including `left=0`, `right=0`, `firstLine=0`, and `firstLineChars=0`, and contains no hanging indentation
+- academic table-cell text is centered by default and cells are vertically centered unless a recorded journal profile requires another alignment
 - academic tables are centered and fit the available page width unless the journal profile explicitly requires another layout
 - abstract, chapter openings, and references obey the page-break rules
 

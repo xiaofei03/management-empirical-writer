@@ -79,6 +79,14 @@ Core rules:
 
 When Word layout repair is needed, invoke the `chinese-word-pro` rules as the downstream formatting authority for both Chinese and English submission DOCX finalization.
 
+For formal Word delivery, the downstream `chinese-word-pro` Academic Word Finalization Triad is mandatory:
+
+- `Formula Gate`: native Word formulas, centered formula bodies, same-paragraph right-aligned equation numbers, and repaired inline symbolic notation.
+- `Figure Gate`: inline figures, preserved aspect ratios, centered figure paragraphs, independent numbered captions, and no floating/clipped/overstretched images.
+- `Paragraph and Table Geometry Gate`: body paragraphs left-aligned by default; figure and table captions centered; academic table-cell paragraphs horizontally and vertically centered with explicit zero indentation at OOXML level, including `firstLineChars=0`.
+
+These gates must be applied to both Chinese and English Word outputs under the same rule set unless the user explicitly approves a journal-specific divergence.
+
 For any manuscript containing measurement formulas, empirical model equations, interaction models, network/PageRank formulas, or explanation paragraphs that reuse indexed variables, formal delivery must explicitly invoke the downstream `chinese-word-pro` `Formula Finalization Pipeline`:
 
 - `Formula Inventory`
@@ -140,7 +148,10 @@ Delivery failure conditions:
 - inline explanatory formulas or variables are delivered as raw source-like notation such as `Y_it`, `CR_it`, `K_{it}`, `PR_{kt}`, or `z(...)` instead of readable Word math or true subscript/superscript runs
 - collapsed symbolic residues such as `Resilienceit`, `AIWit`, `Outcomeit`, `Controlsit`, `w1`, `w2`, `μi`, `λt`, `εit`, or orphan equation-number-only paragraphs remain in the final Word files
 - academic tables inherit body paragraph indentation, fixed row-height clipping, or unsafe cell indents
+- academic table cells display or structurally retain body first-line indentation, including WPS-visible two-character indentation caused by inherited Chinese paragraph styles
+- table-cell paragraphs are not explicitly zero-indented at OOXML level
 - academic tables fail to fit the available page width or drift from the intended centered table geometry without a journal-style exception
+- figures are floating, clipped, stretched out of aspect ratio, or resized merely to fill blank page space
 - chapter pagination rules fail
 - figure or table paragraphs drift into structurally unsafe layout
 
@@ -362,6 +373,7 @@ Required chain:
 4. Run downstream Word finalization
    - this step must invoke the `chinese-word-pro` Formula Finalization Pipeline
    - it must rely on the downstream formula inventory, inline symbol renderer, OMML equation compiler, and formula delivery audit rather than treating formulas as an optional cosmetic pass
+   - it must also invoke the downstream Figure Gate and Paragraph/Table Geometry Gate rather than treating image layout or table-cell indentation as manual visual cleanup
 5. Audit citation fields in both outputs
 6. Audit OOXML garbling markers
 7. Run bilingual citation-set, structural, and four-file synchronization audits
@@ -381,12 +393,15 @@ Mandatory delivery audit items:
 - raw degraded pseudo-formulas such as `Y_it`, `CR_it`, or broken `z(...)` forms are absent from delivery outputs
 - inline explanatory variables with subscripts or superscripts are not left as raw underscore/braced strings such as `K_{it}`, `PR_{kt}`, or similar notation
 - the downstream `chinese-word-pro` formula delivery audit has passed
+- the downstream `chinese-word-pro` figure delivery audit has passed: figures are inline, captions are independent and numbered, and aspect ratios are preserved
+- the downstream `chinese-word-pro` paragraph/table geometry audit has passed: ordinary body text is left-aligned, captions are centered, and academic table-cell paragraphs are centered with explicit OOXML zero indentation
 - the Chinese Markdown draft is the approved mother manuscript when the project uses that mode
 - the English Markdown draft remains a translation-equivalent derivative of the Chinese Markdown draft
 - Chinese and English Word outputs were regenerated from the current Markdown drafts rather than edited independently
 - figures are inline and captions are separate numbered paragraphs
 - tables preserve intended three-line formatting
 - table-cell paragraphs have zero inherited first-line, left, and right indentation
+- table-cell paragraph XML explicitly neutralizes inherited Chinese body indentation, including `firstLineChars=0`
 - academic tables are centered and fit the available page width unless a recorded journal profile requires otherwise
 - abstract, chapter openings, and references use required page-break rules
 - temporary DOCX artifacts do not remain mixed into `drafts/`
