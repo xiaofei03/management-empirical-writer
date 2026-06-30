@@ -233,6 +233,15 @@ That means:
 - `management-empirical-writer` decides whether formal delivery is allowed
 - `chinese-word-pro` repairs and verifies submission Word structure without breaking citation fields
 
+For formula-bearing manuscripts, this delegation is not optional. Formal delivery should explicitly require the downstream `Formula Finalization Pipeline` from `chinese-word-pro`:
+
+- formula inventory
+- inline symbol renderer
+- OMML equation compiler
+- formula delivery audit
+
+This requirement is meant to be general across projects, so future manuscripts do not regress when they introduce new variables, longer regression equations, or additional measurement formulas.
+
 ## Bilingual Final Delivery Route
 
 For submission-ready bilingual manuscripts:
@@ -258,6 +267,9 @@ For a project-level shell wrapper that only requires changing one root-path vari
 - exporting final Word files with plain `pandoc` and losing citation fields
 - overwriting the main `docx` before checking garbling
 - repairing one language version but forgetting to synchronize the other
+- fixing display equations but forgetting explanation paragraphs that still expose `Y_it`, `CR_it`, `Resilienceit`, `w1`, or other pseudo-formula residue
+- leaving long equations as one unbroken line so the formula overflows the page or pushes the number out of place
+- allowing orphan equation-number-only paragraphs to survive after finalization
 - editing one of the four manuscript files independently and letting it drift away from the Chinese Markdown mother manuscript
 - treating an older healthy DOCX as the new editing baseline
 - drafting without enough literature or variable-measurement support

@@ -79,6 +79,15 @@ Core rules:
 
 When Word layout repair is needed, invoke the `chinese-word-pro` rules as the downstream formatting authority for both Chinese and English submission DOCX finalization.
 
+For any manuscript containing measurement formulas, empirical model equations, interaction models, network/PageRank formulas, or explanation paragraphs that reuse indexed variables, formal delivery must explicitly invoke the downstream `chinese-word-pro` `Formula Finalization Pipeline`:
+
+- `Formula Inventory`
+- `Inline Symbol Renderer`
+- `OMML Equation Compiler`
+- `Formula Delivery Audit`
+
+This requirement is general and cross-project. It is not limited to one topic, one variable system, or one manuscript.
+
 When the project depends on Zotero live citation fields, run a Zotero preflight before citation-aware export. The preflight must:
 
 - locate and launch Zotero if it is closed
@@ -121,6 +130,7 @@ Delivery failure conditions:
 - figure captions lose numbering or merge into interpretation paragraphs
 - formal equations degrade into raw pseudo-formula text
 - inline explanatory formulas or variables are delivered as raw source-like notation such as `Y_it`, `CR_it`, `K_{it}`, `PR_{kt}`, or `z(...)` instead of readable Word math or true subscript/superscript runs
+- collapsed symbolic residues such as `Resilienceit`, `AIWit`, `Outcomeit`, `Controlsit`, `w1`, `w2`, `μi`, `λt`, `εit`, or orphan equation-number-only paragraphs remain in the final Word files
 - academic tables inherit body paragraph indentation, fixed row-height clipping, or unsafe cell indents
 - academic tables fail to fit the available page width or drift from the intended centered table geometry without a journal-style exception
 - chapter pagination rules fail
@@ -145,6 +155,12 @@ Never generate the entire paper in a single pass. Work chapter by chapter or sec
 For formal Word delivery, do not skip the Stage 5 gates.
 
 For bilingual projects, Stage 5 is not merely export. It is bilingual submission finalization.
+
+For formula-bearing manuscripts, Stage 5 must also treat formula delivery as a hard gate:
+
+- source Markdown may contain source-like notation
+- final DOCX must not expose that source-like notation in display formulas or explanation prose
+- long equations, numbering alignment, and inline subscript rendering are mandatory audit items rather than optional beautification work
 
 ## Stage 0: Project Initialization
 
