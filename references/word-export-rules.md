@@ -153,6 +153,8 @@ Before the main deliverables are considered passed, confirm:
 - citation fields remain present in both DOCX files
 - no `�` or `????` markers appear in `word/document.xml`
 - formulas remain native Word math objects where expected
+- formula bodies are centered, and equation numbers are right-aligned on the same formula paragraph
+- numbered equations are not silently delivered through table-based containers; any table fallback must be explicitly approved and recorded
 - inline explanatory formulas and variables are not exposed as raw source-like strings such as `Y_it`, `CR_it`, `K_{it}`, `PR_{kt}`, or broken `z(...)`
 - figure captions remain separate numbered paragraphs
 - figures remain inline rather than floating

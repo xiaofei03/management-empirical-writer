@@ -160,6 +160,8 @@ Formal delivery passes only when all of the following are true:
 - no `�` replacement characters appear in `word/document.xml`
 - no suspicious `????` garbling markers appear
 - Chinese and English outputs both pass the same finalization checks
+- numbered formulas use native Word formula objects, with the formula body centered and the number right-aligned on the same formula paragraph
+- table-based numbered formula containers are absent unless an explicit fallback exception is approved and logged
 - the four-file package is synchronized: Chinese Markdown current, Chinese Word derived from it, English Markdown translation-equivalent to it, English Word derived from the English Markdown file
 - export result is logged in `logs/word-export-log.md`
 
@@ -174,6 +176,8 @@ Formal delivery is blocked if any of the following occurs:
 - old variable names reappear in final Word files
 - figure captions lose numbering or merge into the interpretation paragraph
 - equations degrade into raw pseudo-formula strings
+- formula numbers appear below, centered under, or separated from the formula body
+- numbered formulas silently fall back to table-based layout without an approved exception
 - chapter-open page breaks are missing
 - figures or tables drift into structurally unsafe layout
 
@@ -239,6 +243,8 @@ For formula-bearing manuscripts, this delegation is not optional. Formal deliver
 - inline symbol renderer
 - OMML equation compiler
 - formula delivery audit
+
+The expected final visual contract is now fixed: native Word formula block, formula body visibly centered, equation number on the same formula paragraph and right-aligned. Overlong formulas should be fitted or natively wrapped before any fallback is considered. Table-based numbered formula containers are controlled recovery exceptions, not a normal formal-delivery strategy.
 
 This requirement is meant to be general across projects, so future manuscripts do not regress when they introduce new variables, longer regression equations, or additional measurement formulas.
 

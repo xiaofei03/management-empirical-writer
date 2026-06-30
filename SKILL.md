@@ -86,6 +86,14 @@ For any manuscript containing measurement formulas, empirical model equations, i
 - `OMML Equation Compiler`
 - `Formula Delivery Audit`
 
+The governing formula-layout principle is strict and cross-project:
+
+- final Word equations must use native Word formula objects rather than images, text boxes, plain pseudo-formula text, or ordinary visible tables
+- the visible formula body must be centered
+- the equation number must appear on the same formula paragraph and be right-aligned at the right margin
+- overlong formulas should be handled by equation-only fitting or controlled native wrapping before any fallback is considered
+- table-based formula containers are not the default formal-delivery route and require explicit documented exception approval
+
 This requirement is general and cross-project. It is not limited to one topic, one variable system, or one manuscript.
 
 When the project depends on Zotero live citation fields, run a Zotero preflight before citation-aware export. The preflight must:
@@ -368,6 +376,8 @@ Mandatory delivery audit items:
 
 - live citation fields remain in both Chinese and English DOCX
 - native equation objects remain present where formal models exist
+- formula bodies are visibly centered and formula numbers are right-aligned on the same formula paragraph
+- no numbered formula is silently delivered as a table-based layout unless an explicit exception is documented
 - raw degraded pseudo-formulas such as `Y_it`, `CR_it`, or broken `z(...)` forms are absent from delivery outputs
 - inline explanatory variables with subscripts or superscripts are not left as raw underscore/braced strings such as `K_{it}`, `PR_{kt}`, or similar notation
 - the downstream `chinese-word-pro` formula delivery audit has passed
