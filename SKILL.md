@@ -58,6 +58,8 @@ For any project that maintains both Markdown and Word drafts, this skill must en
 Core rules:
 
 - Markdown remains the only source of truth for manuscript content.
+- In bilingual empirical-paper projects, the default highest principle is four-file synchronized writing: `paper_cn.md` is the content mother manuscript, `paper_cn.docx` is a formatting derivative, `paper_en.md` is a paragraph-by-paragraph translation derivative, and `paper_en.docx` is a formatting derivative of the English Markdown.
+- Chinese and English drafting should proceed synchronously from the start of each writing round. Do not postpone English synchronization until the end of a large rewrite, because delayed synchronization creates structural drift, citation drift, formula drift, and figure/table drift.
 - User-facing final Word files must never be produced by a plain `pandoc` overwrite alone.
 - Formal delivery requires a gated chain:
   - Markdown update
@@ -76,8 +78,21 @@ Core rules:
 - For bilingual projects where the user identifies one language as the base manuscript, the other language is a translation by default. The translated draft must preserve the base manuscript's section hierarchy, paragraph-level claim order, tables, figures, formulas, hypotheses, model descriptions, empirical interpretations, citation set, and conclusion claims. Journal-style polishing may improve wording but must not alter substance or structure unless the user explicitly approves adaptation mode.
 - When the user identifies the Chinese Markdown draft as the mother manuscript, all substantive editing must start there. The Chinese Word file is formatting-only, the English Markdown file is translation-only, and the English Word file is formatting-only.
 - In that default setup, the four-file manuscript package must satisfy: Chinese Markdown as sole content source, Chinese Word as layout derivative, English Markdown as language-equivalent translation derivative, and English Word as layout derivative of the English Markdown file.
+- The English Markdown must preserve the Chinese mother manuscript's paragraph order, heading hierarchy, hypothesis numbering, formula numbering, table numbering, figure numbering, citation set, variable names, and empirical interpretations. English academic style may improve expression, but must not independently restructure, add, omit, or reorder substantive claims unless the user explicitly approves adaptation mode.
+- Each substantive writing pass must end with a four-file synchronization audit before the next pass begins. The audit must compare headings, paragraph blocks, formulas, figures, tables, citation keys, and deliverable timestamps across the four files.
 
 When Word layout repair is needed, invoke the `chinese-word-pro` rules as the downstream formatting authority for both Chinese and English submission DOCX finalization.
+
+When empirical figures are needed, invoke the `empirical-analysis` figure-finalization rules before manuscript writing consumes the figures. The writing workflow must not wait until Word finalization to discover that a figure has the wrong language, raw variable names, missing plotting data, inconsistent geometry, or ambiguous file names.
+
+For bilingual empirical projects, the writing-ready figure package must exist before the relevant results prose is finalized:
+
+- `figures/data/<figure_id>_plotdata.csv`
+- `figures/cn/<figure_id>_cn.png`
+- `figures/en/<figure_id>_en.png`
+- `figures/manifest/figure_manifest.md`
+
+English figures must be generated directly from shared plotting data with English labels and Times New Roman, not copied or cropped from Chinese figures.
 
 For formal Word delivery, the downstream `chinese-word-pro` Academic Word Finalization Triad is mandatory:
 
@@ -137,6 +152,7 @@ Delivery failure conditions:
 
 - citation fields lost
 - Chinese and English citekey sets diverge without a recorded user-approved exception
+- Chinese and English manuscript structures diverge after a writing round because English synchronization was deferred
 - translated and base manuscripts diverge in structure, figures, tables, formulas, hypotheses, empirical interpretations, or claim order without a recorded user-approved adaptation exception
 - the Chinese Markdown mother manuscript and the other manuscript files are not synchronized to the same substantive version
 - a Word file contains substantive edits that were not first written into the Chinese Markdown mother manuscript
@@ -152,6 +168,8 @@ Delivery failure conditions:
 - table-cell paragraphs are not explicitly zero-indented at OOXML level
 - academic tables fail to fit the available page width or drift from the intended centered table geometry without a journal-style exception
 - figures are floating, clipped, stretched out of aspect ratio, or resized merely to fill blank page space
+- English manuscript figures contain Chinese visible labels, annotations, axis titles, legends, or titles, or Chinese manuscript figures contain unintended English-only labels other than conventional constructs such as `AI washing`
+- figures were produced by cropping, copying, or relabeling a source-language figure instead of being generated from the same plotting data into separate Chinese and English outputs
 - chapter pagination rules fail
 - figure or table paragraphs drift into structurally unsafe layout
 
@@ -369,6 +387,7 @@ Required chain:
 
 1. Confirm Markdown is the only source of truth
 2. When applicable, confirm that the Chinese Markdown draft is the mother manuscript and that the other three manuscript files are derivatives rather than independent content sources
+2a. Run the four-file synchronization audit before Word export. Confirm that the English Markdown is a paragraph-by-paragraph translation-equivalent derivative of the Chinese Markdown, not an independently evolved draft.
 3. Export temporary Chinese and English DOCX through the citation-aware route
 4. Run downstream Word finalization
    - this step must invoke the `chinese-word-pro` Formula Finalization Pipeline
@@ -398,6 +417,7 @@ Mandatory delivery audit items:
 - the Chinese Markdown draft is the approved mother manuscript when the project uses that mode
 - the English Markdown draft remains a translation-equivalent derivative of the Chinese Markdown draft
 - Chinese and English Word outputs were regenerated from the current Markdown drafts rather than edited independently
+- headings, paragraph blocks, formulas, tables, figures, hypotheses, variable names, citations, and empirical interpretations are synchronized across the four files
 - figures are inline and captions are separate numbered paragraphs
 - tables preserve intended three-line formatting
 - table-cell paragraphs have zero inherited first-line, left, and right indentation
@@ -441,9 +461,10 @@ Recommended order:
 For each completed chapter or section, do all of the following:
 
 - Update the Chinese Markdown draft first
-- Update the English Markdown draft from the Chinese Markdown draft
+- Immediately update the English Markdown draft from the Chinese Markdown draft in the same work round, paragraph by paragraph or block by block
 - Export or refresh the Chinese Word draft from the current Chinese Markdown draft
 - Export or refresh the English Word draft from the current English Markdown draft
+- Run a four-file synchronization check before moving to the next section; do not accumulate unsynchronized English work for a later large batch
 - Output a chapter revision note
 - Output a citation audit
 - If Git is available, create a commit

@@ -84,6 +84,41 @@ The core rule is simple:
 
 This repository now enforces a stronger formal-delivery rule set so later projects do not repeat the same Word-export mistakes.
 
+## Four-File Synchronization Highest Principle
+
+For bilingual empirical-paper projects, use the following default hierarchy unless the user explicitly approves a different workflow:
+
+```text
+paper_cn.md    = content mother manuscript
+paper_cn.docx  = formatted derivative of paper_cn.md
+paper_en.md    = paragraph-by-paragraph translation derivative of paper_cn.md
+paper_en.docx  = formatted derivative of paper_en.md
+```
+
+This hierarchy is a delivery gate, not a preference.
+
+Rules:
+
+- Write and revise the Chinese Markdown mother manuscript first.
+- Synchronize the English Markdown in the same work round, paragraph by paragraph or block by block.
+- Generate both Word files only after the two Markdown files are synchronized.
+- Do not let the English draft become an independent manuscript with different structure, evidence order, formula numbering, figure numbering, table numbering, citation set, variable names, or empirical interpretations.
+- Do not postpone English synchronization until the end of a large rewrite. Delayed synchronization is treated as a workflow failure because it creates avoidable drift and rework.
+
+Before formal delivery, audit the four files for:
+
+- heading hierarchy
+- paragraph/block order
+- formulas and formula numbers
+- tables and table numbers
+- figures and figure numbers
+- citation keys and reference set
+- variable names and display labels
+- empirical result interpretations
+- Word derivative timestamps and source consistency
+
+If the audit fails, return to the Chinese Markdown mother manuscript and resynchronize the derivatives before any final Word overwrite.
+
 ### Non-negotiables
 
 - Markdown is the only source of truth for manuscript content.
@@ -282,6 +317,27 @@ For a project-level shell wrapper that only requires changing one root-path vari
 
 - `assets/formal-delivery-template.sh`
 
+## Empirical Figure Handoff
+
+Before Results, Robustness, Mechanism, Moderation, or Heterogeneity prose uses a figure, the project should already have a writing-ready bilingual figure package from `empirical-analysis`:
+
+```text
+figures/data/<figure_id>_plotdata.csv
+figures/cn/<figure_id>_cn.png
+figures/en/<figure_id>_en.png
+figures/manifest/figure_manifest.md
+```
+
+This prevents the manuscript workflow from discovering too late that English figures still contain Chinese text or that Word inserted the wrong language variant.
+
+Rules:
+
+- Figures are generated once from shared plotting data into paired Chinese and English outputs.
+- The Chinese manuscript only references `figures/cn/*_cn.png`.
+- The English manuscript only references `figures/en/*_en.png`.
+- Figure IDs and captions are stable before Word export.
+- Raw Stata graphs can be visual benchmarks, but they are not the final bilingual deliverables by default.
+
 ## Common Failure Modes This Skill Is Meant to Prevent
 
 - exporting final Word files with plain `pandoc` and losing citation fields
@@ -291,6 +347,8 @@ For a project-level shell wrapper that only requires changing one root-path vari
 - leaving long equations as one unbroken line so the formula overflows the page or pushes the number out of place
 - allowing orphan equation-number-only paragraphs to survive after finalization
 - editing one of the four manuscript files independently and letting it drift away from the Chinese Markdown mother manuscript
+- delaying English synchronization until the end of a large rewrite and then trying to reconstruct alignment from memory
+- generating English figures by cropping, copying, or relabeling Chinese figures instead of drawing from shared plotting data
 - treating an older healthy DOCX as the new editing baseline
 - drafting without enough literature or variable-measurement support
 - silently omitting robustness, mechanism, heterogeneity, or endogeneity outputs
