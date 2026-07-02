@@ -2,10 +2,17 @@
 
 Use this reference whenever the workflow needs to export Markdown drafts into Word documents.
 
+Scope:
+
+- These rules apply to Markdown-first drafting and full rebuild delivery.
+- If the manuscript has entered Word-only refinement, do not use these export rules for localized polish unless the user explicitly requests a full Markdown-to-Word rebuild.
+- In Word-only refinement, use `chinese-word-pro` Word-only Academic Refinement Mode instead.
+
 ## Core Principle
 
-- Markdown is the master draft.
-- Word is the exported submission draft.
+- In Markdown-first mode, Markdown is the master draft.
+- In Markdown-first mode, Word is the exported submission draft.
+- In Word-only refinement mode, Word files are active manuscripts and Markdown is archival.
 
 Default draft paths:
 

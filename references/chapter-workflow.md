@@ -88,14 +88,14 @@ Check that both versions agree on:
 
 ### Step 6: Update Markdown deliverables
 
-Ensure both Markdown drafts are updated:
+In Markdown-first drafting mode, ensure both Markdown drafts are updated:
 
 - Update `drafts/cn/paper_cn.md`
 - Update `drafts/en/paper_en.md`
 
 ### Step 7: Export or refresh Word drafts
 
-Always update Markdown first.
+In Markdown-first drafting mode, always update Markdown first.
 
 Then:
 
@@ -109,6 +109,8 @@ If export tooling fails:
 - Report the failed export honestly
 - Log the missing export step
 - Mark Word export as pending in the chapter note
+
+If the project has entered Word-only refinement, do not use Steps 6 and 7 for localized polish. Work directly on temporary copies of the active Chinese and English Word files through `chinese-word-pro`, audit the touched regions, and treat Markdown as archival unless the user requests a full rebuild.
 
 ### Step 8: Produce chapter deliverables
 

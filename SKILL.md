@@ -12,7 +12,8 @@ This skill supports reusable, evidence-grounded writing workflows for empirical 
 Default scope:
 
 - Produce and maintain both a Chinese management-journal draft and an English SSCI or management-journal draft.
-- Treat Markdown as the source of truth and Word as the exported submission format.
+- During drafting and structural revision, treat Markdown as the source of truth and Word as the exported submission format.
+- After the user confirms, or the workflow clearly reaches, Word-only refinement, treat the Chinese and English Word files as the active manuscripts and treat Markdown as an archival snapshot rather than the live source.
 - Keep the two language versions factually aligned while adapting rhetoric, structure, and tone to their target publication environments.
 
 Default output files in the target paper project:
@@ -51,21 +52,62 @@ Use these assets when the user asks for reusable templates inside a paper projec
 - `assets/chapter-plan-template.md`
 - `assets/citation-audit-template.md`
 
+## Manuscript Lifecycle Modes
+
+This skill must distinguish two manuscript lifecycle modes.
+
+### Mode A: Markdown-first drafting
+
+Use Markdown-first drafting when the paper is still being planned, structurally rewritten, sectioned, translated, or substantially expanded.
+
+Default principles:
+
+- The Chinese Markdown draft is the content mother manuscript when the user selects Chinese as the base language.
+- Word files are derivatives for review, layout, and submission-preview purposes.
+- Chinese and English Markdown/Word files must remain synchronized after each substantive writing round.
+- Full citation-aware Word export and downstream finalization are required before formal Word delivery.
+
+### Mode B: Word-only refinement
+
+Use Word-only refinement when the manuscript has become a stable paper and the remaining work is mainly final polish.
+
+The assistant must proactively recommend switching to Word-only refinement before another full Markdown-to-Word rebuild when any of these conditions hold:
+
+- The user explicitly says to enter Word refinement, Word final polish, submission polish, or no longer use Markdown as the active mother draft.
+- The manuscript's section structure, tables, figures, formulas, hypotheses, and empirical results are already stable.
+- Remaining tasks are reviewer-level wording, citation refresh, equation layout, figure/caption/table repair, paragraph formatting, cover/abstract layout, or small localized edits.
+- Repeated Markdown-to-Word rebuilds have caused formula, figure, table, citation-field, or pagination regressions.
+
+After the user confirms Word-only refinement:
+
+- The active deliverables are the Chinese and English Word files.
+- Markdown files become archival snapshots and are no longer mandatory live sources.
+- Do not require four-file Markdown/Word synchronization for every small edit.
+- Do not run a full Markdown-to-Word export unless the user explicitly requests a full rebuild or the paper re-enters structural drafting.
+- For substantive wording edits, edit the Chinese Word first, then mirror the English Word as a faithful translation-equivalent version.
+- Preserve bilingual equivalence: the English Word should differ only by language and journal-appropriate expression, not by structure, evidence, formulas, tables, figures, citations, or claims.
+- Preserve live citation fields, native equations, figure/table layout, and existing successful formatting through targeted Word-safe edits.
+- If a requested change becomes a major restructuring, new section build, or large citation re-architecture, pause and ask whether to temporarily return to Markdown-first drafting.
+- Record the mode switch and the active Word filenames in the delivery or revision log.
+
+Word-only refinement is not a shortcut around QA. It is a safer late-stage route that avoids destroying already repaired Word formatting through unnecessary full re-export.
+
 ## Final Delivery Safety Valve
 
 For any project that maintains both Markdown and Word drafts, this skill must enforce a final-delivery safety valve.
 
 Core rules:
 
-- Markdown remains the only source of truth for manuscript content.
-- In bilingual empirical-paper projects, the default highest principle is four-file synchronized writing: `paper_cn.md` is the content mother manuscript, `paper_cn.docx` is a formatting derivative, `paper_en.md` is a paragraph-by-paragraph translation derivative, and `paper_en.docx` is a formatting derivative of the English Markdown.
-- Chinese and English drafting should proceed synchronously from the start of each writing round. Do not postpone English synchronization until the end of a large rewrite, because delayed synchronization creates structural drift, citation drift, formula drift, and figure/table drift.
+- In Markdown-first drafting mode, Markdown remains the only source of truth for manuscript content.
+- In Markdown-first bilingual empirical-paper projects, the default highest principle is four-file synchronized writing: `paper_cn.md` is the content mother manuscript, `paper_cn.docx` is a formatting derivative, `paper_en.md` is a paragraph-by-paragraph translation derivative, and `paper_en.docx` is a formatting derivative of the English Markdown.
+- In Markdown-first mode, Chinese and English drafting should proceed synchronously from the start of each writing round. Do not postpone English synchronization until the end of a large rewrite, because delayed synchronization creates structural drift, citation drift, formula drift, and figure/table drift.
+- In Word-only refinement mode, do not force Markdown to remain the active mother manuscript. The Chinese and English Word files are the active manuscripts, and Markdown is archival unless the user explicitly returns to Markdown-first drafting.
 - User-facing final Word files must never be produced by a plain `pandoc` overwrite alone.
 - Formal delivery requires a gated chain:
-  - Markdown update
+  - Markdown update when in Markdown-first mode, or targeted Word-safe edit when in Word-only refinement mode
   - Zotero or citation-manager preflight and recovery when live citation fields are required
-  - citation-aware Word export
-  - Word post-processing
+  - citation-aware Word export when rebuilding from Markdown, or citation-field-safe direct DOCX editing when in Word-only refinement mode
+  - Word post-processing through `chinese-word-pro`
   - citation-field audit
   - garbling audit
   - render QA
@@ -74,12 +116,15 @@ Core rules:
 - If any gate fails, do not overwrite the main Word deliverables.
 - Temporary build artifacts must not be left mixed into the manuscript root or `drafts/` after delivery.
 - Chinese and English final deliverables must pass the same finalization rule set unless the user explicitly requests divergence.
-- For bilingual citation-managed manuscripts, the Chinese and English Markdown drafts must have the same de-duplicated citekey set before formal delivery unless the user explicitly approves and logs a language-specific exception.
+- In Markdown-first mode, bilingual citation-managed manuscripts must have the same de-duplicated citekey set in the Chinese and English Markdown drafts before formal delivery unless the user explicitly approves and logs a language-specific exception.
+- In Word-only refinement mode, citation consistency is audited in the active Chinese and English Word files rather than by forcing Markdown citekey-set synchronization.
 - For bilingual projects where the user identifies one language as the base manuscript, the other language is a translation by default. The translated draft must preserve the base manuscript's section hierarchy, paragraph-level claim order, tables, figures, formulas, hypotheses, model descriptions, empirical interpretations, citation set, and conclusion claims. Journal-style polishing may improve wording but must not alter substance or structure unless the user explicitly approves adaptation mode.
-- When the user identifies the Chinese Markdown draft as the mother manuscript, all substantive editing must start there. The Chinese Word file is formatting-only, the English Markdown file is translation-only, and the English Word file is formatting-only.
-- In that default setup, the four-file manuscript package must satisfy: Chinese Markdown as sole content source, Chinese Word as layout derivative, English Markdown as language-equivalent translation derivative, and English Word as layout derivative of the English Markdown file.
-- The English Markdown must preserve the Chinese mother manuscript's paragraph order, heading hierarchy, hypothesis numbering, formula numbering, table numbering, figure numbering, citation set, variable names, and empirical interpretations. English academic style may improve expression, but must not independently restructure, add, omit, or reorder substantive claims unless the user explicitly approves adaptation mode.
-- Each substantive writing pass must end with a four-file synchronization audit before the next pass begins. The audit must compare headings, paragraph blocks, formulas, figures, tables, citation keys, and deliverable timestamps across the four files.
+- When the user identifies the Chinese Markdown draft as the mother manuscript and the project remains in Markdown-first mode, all substantive editing must start there. The Chinese Word file is formatting-only, the English Markdown file is translation-only, and the English Word file is formatting-only.
+- In that Markdown-first setup, the four-file manuscript package must satisfy: Chinese Markdown as sole content source, Chinese Word as layout derivative, English Markdown as language-equivalent translation derivative, and English Word as layout derivative of the English Markdown file.
+- When the project enters Word-only refinement mode, all substantive localized edits start from the Chinese Word file and are mirrored into the English Word file. Markdown snapshots may be updated later only for archiving or after user-requested full rebuild; they are not the controlling source during Word-only refinement.
+- In Markdown-first mode, the English Markdown must preserve the Chinese mother manuscript's paragraph order, heading hierarchy, hypothesis numbering, formula numbering, table numbering, figure numbering, citation set, variable names, and empirical interpretations. English academic style may improve expression, but must not independently restructure, add, omit, or reorder substantive claims unless the user explicitly approves adaptation mode.
+- In Markdown-first mode, each substantive writing pass must end with a four-file synchronization audit before the next pass begins. The audit must compare headings, paragraph blocks, formulas, figures, tables, citation keys, and deliverable timestamps across the four files.
+- In Word-only refinement mode, each substantive localized Word edit must end with a bilingual Word-pair audit instead of a four-file audit.
 
 When Word layout repair is needed, invoke the `chinese-word-pro` rules as the downstream formatting authority for both Chinese and English submission DOCX finalization.
 
@@ -129,7 +174,7 @@ When the project depends on Zotero live citation fields, run a Zotero preflight 
 
 If GUI collection recovery is needed after the script opens Zotero, use the `computer-use` plugin to select the target Zotero collection. If GUI recovery still fails, report the failure and do not overwrite final Word deliverables.
 
-Formal-delivery prohibition:
+Formal-delivery prohibition in Markdown-first mode:
 
 - Do not hand-edit the previously exported "healthy" Word file and treat it as the new final manuscript.
 - Do not fix figures, tables, formulas, pagination, captions, or paragraph layout directly in an old delivery file and overwrite the main deliverable.
@@ -139,6 +184,12 @@ Formal-delivery prohibition:
   - re-run finalization
   - re-run audits
   - only then replace the final DOCX
+
+Word-only refinement exception:
+
+- After the user has confirmed Word-only refinement, targeted citation-field-safe Word edits are allowed and preferred for localized polish, formula repair, figure sizing, table geometry, captions, pagination, and small wording changes.
+- These edits must use the downstream `chinese-word-pro` Word-only Academic Refinement Mode, write to a temporary DOCX first, preserve live citation fields, pass structural and visual QA for the touched regions, and only then overwrite the active Word deliverables.
+- Do not silently return to full Markdown export for a localized Word-only task, because doing so can regress previously repaired formulas, figures, tables, and citation fields.
 
 Delivery mode distinction:
 
@@ -155,7 +206,8 @@ Delivery failure conditions:
 - Chinese and English manuscript structures diverge after a writing round because English synchronization was deferred
 - translated and base manuscripts diverge in structure, figures, tables, formulas, hypotheses, empirical interpretations, or claim order without a recorded user-approved adaptation exception
 - the Chinese Markdown mother manuscript and the other manuscript files are not synchronized to the same substantive version
-- a Word file contains substantive edits that were not first written into the Chinese Markdown mother manuscript
+- in Markdown-first mode, a Word file contains substantive edits that were not first written into the Chinese Markdown mother manuscript
+- in Word-only refinement mode, the English Word file diverges from the Chinese Word file beyond translation-equivalent expression
 - Zotero or the approved citation backend cannot be reached before citation-aware export
 - cite-rag-mcp or another approved export route fails before generating live citation fields
 - deprecated or old variable names reintroduced
@@ -383,9 +435,9 @@ Planning rules:
 
 Stage 5 should be treated as a distinct delivery stage rather than a simple export step.
 
-Required chain:
+Required chain in Markdown-first mode:
 
-1. Confirm Markdown is the only source of truth
+1. Confirm Markdown is the active source of truth for this delivery round
 2. When applicable, confirm that the Chinese Markdown draft is the mother manuscript and that the other three manuscript files are derivatives rather than independent content sources
 2a. Run the four-file synchronization audit before Word export. Confirm that the English Markdown is a paragraph-by-paragraph translation-equivalent derivative of the Chinese Markdown, not an independently evolved draft.
 3. Export temporary Chinese and English DOCX through the citation-aware route
@@ -401,6 +453,19 @@ Required chain:
 10. Clean temporary build artifacts
 11. Overwrite the user-facing DOCX files only if all checks pass
 
+Required chain in Word-only refinement mode:
+
+1. Confirm the active Chinese and English Word files and record that Markdown is archival for this round
+2. Confirm the requested change is localized final polish rather than structural rebuilding
+3. Create temporary Chinese and English DOCX working copies
+4. Apply targeted citation-field-safe Word edits through `chinese-word-pro`
+5. Mirror substantive Chinese Word edits into the English Word as translation-equivalent edits
+6. Audit citation fields, formulas, figures, tables, pagination, and changed paragraphs in both Word files
+7. Run render or page-level QA for the touched pages when available
+8. Overwrite the active Word deliverables only if both language versions pass
+9. Log that Markdown was not the live source and remains archival
+10. Commit or snapshot according to project rules
+
 If Step 2 fails because the citation-aware export backend is unavailable, do not silently fall back to plain Pandoc for formal delivery. The allowed fallback is only a clearly labeled recovery or working-draft layout pass, followed by a log entry stating that formal submission remains blocked until citation fields can be generated.
 
 Mandatory delivery audit items:
@@ -414,10 +479,11 @@ Mandatory delivery audit items:
 - the downstream `chinese-word-pro` formula delivery audit has passed
 - the downstream `chinese-word-pro` figure delivery audit has passed: figures are inline, captions are independent and numbered, and aspect ratios are preserved
 - the downstream `chinese-word-pro` paragraph/table geometry audit has passed: ordinary body text is left-aligned, captions are centered, and academic table-cell paragraphs are centered with explicit OOXML zero indentation
-- the Chinese Markdown draft is the approved mother manuscript when the project uses that mode
-- the English Markdown draft remains a translation-equivalent derivative of the Chinese Markdown draft
-- Chinese and English Word outputs were regenerated from the current Markdown drafts rather than edited independently
-- headings, paragraph blocks, formulas, tables, figures, hypotheses, variable names, citations, and empirical interpretations are synchronized across the four files
+- in Markdown-first mode, the Chinese Markdown draft is the approved mother manuscript
+- in Markdown-first mode, the English Markdown draft remains a translation-equivalent derivative of the Chinese Markdown draft
+- in Markdown-first mode, Chinese and English Word outputs were regenerated from the current Markdown drafts rather than edited independently
+- in Markdown-first mode, headings, paragraph blocks, formulas, tables, figures, hypotheses, variable names, citations, and empirical interpretations are synchronized across the four files
+- in Word-only refinement mode, the Chinese and English Word files remain translation-equivalent and no Markdown synchronization is required for localized polish unless the user requests archival sync
 - figures are inline and captions are separate numbered paragraphs
 - tables preserve intended three-line formatting
 - table-cell paragraphs have zero inherited first-line, left, and right indentation
@@ -458,7 +524,7 @@ Recommended order:
 10. `Conclusion / 结论`
 11. `Abstract / 摘要`, finalized last
 
-For each completed chapter or section, do all of the following:
+For each completed chapter or section in Markdown-first drafting mode, do all of the following:
 
 - Update the Chinese Markdown draft first
 - Immediately update the English Markdown draft from the Chinese Markdown draft in the same work round, paragraph by paragraph or block by block
@@ -476,6 +542,8 @@ For empirical results, robustness, endogeneity, mechanism, heterogeneity, furthe
 After drafting empirical analysis chapters, generate `logs/empirical-results-coverage-audit.md`.
 
 If Word export is unavailable, preserve the Markdown update and clearly tell the user that Word export is pending. Never pretend the export succeeded.
+
+If the project is already in Word-only refinement mode, do not use this chapter workflow for localized polish. Use the Word-only refinement chain instead.
 
 Use `references/chapter-workflow.md` and `assets/citation-audit-template.md`.
 
@@ -566,7 +634,7 @@ Read `references/bilingual-writing-rules.md`.
 
 ## Stage 4: Full-Paper Consistency Review
 
-After chapter drafting is complete:
+After chapter drafting is complete in Markdown-first mode:
 
 - Review consistency across Chinese and English drafts
 - Check whether every claim is traceable to evidence or literature
@@ -574,6 +642,8 @@ After chapter drafting is complete:
 - Check whether journal-style requirements are consistently reflected
 - Check whether citation audits cover every chapter
 - Update Markdown first, then refresh Word drafts if tooling allows
+
+After the manuscript is structurally complete, consider recommending Word-only refinement before another full Word rebuild if the remaining work is localized polish or formatting stabilization.
 
 Use `references/empirical-writing-quality-checklist.md`.
 
@@ -618,14 +688,15 @@ This skill must not:
 
 ## File Update Principles
 
-- Markdown is the master draft.
-- In the standard bilingual workflow, the Chinese Markdown file is the content mother manuscript by default once the user identifies it as the base manuscript.
-- Word is the exported submission draft.
-- Always update Markdown before generating Word.
-- Never treat either Word file as an independent source of substantive manuscript edits.
-- Word export must follow `references/word-export-rules.md`.
-- If export tooling is unavailable, keep Markdown current and report the export gap honestly.
-- If Word export fails, keep Markdown as the authoritative draft and report the failure clearly.
+- In Markdown-first drafting mode, Markdown is the master draft.
+- In the standard Markdown-first bilingual workflow, the Chinese Markdown file is the content mother manuscript by default once the user identifies it as the base manuscript.
+- In Markdown-first mode, Word is the exported submission draft.
+- In Markdown-first mode, always update Markdown before generating Word and never treat either Word file as an independent source of substantive manuscript edits.
+- Word export must follow `references/word-export-rules.md` when rebuilding from Markdown.
+- If export tooling is unavailable during Markdown-first mode, keep Markdown current and report the export gap honestly.
+- If Word export fails during Markdown-first mode, keep Markdown as the authoritative draft and report the failure clearly.
+- In Word-only refinement mode, the active Chinese and English Word files are the working manuscripts. Markdown is archival and must not be used to overwrite stable Word formatting unless the user explicitly requests a full rebuild.
+- In Word-only refinement mode, localized edits should be made directly and safely in Word, then mirrored across Chinese and English Word files and audited for citation fields, formulas, figures, tables, and layout.
 
 ## Git Rules
 
