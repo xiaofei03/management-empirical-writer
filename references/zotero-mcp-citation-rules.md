@@ -38,8 +38,13 @@ Minimum audit markers for Zotero-based Word outputs:
 
 - `ADDIN ZOTERO_ITEM`
 - `CSL_CITATION`
+- real Word field structure such as `w:fldChar` and `w:instrText`
+- no visible unresolved citekey placeholders such as `[@...]` in body text
+- a non-empty bibliography/reference list consistent with the de-duplicated citekey set
 
 Equivalent markers may be used only if the project has a different approved citation workflow.
+
+Do not treat marker strings alone as a successful live-citation audit. Zotero metadata can survive as plain XML text while the visible manuscript still shows citekeys or the reference list remains empty. Formal delivery must fail closed in that situation.
 
 ## Zotero Preflight and Recovery Rule
 

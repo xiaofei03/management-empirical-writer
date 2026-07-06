@@ -279,6 +279,17 @@ For Word outputs that are expected to preserve Zotero-style fields, the minimum 
 
 - `ADDIN ZOTERO_ITEM`
 - `CSL_CITATION`
+- real Word field-code structure such as `w:fldChar` and `w:instrText`
+- zero visible unresolved citekey placeholders such as `[@...]` in `w:t` text
+- a non-empty bibliography/reference list consistent with the de-duplicated citekey set
+
+Do not treat `ADDIN ZOTERO_ITEM` or `CSL_CITATION` alone as proof of success. A broken DOCX may retain Zotero metadata strings while still showing citekeys to readers or leaving the reference list empty. That state is a formal-delivery failure and must be repaired or reported as blocked.
+
+For citation density:
+
+- use 1 to 3 references for precise claims
+- use 3 to 5 references for broad literature-synthesis claims
+- split citation groups above 5 references by argumentative function rather than deleting useful references solely to reduce the count
 
 ## Literature and Evidence Rules
 

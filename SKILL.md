@@ -202,6 +202,9 @@ Delivery mode distinction:
 Delivery failure conditions:
 
 - citation fields lost
+- citation marker strings exist but Word field-code structure is absent
+- visible manuscript text still contains unresolved citekey placeholders such as `[@...]`
+- the bibliography/reference section is empty or inconsistent with the manuscript's de-duplicated citekey set
 - Chinese and English citekey sets diverge without a recorded user-approved exception
 - Chinese and English manuscript structures diverge after a writing round because English synchronization was deferred
 - translated and base manuscripts diverge in structure, figures, tables, formulas, hypotheses, empirical interpretations, or claim order without a recorded user-approved adaptation exception

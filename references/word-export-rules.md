@@ -219,9 +219,17 @@ When the project uses Word citation fields, inspect the DOCX XML before formal d
 Minimum pass conditions:
 
 - The exported DOCX contains citation-field markers such as `ADDIN ZOTERO_ITEM`, `CSL_CITATION`, or the project-approved equivalent.
+- Zotero-style outputs contain real Word field-code structure, not only marker text. For Zotero live-citation delivery this means `w:fldChar` and `w:instrText` must be present in `word/document.xml`.
+- Visible body text must not contain unresolved citekey placeholders such as `[@...]`. Do not count `[@...]` inside Zotero field metadata as visible text; inspect visible `w:t` text separately.
+- The bibliography/reference section must contain a non-empty reference list, and the number of bibliography entries must be consistent with the de-duplicated citekey set unless the user has approved a partial bibliography.
 - The field markers remain present after Word post-processing.
 - The document does not contain replacement characters such as `�`.
 - The document does not contain suspicious garbling markers such as `????`.
+
+Important false-positive rule:
+
+- `ADDIN ZOTERO_ITEM` or `CSL_CITATION` alone is not enough to pass. A DOCX can contain Zotero metadata strings while displaying raw citekeys or an empty bibliography. Such a file is a delivery failure, not a successful live-citation Word document.
+- If the approved export route creates live field shells whose visible field result is still `[@...]`, run a citation-display refresh or field-result repair before delivery. If this cannot be done while preserving field metadata, stop and report that formal citation delivery is blocked.
 
 If any of these checks fail:
 
