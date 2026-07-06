@@ -32,19 +32,21 @@ When the manuscript is delivered as a Word file and the project uses citekeys or
 - run Zotero or citation-backend preflight before citation-aware export
 - export through the approved citation-aware workflow first
 - if Word post-processing is required, re-audit the resulting DOCX after post-processing
-- do not approve final delivery if citation fields disappeared during export or post-processing
+- do not approve final delivery if citation fields disappeared, flattened, lost field-code structure, lost citekeys unexpectedly, or moved citekey placeholders outside fields during export or post-processing
 
 Minimum audit markers for Zotero-based Word outputs:
 
 - `ADDIN ZOTERO_ITEM`
 - `CSL_CITATION`
 - real Word field structure such as `w:fldChar` and `w:instrText`
-- no visible unresolved citekey placeholders such as `[@...]` in body text
+- no unresolved citekey placeholders such as `[@...]` outside Zotero/CSL fields
 - a non-empty bibliography/reference list consistent with the de-duplicated citekey set
 
 Equivalent markers may be used only if the project has a different approved citation workflow.
 
 Do not treat marker strings alone as a successful live-citation audit. Zotero metadata can survive as plain XML text while the visible manuscript still shows citekeys or the reference list remains empty. Formal delivery must fail closed in that situation.
+
+For Zotero-refresh-ready delivery, citekey-like display results may remain inside live fields if the user's goal is one-click Zotero refresh rather than already-rendered author-year display. The audit must therefore distinguish field-contained placeholders from ordinary body text. Use `chinese-word-pro/scripts/audit_zotero_fields.py` or an equivalent field-aware checker when possible.
 
 ## Zotero Preflight and Recovery Rule
 
@@ -76,6 +78,7 @@ Failure rule:
 - If Zotero cannot be opened or the citation backend cannot be reached, do not attempt a plain Pandoc substitute for formal delivery.
 - If new references exist and live citation-field generation fails, do not use an old Word-file fallback as the final manuscript.
 - If only existing citation fields are being preserved and no new references are introduced, a citation-safe structural fallback may be used only after explicitly auditing that live fields remain present.
+- If a Word-only refinement edit flattens fields, restore from the last healthy temporary copy or Git version before making any further edits.
 
 ## Pre-Drafting Citation Routine
 

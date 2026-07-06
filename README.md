@@ -152,7 +152,8 @@ After the user confirms this mode:
 - In Word-only refinement mode, the active Word files are the working manuscripts and Markdown is archival unless the user explicitly returns to a full rebuild.
 - User-facing final Word files must never be produced by a plain `pandoc` overwrite alone.
 - Citation-managed manuscripts must use a citation-aware export path for formal delivery.
-- Word post-processing must not destroy citation fields.
+- Word post-processing must not destroy, flatten, reduce, or move citation fields.
+- Citation-field audits must compare field counts and citekey counts before and after post-processing or Word-only refinement edits.
 - If citation audit or garbling audit fails, the main `docx` files must not be overwritten.
 - Temporary Word build artifacts must be cleaned up after delivery.
 - Chinese and English final DOCX files must be finalized through the same rule set unless the user explicitly requests a controlled divergence.
@@ -284,8 +285,18 @@ For Word outputs that are expected to preserve Zotero-style fields, the minimum 
 - for display-formatted delivery, zero visible unresolved citekey placeholders such as `[@...]` in `w:t` text
 - for display-formatted delivery, a non-empty bibliography/reference list consistent with the de-duplicated citekey set
 - for Zotero-refresh-ready delivery, the priority is that fields can be refreshed by Zotero/Word without rebuilding the manuscript from Markdown
+- for Zotero-refresh-ready delivery, citekey placeholders inside live field display results may be acceptable, but citekeys outside fields are not acceptable
+- for Word-only refinement, field count and citekey count must remain stable unless the user intentionally adds or removes citations
 
 Do not treat `ADDIN ZOTERO_ITEM` or `CSL_CITATION` alone as proof of success. A broken DOCX may retain Zotero metadata strings while the field is not refresh-ready. If the user's goal is Zotero one-click updating, audit refresh readiness rather than forcing formatted author-year display.
+
+Recommended checker:
+
+```bash
+python3 "$HOME/.codex/skills/chinese-word-pro/scripts/audit_zotero_fields.py" \
+  --docx "<candidate.docx>" \
+  --mode strict
+```
 
 For citation density:
 

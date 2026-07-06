@@ -92,6 +92,31 @@ After the user confirms Word-only refinement:
 
 Word-only refinement is not a shortcut around QA. It is a safer late-stage route that avoids destroying already repaired Word formatting through unnecessary full re-export.
 
+## Live Citation Field Integrity
+
+When the project requires Zotero, CSL, cite-rag-mcp, or another refreshable citation-field workflow, live citation fields are a protected manuscript structure. They must survive both Markdown-first delivery and Word-only refinement.
+
+Highest rule:
+
+- A final Word file with flattened plain-text citations is a failed delivery even if the text, formulas, tables, figures, and pagination look correct.
+
+Mode-specific requirements:
+
+- In Markdown-first mode, export to temporary DOCX through the approved citation-aware route, audit live fields, run Word finalization, then audit live fields again before overwriting final Word files.
+- In Word-only refinement mode, create temporary DOCX copies from the active Word files, audit the existing citation-field baseline, make only field-safe targeted edits, then compare the post-edit field count and citekey count against the baseline.
+- Do not use Markdown re-export as a shortcut for a localized Word-only citation or wording edit unless the user explicitly approves a full rebuild and its layout-regression risk.
+
+Failure conditions:
+
+- Zotero markers such as `ADDIN ZOTERO_ITEM` or `CSL_CITATION` disappear.
+- Markers remain but real Word field-code structure such as `w:fldChar` and `w:instrText` is absent.
+- Citation field count decreases without an explicit citation-removal request.
+- De-duplicated citekey count decreases without an explicit citation-removal request.
+- `[@...]` citekey placeholders appear outside fields in the visible manuscript body.
+- A script rewrites field-containing paragraphs as ordinary paragraph text.
+
+If any condition occurs, stop the delivery chain, restore from the last healthy temporary copy or Git version, and report the blocker. Do not continue polishing a flattened-citation file.
+
 ## Final Delivery Safety Valve
 
 For any project that maintains both Markdown and Word drafts, this skill must enforce a final-delivery safety valve.
@@ -108,7 +133,7 @@ Core rules:
   - Zotero or citation-manager preflight and recovery when live citation fields are required
   - citation-aware Word export when rebuilding from Markdown, or citation-field-safe direct DOCX editing when in Word-only refinement mode
   - Word post-processing through `chinese-word-pro`
-  - citation-field audit
+  - citation-field audit before and after post-processing, with field and citekey count comparison
   - garbling audit
   - render QA
   - delivery logging
@@ -478,6 +503,8 @@ If Step 2 fails because the citation-aware export backend is unavailable, do not
 Mandatory delivery audit items:
 
 - live citation fields remain in both Chinese and English DOCX
+- Zotero field counts and citekey counts remain stable across export, finalization, and Word-only edits unless citations were intentionally added or removed
+- visible citekey placeholders such as `[@...]` do not appear outside Zotero/CSL fields
 - native equation objects remain present where formal models exist
 - formula bodies are visibly centered and formula numbers are right-aligned on the same formula paragraph
 - no numbered formula is silently delivered as a table-based layout unless an explicit exception is documented

@@ -44,8 +44,8 @@ For formal-delivery mode:
 - Do not directly overwrite `drafts/cn/paper_cn.docx` or `drafts/en/paper_en.docx` with a plain `pandoc` export.
 - If the project uses Zotero citekeys, cite-rag-mcp, or another citation-field workflow, formal delivery must use that citation-aware export path first.
 - After citation-aware export, run DOCX post-processing if layout repair is needed.
-- After post-processing, re-check that citation fields still exist before overwriting the main Word files.
-- If citation fields are missing after export or after post-processing, treat the export as failed.
+- Before and after post-processing, run a citation-field audit and compare field count plus citekey count.
+- If citation fields are missing, flattened, reduced unexpectedly, or citekeys move outside fields after export or post-processing, treat the export as failed.
 
 ## Recommended Commands
 
@@ -220,20 +220,23 @@ Minimum pass conditions:
 
 - The exported DOCX contains citation-field markers such as `ADDIN ZOTERO_ITEM`, `CSL_CITATION`, or the project-approved equivalent.
 - Zotero-style outputs contain real Word field-code structure, not only marker text. For Zotero live-citation delivery this means `w:fldChar` and `w:instrText` must be present in `word/document.xml`.
-- Visible body text must not contain unresolved citekey placeholders such as `[@...]`. Do not count `[@...]` inside Zotero field metadata as visible text; inspect visible `w:t` text separately.
+- Visible body text must not contain unresolved citekey placeholders such as `[@...]` outside Zotero fields. Do not count `[@...]` inside Zotero field instructions or field display ranges as ordinary manuscript text when the delivery goal is Zotero-refresh-ready output.
 - The bibliography/reference section must contain a non-empty reference list, and the number of bibliography entries must be consistent with the de-duplicated citekey set unless the user has approved a partial bibliography.
 - The field markers remain present after Word post-processing.
+- Field count and citekey count remain stable after Word post-processing unless citations were intentionally added or removed.
 - The document does not contain replacement characters such as `�`.
 - The document does not contain suspicious garbling markers such as `????`.
 
 Important false-positive rule:
 
 - `ADDIN ZOTERO_ITEM` or `CSL_CITATION` alone is not enough to pass. A DOCX can contain Zotero metadata strings while displaying raw citekeys or an empty bibliography. Such a file is a delivery failure, not a successful live-citation Word document.
-- If the approved export route creates live field shells whose visible field result is still `[@...]`, run a citation-display refresh or field-result repair before delivery. If this cannot be done while preserving field metadata, stop and report that formal citation delivery is blocked.
+- If the approved export route creates live field shells whose visible field result is still `[@...]`, distinguish the requested delivery mode. In display-formatted mode, run a citation-display refresh or field-result repair before delivery. In Zotero-refresh-ready mode, preserve the live field shell and report that the fields are refresh-ready even if the visible field result is a citekey placeholder.
+- For strict audit, prefer `chinese-word-pro/scripts/audit_zotero_fields.py` or an equivalent field-aware checker rather than searching raw XML strings only.
 
 If any of these checks fail:
 
 - do not overwrite the main Word files
+- restore from the last healthy temporary DOCX or Git version if a post-processing step flattened fields
 - keep the temporary output only
 - log the failure reason
 - report that formal delivery is blocked
@@ -293,7 +296,7 @@ Suggested log format:
 - If a quick preview is needed, export a temporary working draft second.
 - For user-facing Word delivery, use citation-aware formal export third.
 - Apply Word post-processing fourth.
-- Run citation-field and garbling audits fifth.
+- Run citation-field, field-count/citekey-count comparison, and garbling audits fifth.
 - Overwrite the main Word deliverable only if all formal checks passed.
 - Log the export attempt after the audit outcome is known.
 - Clean up temporary files before Git commit or manual snapshot creation.
