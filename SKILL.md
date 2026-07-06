@@ -430,6 +430,7 @@ Planning rules:
 - Chinese drafting should emphasize problem orientation, theoretical mechanism, policy implications, and managerial implications when relevant.
 - English drafting should emphasize research gap, theoretical contribution, identification, robustness, and managerial implications when relevant.
 - Before chapter drafting, build `logs/literature-pool.md` and `logs/citation-plan.md`.
+- When drafting or revising citation-heavy paragraphs, apply the citation-stacking control rule in `references/literature-pool-rules.md`: keep normal citation groups to 1 to 5 references, split larger groups by argumentative function, and preserve the de-duplicated reference set unless reference removal is explicitly requested.
 
 ## Stage 5: Bilingual Submission Finalization
 

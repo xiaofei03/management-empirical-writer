@@ -201,6 +201,26 @@ For both languages:
 - Avoid citation padding.
 - Do not invent references, authors, years, journals, DOIs, or citekeys.
 
+## Citation Stacking Control
+
+Avoid citation stacking: a manuscript should not repeatedly place too many references in one parenthetical citation simply to signal breadth.
+
+Default rules:
+
+- A normal citation group should contain 1 to 5 references.
+- A precise mechanism, variable-measurement, or empirical-design claim should usually cite 1 to 3 directly relevant references.
+- A broad literature-summary claim may cite 3 to 5 representative references.
+- If a citation group exceeds 5 references, revise the prose before delivery:
+  - split the claim into two functionally distinct sentences or clauses
+  - group references by argumentative role, such as foundational theory, mechanism evidence, measurement source, context evidence, or recent extension
+  - keep the most direct and highest-quality references closest to the claim they support
+- Do not solve citation stacking by silently deleting references when the project requires a stable 60 to 80 reference pool. Preserve the de-duplicated reference set unless the user explicitly approves reference removal.
+- Do not pad a sentence with many weakly related references to meet a reference-count target. It is better to use fewer, more directly supportive references in each citation group and distribute the remaining relevant literature to other claims, paragraphs, or later sections where it has a clear role.
+
+Audit rule:
+
+- Before formal delivery, scan the manuscript for citation groups containing more than 5 citekeys. Any group above that threshold must be justified as a rare exception or revised into functionally grouped citations.
+
 ## Literature Pool Classification
 
 Each reference in `logs/literature-pool.md` should be classified with these fields when available:

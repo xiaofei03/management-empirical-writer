@@ -52,6 +52,8 @@ Use this checklist for chapter review and full-paper review.
 - Whether references are not overly concentrated in too few journals.
 - Whether each cited reference has a clear role in the argument.
 - Whether any citation appears to be padding.
+- Whether any single citation group contains more than 5 references; if so, whether it has been split by argumentative function or explicitly justified as a rare exception.
+- Whether high-density citation passages preserve the total de-duplicated reference set when the task is to reduce citation stacking rather than reduce the bibliography.
 - Whether all citekeys are valid and traceable to Zotero, MCP, or user-provided references.
 - Whether writing-critical references have PDF files or full-text notes.
 - Whether writing-critical references are imported into Zotero or MCP with citekeys.
