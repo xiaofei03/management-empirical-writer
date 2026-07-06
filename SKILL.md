@@ -118,6 +118,7 @@ Core rules:
 - Chinese and English final deliverables must pass the same finalization rule set unless the user explicitly requests divergence.
 - In Markdown-first mode, bilingual citation-managed manuscripts must have the same de-duplicated citekey set in the Chinese and English Markdown drafts before formal delivery unless the user explicitly approves and logs a language-specific exception.
 - In Word-only refinement mode, citation consistency is audited in the active Chinese and English Word files rather than by forcing Markdown citekey-set synchronization.
+- In Word-only refinement mode, citation repair must not use Markdown re-export as the default path. If the user asks only for Zotero-updatable citation fields, preserve the current Word layout and repair or insert refresh-ready Zotero fields in the active Word files or temporary Word copies. Do not rebuild the manuscript from Markdown merely to make citation display text look formatted.
 - For bilingual projects where the user identifies one language as the base manuscript, the other language is a translation by default. The translated draft must preserve the base manuscript's section hierarchy, paragraph-level claim order, tables, figures, formulas, hypotheses, model descriptions, empirical interpretations, citation set, and conclusion claims. Journal-style polishing may improve wording but must not alter substance or structure unless the user explicitly approves adaptation mode.
 - When the user identifies the Chinese Markdown draft as the mother manuscript and the project remains in Markdown-first mode, all substantive editing must start there. The Chinese Word file is formatting-only, the English Markdown file is translation-only, and the English Word file is formatting-only.
 - In that Markdown-first setup, the four-file manuscript package must satisfy: Chinese Markdown as sole content source, Chinese Word as layout derivative, English Markdown as language-equivalent translation derivative, and English Word as layout derivative of the English Markdown file.
@@ -203,8 +204,10 @@ Delivery failure conditions:
 
 - citation fields lost
 - citation marker strings exist but Word field-code structure is absent
-- visible manuscript text still contains unresolved citekey placeholders such as `[@...]`
-- the bibliography/reference section is empty or inconsistent with the manuscript's de-duplicated citekey set
+- in display-formatted delivery mode, visible manuscript text still contains unresolved citekey placeholders such as `[@...]`
+- in display-formatted delivery mode, the bibliography/reference section is empty or inconsistent with the manuscript's de-duplicated citekey set
+- in Zotero-refresh-ready delivery mode, citation fields are not actually refresh-ready in Word/Zotero even if marker strings are present
+- a Word-only refinement task was solved by re-exporting from Markdown without explicit user approval, causing title, formula, figure, table, or layout regression
 - Chinese and English citekey sets diverge without a recorded user-approved exception
 - Chinese and English manuscript structures diverge after a writing round because English synchronization was deferred
 - translated and base manuscripts diverge in structure, figures, tables, formulas, hypotheses, empirical interpretations, or claim order without a recorded user-approved adaptation exception

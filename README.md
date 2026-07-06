@@ -142,6 +142,7 @@ After the user confirms this mode:
 - Markdown files become archival snapshots, not mandatory live sources.
 - Do not require four-file synchronization for every small edit.
 - Do not run full Markdown-to-Word export unless the user explicitly requests a full rebuild or the paper re-enters structural drafting.
+- Do not repair citation problems by rebuilding from Markdown unless the user explicitly approves that risk. In Word-only refinement, citation repair must work on temporary Word copies and preserve the current title, formulas, figures, tables, captions, and pagination.
 - Make localized edits in the Chinese Word file first, then mirror them into the English Word file as a translation-equivalent counterpart.
 - Preserve live citation fields, native equations, figure/table layout, and already verified formatting through targeted Word-safe edits.
 
@@ -280,10 +281,11 @@ For Word outputs that are expected to preserve Zotero-style fields, the minimum 
 - `ADDIN ZOTERO_ITEM`
 - `CSL_CITATION`
 - real Word field-code structure such as `w:fldChar` and `w:instrText`
-- zero visible unresolved citekey placeholders such as `[@...]` in `w:t` text
-- a non-empty bibliography/reference list consistent with the de-duplicated citekey set
+- for display-formatted delivery, zero visible unresolved citekey placeholders such as `[@...]` in `w:t` text
+- for display-formatted delivery, a non-empty bibliography/reference list consistent with the de-duplicated citekey set
+- for Zotero-refresh-ready delivery, the priority is that fields can be refreshed by Zotero/Word without rebuilding the manuscript from Markdown
 
-Do not treat `ADDIN ZOTERO_ITEM` or `CSL_CITATION` alone as proof of success. A broken DOCX may retain Zotero metadata strings while still showing citekeys to readers or leaving the reference list empty. That state is a formal-delivery failure and must be repaired or reported as blocked.
+Do not treat `ADDIN ZOTERO_ITEM` or `CSL_CITATION` alone as proof of success. A broken DOCX may retain Zotero metadata strings while the field is not refresh-ready. If the user's goal is Zotero one-click updating, audit refresh readiness rather than forcing formatted author-year display.
 
 For citation density:
 
