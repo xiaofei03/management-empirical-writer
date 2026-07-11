@@ -33,6 +33,15 @@ For the current chapter, identify:
 - Which claims are descriptive, theoretical, or empirical
 - Which statements require user confirmation before use
 
+If the current chapter is `Introduction / 引言`, `Theoretical Background / 理论基础`, `Theory Development / 理论发展`, `Research Hypotheses / 研究假设`, or a literature-review section that directly supports hypotheses, read `references/introduction-theory-writing-rules.md` before drafting or revising. The chapter evidence map must additionally identify:
+
+- the practical phenomenon and focal tension
+- the research gap and its direct connection to the research question
+- the theory chosen and why it is preferable to plausible alternatives
+- the theory-to-variable mapping
+- the planned hypothesis logic for main effects, mediation, moderation, and nonlinearity where applicable
+- the citation role of each core reference, avoiding citation padding and one-shot citation piles
+
 Before drafting any empirical analysis section, check `logs/empirical-results-inventory.md`.
 
 Use every artifact marked `planned_for_main_text`.

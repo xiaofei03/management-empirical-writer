@@ -36,6 +36,7 @@ Read these references before acting:
 - `references/variable-measurement-citation-rules.md` for measurement-source rules, citation expectations, and Research Design wording constraints.
 - `references/variable-measurement-evidence-template.md` for structuring the variable measurement evidence map before Research Design drafting.
 - `references/literature-pool-rules.md` for building a high-quality literature pool, controlling reference quantity, prioritizing recent UTD24/FT50 or high-quality journal articles, and planning chapter-level citation use.
+- `references/introduction-theory-writing-rules.md` for first-two-chapter writing rules: Introduction problem framing, theory-development logic, hypothesis derivation, citation density, nonlinear mechanisms, mediation, and moderation.
 - `references/empirical-results-coverage-rules.md` for mandatory inventory, use, placement, and audit of all empirical result tables, figures, and outputs before drafting empirical analysis chapters.
 - `references/common-control-variables.md` for common listed-company control variables, definitions, Stata-style variable names, bilingual naming, and heterogeneity grouping references.
 - `references/word-export-rules.md` for Markdown-to-Word export rules, Pandoc usage, reference-doc handling, and export logging.
@@ -55,6 +56,31 @@ Use these assets when the user asks for reusable templates inside a paper projec
 ## Manuscript Lifecycle Modes
 
 This skill must distinguish two manuscript lifecycle modes.
+
+## First-Two-Chapter Writing Gate
+
+When drafting or revising Introduction, Theoretical Background, Theory Development, Literature Review, or Research Hypotheses sections, read `references/introduction-theory-writing-rules.md` before writing.
+
+The first two chapters must keep a clear division of labor:
+
+- Introduction frames the phenomenon, tension, gap, theoretical lens, data preview, main findings, and contributions.
+- Theory Development explains theory source, theory-to-variable mapping, mechanism logic, nonlinear reasoning, mediation, moderation, and formal hypotheses.
+
+Do not let the introduction fully rehearse the mechanisms that belong in the theory chapter. Do not let the theory chapter merely repeat the introduction's background.
+
+Citation-density rule for these chapters:
+
+- citations must have an argumentative role such as concept definition, theory support, mechanism support, gap establishment, measurement validation, or boundary-condition justification
+- a normal citation group should usually contain 1-3 references
+- 4-5 references require a clear shared function
+- more than 5 references in one citation group should be split by claim function unless the user explicitly approves a rare exception
+
+Hypothesis derivation must be theory-forward:
+
+- identify the theoretical actor, behavior or signal, receiver, unobservable quality, mechanism, and boundary condition
+- for nonlinear hypotheses, explain why benefits exceed costs early and why costs exceed benefits later
+- for mediation, explain what theoretical process the mediator represents rather than only saying `X affects M and M affects Y`
+- for moderation, explain which theoretical link the moderator changes rather than only saying the effect becomes stronger or weaker
 
 ### Mode A: Markdown-first drafting
 
@@ -461,7 +487,8 @@ Planning rules:
 - Chinese drafting should emphasize problem orientation, theoretical mechanism, policy implications, and managerial implications when relevant.
 - English drafting should emphasize research gap, theoretical contribution, identification, robustness, and managerial implications when relevant.
 - Before chapter drafting, build `logs/literature-pool.md` and `logs/citation-plan.md`.
-- When drafting or revising citation-heavy paragraphs, apply the citation-stacking control rule in `references/literature-pool-rules.md`: keep normal citation groups to 1 to 5 references, split larger groups by argumentative function, and preserve the de-duplicated reference set unless reference removal is explicitly requested.
+- When drafting or revising citation-heavy paragraphs, apply the citation-stacking control rule in `references/literature-pool-rules.md`: keep general citation groups to no more than 5 references, split larger groups by argumentative function, and preserve the de-duplicated reference set unless reference removal is explicitly requested.
+- For Introduction and Theory Development, apply the stricter first-two-chapter rule in `references/introduction-theory-writing-rules.md`: normal citation groups should usually contain 1-3 references, and 4-5 references require a clear shared argumentative function.
 
 ## Stage 5: Bilingual Submission Finalization
 

@@ -34,6 +34,13 @@ Use this checklist for chapter review and full-paper review.
 - Are hypotheses aligned with the stated mechanisms?
 - Are competing explanations acknowledged when needed?
 - Are claims of contribution proportional to the evidence?
+- Does the Introduction answer why the problem matters rather than prematurely explaining every mechanism?
+- Does the Theory Development chapter explain why relationships hold rather than repeating the Introduction?
+- Does the theory section identify theoretical actors, behaviors/signals, receivers, unobservable qualities, mechanisms, and boundary conditions?
+- For nonlinear hypotheses, does the text explain why the marginal effect changes direction rather than merely saying low levels help and high levels hurt?
+- For mediation hypotheses, does each mediator represent a theory-defined process rather than only a statistical `X -> M -> Y` chain?
+- For moderation hypotheses, does each moderator change a specific theoretical link such as information acquisition, interpretation, verification, resource response, behavioral constraint, or environmental condition?
+- Are citation groups in the first two chapters normally limited to 1-3 references, with larger groups split by argumentative function?
 
 ## Citation Integrity
 

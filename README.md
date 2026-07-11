@@ -19,6 +19,7 @@ It helps the user:
 - initialize a paper project structure
 - inspect readiness before drafting
 - align theory, data, variables, and journal target
+- write the first two chapters with a clear division between problem framing and theory development
 - build a literature pool before writing
 - draft chapter by chapter rather than in one unsafe pass
 - keep Chinese and English versions factually aligned
@@ -79,6 +80,33 @@ The core rule is simple:
 - draft from evidence
 - confirm before expanding
 - export only after checks
+
+## First-Two-Chapter Writing Route
+
+When working on Introduction or Theory Development, the skill must use `references/introduction-theory-writing-rules.md`.
+
+The route is:
+
+```mermaid
+flowchart TD
+    A["Identify focal phenomenon and tension"] --> B["Summarize prior research by theme"]
+    B --> C["State a gap tied directly to the research question"]
+    C --> D["Choose and justify the theoretical lens"]
+    D --> E["Map theory actors, signals/behaviors, receivers, mechanisms, and boundaries"]
+    E --> F["Derive hypotheses with theory-forward logic"]
+    F --> G["Audit citation roles and avoid citation piles"]
+```
+
+Default division of labor:
+
+- Introduction: explains why the problem matters and previews the study.
+- Theory Development: explains why the proposed relationships should hold.
+
+Citation rule:
+
+- Use citations to support specific claims.
+- Normal citation groups should contain 1-3 references.
+- Larger groups should be split by claim function unless explicitly justified.
 
 ## Formal Delivery Safety Valve
 
