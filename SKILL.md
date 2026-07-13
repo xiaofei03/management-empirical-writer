@@ -739,6 +739,8 @@ After chapter drafting is complete in Markdown-first mode:
 - Check whether citation audits cover every chapter
 - Update Markdown first, then refresh Word drafts if tooling allows
 
+For an English manuscript containing Chinese-language references, complete a Zotero metadata-hygiene pass before the final Word refresh. The pass must romanize creators, translate required bibliographic display fields accurately, preserve source identifiers, remove literal HTML entities, and flag accidental all-caps personal names. The bibliography must be refreshed and alphabetized by the active citation style, not manually rewritten in Word.
+
 After the manuscript is structurally complete, consider recommending Word-only refinement before another full Word rebuild if the remaining work is localized polish or formatting stabilization.
 
 Use `references/empirical-writing-quality-checklist.md`.
@@ -752,6 +754,8 @@ Before submission or advisor review:
 - Confirm citation integrity
 - Confirm version history or snapshots are current
 - Confirm unresolved issues that still need user attention
+
+For Word-only refinement, require `chinese-word-pro` to run its finalization gates on a temporary DOCX copy before overwrite. The delivery audit must cover selective paragraph normalization, native formula size and same-line right-number geometry, reference-presentation hygiene, and live-field preservation. A pass is invalid if a formatting repair flattens citation fields, leaves visible metadata corruption such as `&amp;`, or relies on manual bibliography sorting.
 
 Follow `references/git-versioning-rules.md` and `references/empirical-writing-quality-checklist.md`.
 
@@ -793,6 +797,8 @@ This skill must not:
 - If Word export fails during Markdown-first mode, keep Markdown as the authoritative draft and report the failure clearly.
 - In Word-only refinement mode, the active Chinese and English Word files are the working manuscripts. Markdown is archival and must not be used to overwrite stable Word formatting unless the user explicitly requests a full rebuild.
 - In Word-only refinement mode, localized edits should be made directly and safely in Word, then mirrored across Chinese and English Word files and audited for citation fields, formulas, figures, tables, and layout.
+- In Word-only refinement mode, typography normalization must exclude headings, captions, equations, table cells, references, and citation-field-bearing paragraphs unless that surface is explicitly targeted. Do not use whole-paragraph text rewrites for formatting.
+- In every numbered-equation delivery, require native OMML plus one centered formula body, a same-paragraph right-aligned number, and a target-editor visual check. Formula size must be calibrated to the body-text visual baseline; fixed point-size assumptions are not sufficient across Word editors.
 
 ## Git Rules
 

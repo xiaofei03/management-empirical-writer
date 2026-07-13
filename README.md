@@ -174,6 +174,12 @@ After the user confirms this mode:
 - Make localized edits in the Chinese Word file first, then mirror them into the English Word file as a translation-equivalent counterpart.
 - Preserve live citation fields, native equations, figure/table layout, and already verified formatting through targeted Word-safe edits.
 
+Before final Word delivery, require the Word finalizer to confirm:
+
+- selective paragraph normalization rather than broad style resets
+- native formula body/number geometry and body-text-calibrated formula size
+- Zotero metadata hygiene for translated Chinese references, including English display metadata, normal creator casing, decoded entities, style-generated alphabetical order, and preserved live fields
+
 ### Non-negotiables
 
 - In Markdown-first mode, Markdown is the source of truth for manuscript content.
