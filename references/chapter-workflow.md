@@ -2,6 +2,8 @@
 
 Use this reference for every chapter or section drafting round.
 
+Before Step 1, read `references/full-manuscript-writing-rules.md`. Treat it as the primary writing authority for every substantive section. Use section-specific references only afterward for additional detail.
+
 ## Principle
 
 One chapter or one section at a time. No full-manuscript one-shot drafting.
@@ -23,6 +25,8 @@ Before drafting, state:
 - If a citation gap is found, use MCP or web search only for that specific gap
 - Newly found references must receive valid citekeys before being cited
 - Do not exceed the planned citation role or add low-relevance references only to increase citation count
+- State how the section advances the integrated `problem -> theory -> design -> evidence -> mechanism and boundary -> contribution` chain
+- Identify the upstream premise the section inherits and the downstream claim it must support
 
 ### Step 2: Build chapter evidence map
 
@@ -33,7 +37,7 @@ For the current chapter, identify:
 - Which claims are descriptive, theoretical, or empirical
 - Which statements require user confirmation before use
 
-If the current chapter is `Introduction / 引言`, `Theoretical Background / 理论基础`, `Theory Development / 理论发展`, `Research Hypotheses / 研究假设`, or a literature-review section that directly supports hypotheses, read `references/introduction-theory-writing-rules.md` before drafting or revising. The chapter evidence map must additionally identify:
+If the current chapter is `Introduction / 引言`, `Theoretical Background / 理论基础`, `Theory Development / 理论发展`, `Research Hypotheses / 研究假设`, or a literature-review section that directly supports hypotheses, use `references/introduction-theory-writing-rules.md` as supplementary detail after the full-manuscript rules. The chapter evidence map must additionally identify:
 
 - the practical phenomenon and focal tension
 - the research gap and its direct connection to the research question
@@ -52,6 +56,7 @@ If an artifact is not used, ensure it appears in `logs/unused-empirical-results.
 
 If the current chapter is `Research Design / 研究设计`, confirm all of the following before drafting:
 
+- Use `references/research-design-results-discussion-writing-rules.md` as supplementary detail after the full-manuscript rules
 - Confirm `logs/variable-measurement-evidence-map.md` exists
 - Confirm every variable measurement has a source or is marked as needing user confirmation
 - Confirm control variable selection has literature support when available
@@ -60,11 +65,21 @@ If the current chapter is `Research Design / 研究设计`, confirm all of the f
 
 If the current chapter is an empirical analysis chapter such as `Empirical Results`, `Robustness Checks`, `Endogeneity Analysis`, `Mechanism Tests`, `Heterogeneity Analysis`, `Further Analysis`, or `Appendix`, confirm all of the following before drafting:
 
+- Use `references/research-design-results-discussion-writing-rules.md` as supplementary detail for every main-text empirical section after the full-manuscript rules
 - Confirm `logs/empirical-results-inventory.md` exists
 - Confirm every user-provided empirical artifact has a `use_status`
 - Confirm every unused artifact appears in `logs/unused-empirical-results.md`
 - Confirm important omitted artifacts have explicit reasons and user confirmation status
 - Do not proceed until empirical results coverage is clear
+
+If the current chapter is `Discussion / 讨论`, `Theoretical Contributions / 理论贡献`, `Practical Implications / 管理启示`, `Limitations and Future Research / 局限与未来研究`, or `Conclusion / 结论`, use `references/research-design-results-discussion-writing-rules.md` as supplementary detail after the full-manuscript rules. Confirm that:
+
+- discussion interprets two to four central findings rather than repeating regression results
+- every contribution names the prior understanding, its limitation, the study's precise advance, and why it matters
+- practical implications identify an actor, action, evidence-based rationale, and boundary
+- unsupported findings are handled honestly
+- limitations are framed as specific researchable boundaries with feasible future designs
+- no new theory appears only in the ending
 
 ### Step 3: Draft Chinese Markdown first pass
 
@@ -94,6 +109,8 @@ Check that both versions agree on:
 - Regression interpretation
 - Table numbering
 - Citation set
+- Full argument chain from the opening problem to the final contribution
+- Section boundaries and transitions across adjacent chapters
 
 ### Step 6: Update Markdown deliverables
 

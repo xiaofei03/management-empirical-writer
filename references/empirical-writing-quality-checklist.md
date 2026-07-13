@@ -2,6 +2,17 @@
 
 Use this checklist for chapter review and full-paper review.
 
+Read `references/full-manuscript-writing-rules.md` before applying this checklist. A section cannot pass merely because it is locally polished; it must also advance the integrated manuscript argument.
+
+## Full-Manuscript Argument Integrity
+
+- Does the paper form one `problem -> theory -> design -> evidence -> mechanism and boundary -> contribution` chain?
+- Does every section inherit a clear upstream premise and support a clear downstream claim?
+- Does the final contribution answer the exact gap and research question established in the Introduction?
+- Are construct meanings, theoretical roles, hypothesis directions, empirical specifications, and evidence interpretations stable across sections?
+- Has cross-section repetition been removed without losing unique evidence or necessary transitions?
+- Are section-specific improvements rejected or revised when they weaken full-manuscript coherence?
+
 ## Evidence Integrity
 
 - Is every empirical claim tied to actual user-provided evidence?
@@ -41,6 +52,22 @@ Use this checklist for chapter review and full-paper review.
 - For mediation hypotheses, does each mediator represent a theory-defined process rather than only a statistical `X -> M -> Y` chain?
 - For moderation hypotheses, does each moderator change a specific theoretical link such as information acquisition, interpretation, verification, resource response, behavioral constraint, or environmental condition?
 - Are citation groups in the first two chapters normally limited to 1-3 references, with larger groups split by argumentative function?
+
+## Research Design Through Conclusion Integrity
+
+- Does Research Design explain data, measurement, and model specification without repeating hypothesis logic?
+- Can the initial sample, matching, exclusions, missing-data treatment, outlier treatment, and final sample be reconstructed?
+- Are measurement novelty and validity claims proportional to the actual method and validation evidence?
+- Do result paragraphs report the finding, substantive meaning, and theoretical implication instead of reading tables column by column?
+- For nonlinear claims, are the formal shape test, endpoint slopes, turning point, effective data range, confidence interval, and model-based figure reported when available?
+- Do robustness and endogeneity claims distinguish concern alleviation from credible causal identification?
+- Does each further analysis answer a named mechanism or boundary-condition question?
+- Are subgroup differences supported by a formal difference test rather than significance in one group and nonsignificance in another?
+- Are exploratory and unsupported findings labeled and reported honestly?
+- Does each theoretical contribution state the prior understanding, its limitation, the precise advance, and why it matters?
+- Does each practical implication identify an actor, action, rationale, and evidence boundary?
+- Are limitations written as specific researchable boundaries with feasible future designs?
+- Do the later sections form a coherent `how -> whether -> why/when -> what changes` chain without cross-section repetition?
 
 ## Citation Integrity
 

@@ -25,6 +25,7 @@ Default output files in the target paper project:
 
 Read these references before acting:
 
+- `references/full-manuscript-writing-rules.md` first for the mandatory, integrated writing logic from Introduction through Discussion and Conclusion. This is the primary manuscript-writing authority.
 - `references/intake-checklist.md` for required inputs and missing-material handling
 - `references/alignment-report-template.md` for the alignment report schema
 - `references/project-structure.md` for project initialization rules
@@ -36,7 +37,8 @@ Read these references before acting:
 - `references/variable-measurement-citation-rules.md` for measurement-source rules, citation expectations, and Research Design wording constraints.
 - `references/variable-measurement-evidence-template.md` for structuring the variable measurement evidence map before Research Design drafting.
 - `references/literature-pool-rules.md` for building a high-quality literature pool, controlling reference quantity, prioritizing recent UTD24/FT50 or high-quality journal articles, and planning chapter-level citation use.
-- `references/introduction-theory-writing-rules.md` for first-two-chapter writing rules: Introduction problem framing, theory-development logic, hypothesis derivation, citation density, nonlinear mechanisms, mediation, and moderation.
+- `references/introduction-theory-writing-rules.md` only as supplementary detail for Introduction and Theory Development after reading the integrated full-manuscript rules.
+- `references/research-design-results-discussion-writing-rules.md` only as supplementary detail for Research Design through Conclusion after reading the integrated full-manuscript rules.
 - `references/empirical-results-coverage-rules.md` for mandatory inventory, use, placement, and audit of all empirical result tables, figures, and outputs before drafting empirical analysis chapters.
 - `references/common-control-variables.md` for common listed-company control variables, definitions, Stata-style variable names, bilingual naming, and heterogeneity grouping references.
 - `references/word-export-rules.md` for Markdown-to-Word export rules, Pandoc usage, reference-doc handling, and export logging.
@@ -53,13 +55,27 @@ Use these assets when the user asks for reusable templates inside a paper projec
 - `assets/chapter-plan-template.md`
 - `assets/citation-audit-template.md`
 
+## Highest-Priority Manuscript Writing Rule
+
+Before planning, drafting, revising, translating, or reviewing any substantive manuscript section, read and apply `references/full-manuscript-writing-rules.md` first.
+
+Treat the manuscript as one integrated argument:
+
+```text
+problem -> theory -> design -> evidence -> mechanism and boundary -> contribution
+```
+
+Do not draft chapters as independent modules. After each section change, check its upstream premise and downstream consequence. The research question introduced at the beginning, the theory used to derive predictions, the design used to test them, the evidence used to evaluate them, and the contribution claimed at the end must remain one coherent chain.
+
+Section-specific references provide additional detail but do not replace this integrated rule. If prose quality in one section conflicts with full-manuscript coherence, repair the full argument first.
+
 ## Manuscript Lifecycle Modes
 
 This skill must distinguish two manuscript lifecycle modes.
 
 ## First-Two-Chapter Writing Gate
 
-When drafting or revising Introduction, Theoretical Background, Theory Development, Literature Review, or Research Hypotheses sections, read `references/introduction-theory-writing-rules.md` before writing.
+When drafting or revising Introduction, Theoretical Background, Theory Development, Literature Review, or Research Hypotheses sections, read `references/full-manuscript-writing-rules.md` first, then use `references/introduction-theory-writing-rules.md` for supplementary detail.
 
 The first two chapters must keep a clear division of labor:
 
@@ -81,6 +97,25 @@ Hypothesis derivation must be theory-forward:
 - for nonlinear hypotheses, explain why benefits exceed costs early and why costs exceed benefits later
 - for mediation, explain what theoretical process the mediator represents rather than only saying `X affects M and M affects Y`
 - for moderation, explain which theoretical link the moderator changes rather than only saying the effect becomes stronger or weaker
+
+## Research Design Through Conclusion Writing Gate
+
+When drafting or revising Research Design, Empirical Results, Robustness or Endogeneity Tests, Further Analyses, Mechanism Tests, Moderation, Heterogeneity, Discussion, Implications, Limitations, or Conclusion, read `references/full-manuscript-writing-rules.md` first, then use `references/research-design-results-discussion-writing-rules.md` for supplementary detail.
+
+Preserve this functional sequence even when a target journal uses different chapter numbers or combines sections:
+
+- Research Design explains how constructs are measured and hypotheses are tested.
+- Empirical Results establish whether the core predictions receive support.
+- Further Analyses explain why, when, or under which boundaries relationships occur.
+- Discussion and Conclusion state what the findings change in theory and practice.
+
+Apply the specialized evidence gates alongside this writing reference:
+
+- Use `references/variable-measurement-citation-rules.md` and a completed variable measurement evidence map for Research Design.
+- Use `references/empirical-results-coverage-rules.md` and the empirical results inventory for all empirical analysis sections.
+- Calibrate causal wording to the identification design; do not relabel robustness checks as causal identification.
+- Report unsupported findings honestly and do not infer group differences from significance in one subgroup but not another without a formal difference test.
+- Build contributions as a precise change to prior understanding, not as a list of findings or generic claims that the study enriches a literature.
 
 ### Mode A: Markdown-first drafting
 
