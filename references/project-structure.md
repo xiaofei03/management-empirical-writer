@@ -12,19 +12,14 @@ Do not mix the two.
 
 ```text
 paper-project/
-├── data/
-├── stata/
-├── results/
-├── journal_samples/
-│   ├── reference_cn.docx
-│   └── reference_en.docx
-├── literature/
-│   ├── candidate_metadata/
-│   ├── method_identification/
-│   ├── theory/
-│   ├── variable_measurement/
-│   └── benchmark_papers/
-├── zotero/
+├── inputs/
+│   ├── data/
+│   ├── literature/
+│   └── advisor/
+├── analysis/
+│   ├── code/
+│   ├── outputs/
+│   └── tables/
 ├── drafts/
 │   ├── cn/
 │   │   ├── paper_cn.md
@@ -32,38 +27,24 @@ paper-project/
 │   └── en/
 │       ├── paper_en.md
 │       └── paper_en.docx
-├── tables/
-├── figures/
-├── logs/
-│   ├── tooling-check.md
-│   ├── word-export-log.md
-│   ├── literature-pool.md
-│   ├── citation-plan.md
-│   ├── fulltext-literature-readiness.md
-│   ├── literature-synthesis-map.md
-│   ├── empirical-results-inventory.md
-│   ├── unused-empirical-results.md
-│   ├── empirical-results-coverage-audit.md
-│   ├── target-journal-style-profile.md
-│   ├── stata-mcp-inspection.md
-│   ├── empirical-evidence-map.md
-│   └── variable-measurement-evidence-map.md
-└── versions/
+├── figures/{data,config,cn,en,manifest}/
+├── submission_strategy/
+├── journal_versions/<journal_slug>/{profile,manuscript,figures,audits,submission}/
+├── workflow/
+├── _work/<run_id>/{tmp,renders,logs}/
+├── versions/
+└── trash_pending_delete/
 ```
 
 ## Folder Roles
 
-- `data/`: raw or processed data provided by the user
-- `stata/`: Stata scripts, logs, export helpers, and related notes
-- `results/`: tables, figures, regression outputs, exported Stata results, Word tables, Excel tables, LaTeX tables, RTF files, PNG or JPG figures, PDFs, user-written result summaries, and other evidence snapshots. All must be inventoried before empirical writing.
-- `journal_samples/`: style reference papers supplied by the user, plus optional `reference_cn.docx` and `reference_en.docx` templates for Pandoc Word export
-- `literature/`: candidate metadata, benchmark papers, theory references, variable measurement literature, method or identification references, or imported bibliographic packages
-- `zotero/`: citekey lists, exported bibliography files, or MCP sync artifacts
+- `inputs/`: user-provided data, literature, advisor reports, and immutable source materials
+- `analysis/`: executable analysis code, formal outputs, and editable result tables
 - `drafts/`: bilingual main manuscripts
-- `tables/`: table source files or final display tables
-- `figures/`: figures used in the manuscript
-- `logs/`: writing-session notes, validation logs, tooling checks, literature pools, citation plans, full-text readiness logs, literature synthesis maps, empirical-results inventories, unused-results logs, empirical-results coverage audits, target-journal style profiles, Stata MCP inspection notes, evidence maps, or conversion logs such as `tooling-check.md`, `word-export-log.md`, `literature-pool.md`, `citation-plan.md`, `fulltext-literature-readiness.md`, `literature-synthesis-map.md`, `empirical-results-inventory.md`, `unused-empirical-results.md`, `empirical-results-coverage-audit.md`, `target-journal-style-profile.md`, `stata-mcp-inspection.md`, `empirical-evidence-map.md`, and `variable-measurement-evidence-map.md`
-- `versions/`: manual snapshots only when Git is unavailable or explicitly skipped
+- `figures/`: paired final figures, plot data, specs, and manifests
+- `workflow/`: state, artifact registry, decisions, and consolidated audits
+- `_work/`: ignored class-D temporary artifacts; never a formal deliverable
+- `versions/`: explicitly named frozen milestones only; Git owns ordinary history
 
 ## Initialization Actions
 
