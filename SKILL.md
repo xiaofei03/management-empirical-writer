@@ -1,6 +1,6 @@
 ---
 name: management-empirical-writer
-description: "Plan, draft, review, synchronize, and freeze bilingual empirical management manuscripts grounded in verified literature, Zotero citations, Stata evidence, Result_Index evidence maps, and Git versioning. Use for management, strategy, innovation, governance, digital transformation, ESG, corporate finance, and related panel-data papers from initial drafting through a frozen submission mother and Word-only refinement."
+description: "Plan, draft, rewrite, review, synchronize, and freeze bilingual empirical management manuscripts—including evidence-faithful abstracts and introductions—grounded in verified literature, Zotero citations, Stata evidence, Result_Index evidence maps, and Git versioning. Use for management, strategy, innovation, governance, digital transformation, ESG, corporate finance, and related empirical papers from abstract or introduction drafting through a frozen submission mother and Word-only refinement."
 ---
 
 # Management Empirical Writer
@@ -26,7 +26,8 @@ Before writing, read the project rules and inspect:
 Read these references as needed:
 
 - Intake and evidence: `references/intake-checklist.md`, `references/empirical-results-coverage-rules.md`, `references/stata-evidence-map.md`.
-- Chapters 1-2: `references/introduction-theory-writing-rules.md`.
+- Abstract and Introduction: `references/abstract-introduction-writing-playbook.md`; when a reference paper is supplied, also read `references/journal-style-analysis.md`.
+- Chapters 1-2 and hypothesis logic: `references/introduction-theory-writing-rules.md`.
 - Research design through conclusion: `references/research-design-results-discussion-writing-rules.md`.
 - Variable measurement: `references/variable-measurement-citation-rules.md` and `references/common-control-variables.md`.
 - Citations: `references/literature-pool-rules.md` and `references/zotero-mcp-citation-rules.md`.
@@ -39,6 +40,18 @@ Read these references as needed:
 Every empirical claim, table, and figure must map to a confirmed Evidence ID. Pending or conflicting evidence requires cautious prose and an explicit issue entry. Never infer unreported tests, samples, coefficients, thresholds, mediation, causality, or robustness.
 
 Every variable measurement normally needs a real supporting reference and a precise construction description. An uncited original measure is allowed only when its novelty is explicit and its construction can be independently audited.
+
+## Abstract and Introduction Gate
+
+Before drafting either section:
+
+1. Lock the construct definition, sample, model form, mechanisms, moderator interpretation, main findings, claim strength, and contribution boundary.
+2. If a reference paper is provided, imitate only its rhetorical moves, sentence economy, and section pacing; never copy its substantive claims or unsupported sample attributes.
+3. Build the Introduction from verified literature and evidence before writing the Abstract. Write or refresh the Abstract last.
+4. Map every Abstract result sentence to a confirmed result and every Introduction literature-gap claim to adjacent supporting citations.
+5. Keep ordinary citation groups at 1-3 sources and split larger groups by the exact claim they support.
+6. For nonlinear moderation, distinguish slope, curvature, and turning-point movement. Do not infer a changed curvature from a significant linear interaction or claim a turning-point shift without the model-implied calculation.
+7. Run the dedicated checklist in `references/abstract-introduction-writing-playbook.md` before delivery.
 
 ## Citation Gate
 

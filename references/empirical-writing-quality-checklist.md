@@ -150,6 +150,8 @@ Read `references/full-manuscript-writing-rules.md` before applying this checklis
 - Check that variable measurement sentences use citekeys or confirmed sources.
 - Check that control variable selection is justified with literature when available.
 - Is the abstract written last and aligned with the final manuscript?
+- Has the Abstract passed the relationship-setting, full-result-shape, mechanism-direction, moderation-interpretation, evidence-boundary, contribution, and word-limit gates in `abstract-introduction-writing-playbook.md`?
+- Has the Introduction passed the observable-opening, construct-boundary, evidence-backed-gap, claim-level citation, sentence-economy, and section-role-separation gates in `abstract-introduction-writing-playbook.md`?
 
 ## Output Quality
 

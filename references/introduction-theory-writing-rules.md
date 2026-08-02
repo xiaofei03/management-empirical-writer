@@ -1,5 +1,9 @@
 # Introduction and Theory Development Writing Rules
 
+For the complete Abstract workflow, paragraph-by-paragraph Introduction blueprint,
+sentence patterns, reference-paper imitation method, and final quality gates, also
+read `abstract-introduction-writing-playbook.md`.
+
 Use this reference when drafting, revising, or reviewing the first two chapters of an empirical management paper:
 
 - `Introduction`
