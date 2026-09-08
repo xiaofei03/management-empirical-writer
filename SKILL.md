@@ -9,7 +9,7 @@ Own the generic manuscript lifecycle. Delegate empirical computation to `empiric
 
 ## Default: one English mother
 
-Maintain one active source file, English unless the user requests another language. Reuse the existing path; create only directories needed now. No automatic Chinese companion, anonymous manuscript, parallel Markdown/Word maintenance or submission package. Before journal selection edit only the mother. After requested journal adaptation edit only the selected journal working copy, preserving the mother as a read-only baseline. Multiple-file synchronization requires an explicit request. This scope rule overrides all legacy bilingual/export instructions in supporting references.
+Maintain one active source file, English unless the user requests another language. Reuse the existing path; create only directories needed now. No automatic Chinese companion, anonymous manuscript, parallel Markdown/Word maintenance or submission package. After journal selection continue adapting this SAME file, with Git preserving earlier content; do not create a separate journal working copy. The active file may itself be anonymous. Any necessary unlinked upload export is a delivery artifact, never another maintained manuscript. Multiple-file synchronization requires an explicit request. This scope rule overrides all legacy bilingual/export instructions in supporting references.
 
 ## Lifecycle
 
@@ -90,7 +90,7 @@ Never regenerate a mature Word manuscript from Markdown for a local wording, cit
 
 ## Submission Mother
 
-Freeze a generic submission mother only after full-paper consistency, evidence, citation, bilingual, figure, formula, table, and Word audits pass. Store one explicitly named milestone under `versions/`; protect it from all later edits. Target-journal versions must derive from this mother through `journal-adapt`.
+Keep the pre-adaptation baseline in Git and continue editing the same active manuscript. An explicitly requested frozen milestone or actual submitted artifact may be archived read-only, but is not a second active mother. Separate journal branches require an explicit request; they are not a prerequisite for adaptation.
 
 ## Artifact Contract
 
