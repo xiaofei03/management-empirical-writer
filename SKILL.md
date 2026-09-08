@@ -1,11 +1,15 @@
 ---
 name: management-empirical-writer
-description: "Plan, draft, rewrite, review, synchronize, and freeze bilingual empirical management manuscripts—including evidence-faithful abstracts and introductions—grounded in verified literature, Zotero citations, Stata evidence, Result_Index evidence maps, and Git versioning. Use for management, strategy, innovation, governance, digital transformation, ESG, corporate finance, and related empirical papers from abstract or introduction drafting through a frozen submission mother and Word-only refinement."
+description: "Draft, revise, review and freeze a single empirical management manuscript, English by default, grounded in verified literature, Zotero citations and empirical evidence. Covers abstracts through Word-only refinement; bilingual output only when explicitly requested."
 ---
 
 # Management Empirical Writer
 
 Own the generic manuscript lifecycle. Delegate empirical computation to `empirical-analysis`, journal selection to `journal-selection-pro`, target adaptation to `journal-adapt`, and final Word geometry to `chinese-word-pro`.
+
+## Default: one English mother
+
+Maintain one active source file, English unless the user requests another language. Reuse the existing path; create only directories needed now. No automatic Chinese companion, anonymous manuscript, parallel Markdown/Word maintenance or submission package. Before journal selection edit only the mother. After requested journal adaptation edit only the selected journal working copy, preserving the mother as a read-only baseline. Multiple-file synchronization requires an explicit request. This scope rule overrides all legacy bilingual/export instructions in supporting references.
 
 ## Lifecycle
 
@@ -60,7 +64,7 @@ Before drafting either section:
 - Never flatten `ADDIN ZOTERO_ITEM`, `CSL_CITATION`, bibliography fields, or citekeys into ordinary text.
 - Record item-field and bibliography-field counts before and after Word changes. Any unexpected decline stops delivery.
 
-## Bilingual Contract
+## Bilingual Contract (only when explicitly requested)
 
 During Markdown-first drafting, Chinese is the content-control source and English is a full paragraph-aligned translation, not an abbreviated parallel paper. During Word-only refinement, the Chinese and English Word files are co-equal active deliverables and must remain substantively equivalent.
 
@@ -77,9 +81,9 @@ Use Markdown-first mode for structural drafting and major argument reconstructio
 At transition:
 
 1. Record `content_freeze` in workflow state.
-2. Produce and audit the canonical bilingual Word pair.
+2. Produce and audit the single canonical Word manuscript; a bilingual pair is opt-in.
 3. Mark Markdown as archival unless the user explicitly returns to structural drafting.
-4. Use one temporary Word pair under `_work/<run_id>/` for each later task.
+4. Use one temporary copy of the active Word manuscript under `_work/<run_id>/` for each later task.
 5. Patch locally, audit touched features, then run one full final audit.
 
 Never regenerate a mature Word manuscript from Markdown for a local wording, citation, formula, table, figure, or typography change.
@@ -90,7 +94,7 @@ Freeze a generic submission mother only after full-paper consistency, evidence, 
 
 ## Artifact Contract
 
-- Canonical drafts: `drafts/cn/` and `drafts/en/`.
+- Canonical draft: one existing active path, or `manuscript.docx` for a new Word project; do not scaffold language directories unnecessarily.
 - Temporary Word, probes, renders, and raw logs: `_work/<run_id>/` only.
 - Durable evidence and final audits: canonical analysis/figure/workflow locations.
 - One cumulative revision ledger per manuscript or journal version.
@@ -105,7 +109,7 @@ Before declaring the generic manuscript ready:
 2. Audit measurement validity, identification language, mechanism strength, and alternative explanations.
 3. Audit every table/figure against `Result_Index.md`.
 4. Audit citation density, metadata, and live fields.
-5. Audit Chinese-English structural and numerical equivalence.
+5. Audit Chinese-English equivalence only when bilingual output was explicitly requested.
 6. Invoke `chinese-word-pro` for formulas, figures, tables, paragraphs, references, and visual rendering.
 7. Commit and push canonical outputs according to project rules.
 
