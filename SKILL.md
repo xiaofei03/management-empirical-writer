@@ -5,7 +5,7 @@ description: "Draft, revise, review and freeze a single empirical management man
 
 # Management Empirical Writer
 
-Own the generic manuscript lifecycle. Delegate empirical computation to `empirical-analysis`, journal selection to `journal-selection-pro`, target adaptation to `journal-adapt`, and final Word geometry to `chinese-word-pro`.
+Own manuscript drafting, revision and same-file journal adaptation. Delegate empirical computation to `empirical-analysis`, destination comparison when needed to `journal-selection-pro`, and Word geometry to an available document skill.
 
 ## Default: one English mother
 
@@ -24,7 +24,7 @@ Before writing, read the project rules and inspect:
 - `Result_Index.md` and empirical-result inventory.
 - Variable dictionary and measurement evidence.
 - Literature pool, Zotero readiness, and citation plan.
-- Active Chinese/English manuscript files and lifecycle mode.
+- The single active manuscript and lifecycle mode; paired files only if explicitly requested.
 - Target audience without prematurely adapting to an unselected journal.
 
 Read these references as needed:
@@ -39,6 +39,7 @@ Read these references as needed:
 - Bilingual work: `references/bilingual-writing-rules.md`.
 - Word and Git: `references/word-export-rules.md` and `references/git-versioning-rules.md`.
 - Project layout: `references/project-structure.md`.
+- Known-journal adaptation: `references/journal-adaptation.md`; a confirmed target is sufficient, without a locked JSON or separate mother.
 
 ## Evidence Gate
 
@@ -86,7 +87,7 @@ At transition:
 2. Produce and audit the single canonical Word manuscript; a bilingual pair is opt-in.
 3. Mark Markdown as archival unless the user explicitly returns to structural drafting.
 4. Use one temporary copy of the active Word manuscript under `_work/<run_id>/` for each later task.
-5. Patch locally, audit touched features, then run one full final audit.
+5. Patch locally and audit touched features. Run a full applicable audit only for explicit submission-ready delivery or a justified structural escalation.
 
 Never regenerate a mature Word manuscript from Markdown for a local wording, citation, formula, table, figure, or typography change.
 
@@ -121,6 +122,6 @@ Before declaring the generic manuscript ready:
 - Citation stuffing or using a reference only to preserve bibliography count.
 - Introducing unagreed theories or variable aliases.
 - Overclaiming causal identification or unsupported mechanisms.
-- Editing the frozen mother or another journal's version.
+- Overwriting a read-only submitted archive or an unrelated manuscript rather than the chosen active file.
 - Using duplicate files as version control.
-- Delivering while Zotero, bilingual, or Word gates fail.
+- Delivering while applicable citation or Word gates fail; bilingual equivalence applies only to explicitly requested paired output.
