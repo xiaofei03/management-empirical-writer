@@ -29,6 +29,7 @@ Before writing, read the project rules and inspect:
 
 Read these references as needed:
 
+- For manuscript drafting, paragraph rewriting or language review, read `references/chapter-writing-and-language-rules.md` first. Its language and citation-placement defaults supersede older citation-density guidance in the specialized playbooks; apply only the relevant chapter rules.
 - Intake and evidence: `references/intake-checklist.md`, `references/empirical-results-coverage-rules.md`, `references/stata-evidence-map.md`.
 - Abstract and Introduction: `references/abstract-introduction-writing-playbook.md`; when a reference paper is supplied, also read `references/journal-style-analysis.md`.
 - Chapters 1-2 and hypothesis logic: `references/introduction-theory-writing-rules.md`.
@@ -53,13 +54,14 @@ Before drafting either section:
 2. If a reference paper is provided, imitate only its rhetorical moves, sentence economy, and section pacing; never copy its substantive claims or unsupported sample attributes.
 3. Build the Introduction from verified literature and evidence before writing the Abstract. Write or refresh the Abstract last.
 4. Map every Abstract result sentence to a confirmed result and every Introduction literature-gap claim to adjacent supporting citations.
-5. Keep ordinary citation groups at 1-3 sources and split larger groups by the exact claim they support.
+5. Attach citations to specific claims; prefer one directly supporting source at each location, using two only when complementary evidence is needed. Avoid batch citation clusters; follow the chapter-writing rules.
 6. For nonlinear moderation, distinguish slope, curvature, and turning-point movement. Do not infer a changed curvature from a significant linear interaction or claim a turning-point shift without the model-implied calculation.
 7. Run the dedicated checklist in `references/abstract-introduction-writing-playbook.md` before delivery.
 
 ## Citation Gate
 
-- Cite sources that support the exact claim; normal groups contain 1-3 references and should not exceed 5 without a claim-specific reason.
+- Aim for directly relevant literature support in each substantive theory-development paragraph, without forcing citations into pure transitions or standalone hypothesis statements. Cite because the claim needs support, never to meet a paragraph quota.
+- Prefer one directly supporting source at a citation location; use two when both are needed. Do not pile sources at sentence/paragraph ends. Redistribute distinct sources to the distinct claims they support; any larger necessary synthesis must explain the separate source roles rather than padding the citation count.
 - Use verified Zotero items and live fields in formal Word manuscripts.
 - Never flatten `ADDIN ZOTERO_ITEM`, `CSL_CITATION`, bibliography fields, or citekeys into ordinary text.
 - Record item-field and bibliography-field counts before and after Word changes. Any unexpected decline stops delivery.
